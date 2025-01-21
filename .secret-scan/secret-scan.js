@@ -80,12 +80,7 @@ function nullIfFileNotFound(callback) {
   try {
     return callback();
   } catch (e) {
-    if (
-      typeof e === "object" &&
-      e !== null &&
-      "code" in e &&
-      (e.code === "ENOENT" || e.code === "EISDIR")
-    ) {
+    if (typeof e === "object" && e !== null && "code" in e && (e.code === "ENOENT" || e.code === "EISDIR")) {
       return null;
     }
     throw e;
@@ -186,9 +181,7 @@ function loadCache() {
  * @returns {void}
  */
 function saveCache(cache) {
-  fs.writeFileSync(CACHE_PATH, JSON.stringify(cache), {
-    encoding: JSON_ENCODING,
-  });
+  fs.writeFileSync(CACHE_PATH, JSON.stringify(cache), { encoding: JSON_ENCODING });
 }
 
 function deleteReport() {
@@ -232,9 +225,7 @@ function runCommand(command) {
   }
 
   console.log(process);
-  throw new Error(
-    `Command did not execute successfully: ${JSON.stringify(command)}`
-  );
+  throw new Error(`Command did not execute successfully: ${JSON.stringify(command)}`);
 }
 
 /**
@@ -272,23 +263,14 @@ function checkGitVersion() {
 
 /** @returns {string} */
 function getRepoRoot() {
-  const repoRoot = runCommand(["git", "rev-parse", "--show-toplevel"]).replace(
-    EOL,
-    ""
-  );
+  const repoRoot = runCommand(["git", "rev-parse", "--show-toplevel"]).replace(EOL, "");
 
   // Make sure we don't get "file not found" later and assume the file was
   // deleted from the working tree, when the actual cause is having an incorrect
   // path for the repo root. Don't ask me how I know...
-  if (
-    !fs
-      .statSync(path.join(repoRoot, ".git"), { throwIfNoEntry: false })
-      ?.isDirectory()
-  ) {
+  if (!fs.statSync(path.join(repoRoot, ".git"), { throwIfNoEntry: false })?.isDirectory()) {
     throw new Error(
-      `Could not determine repo root: got ${JSON.stringify(
-        repoRoot
-      )}, but this is incorrect?`
+      `Could not determine repo root: got ${JSON.stringify(repoRoot)}, but this is incorrect?`
     );
   }
 
@@ -299,13 +281,8 @@ function getRepoRoot() {
 function checkGitHooks() {
   checkGitVersion();
 
-  const expectedHooksPath = ".husky";
-  const command = /** @type {const} */ ([
-    "git",
-    "config",
-    "--get",
-    "core.hooksPath",
-  ]);
+  const expectedHooksPath = ".husky/_";
+  const command = /** @type {const} */ (["git", "config", "--get", "core.hooksPath"]);
   const helpMsg = `Husky has not installed the required Git hooks. Run "npm run prepare" and try again.`;
 
   let hooksPath;
@@ -326,9 +303,7 @@ function checkGitHooks() {
     throw new Error(msg);
   }
 
-  console.log(
-    `Git hooks are correctly installed in ${JSON.stringify(expectedHooksPath)}.`
-  );
+  console.log(`Git hooks are correctly installed in ${JSON.stringify(expectedHooksPath)}.`)
   return 0;
 }
 
@@ -343,9 +318,7 @@ function runSecretScan() {
    */
   const report = [];
 
-  console.log(
-    `${__filename}: Scanning commit history and working tree for secrets.`
-  );
+  console.log(`${__filename}: Scanning commit history and working tree for secrets.`);
 
   checkGitVersion();
   const repoRoot = getRepoRoot();
@@ -374,17 +347,12 @@ function runSecretScan() {
   const previouslyScannedCommitHashes = new Set(cache.safeCommitHashes);
   const filesToSkip = new Set(config.skippedFiles);
   const secretRegexes = Object.fromEntries(
-    Object.entries(config.secretRegexes).map(([k, v]) => [
-      k,
-      new RegExp(v, "g"),
-    ])
+    Object.entries(config.secretRegexes).map(([k, v]) => [k, new RegExp(v, "g")])
   );
 
   /** @param {string} matchedText */
   function isFalsePositive(matchedText) {
-    return config.allowedStrings.some((allowed) =>
-      matchedText.includes(allowed)
-    );
+    return config.allowedStrings.some((allowed) => matchedText.includes(allowed));
   }
 
   /**
@@ -400,23 +368,17 @@ function runSecretScan() {
 
     // Don't try to read deleted files. If you ever get an error message like
     // "unknown revision or path not in the working tree", double check this.
-    const gitListFileOptions = [
-      "--no-renames",
-      "--diff-filter=d",
-      "--name-only",
-    ];
+    const gitListFileOptions = ["--no-renames", "--diff-filter=d", "--name-only"];
 
     if (maybeCommitHash === null) {
-      const workingTreePaths = nonEmptyLines(
-        runCommand(["git", "status", "--porcelain"])
-      ).map((line) => line.slice(3));
+      const workingTreePaths = nonEmptyLines(runCommand(["git", "status", "--porcelain"])).map(
+        (line) => line.slice(3)
+      );
       for (const workingTreePath of workingTreePaths) {
         // If the file was deleted, we can ignore it. I was a bit too lazy to
         // parse the status letters of `git status --porcelain`.
         let contents = nullIfFileNotFound(() =>
-          fs.readFileSync(path.join(repoRoot, workingTreePath), {
-            encoding: "utf8",
-          })
+          fs.readFileSync(path.join(repoRoot, workingTreePath), { encoding: "utf8" })
         );
 
         if (contents !== null) {
@@ -440,24 +402,14 @@ function runSecretScan() {
       }
     } else {
       const [commitDescription, ...changedPaths] = nonEmptyLines(
-        runCommand([
-          "git",
-          "show",
-          "--oneline",
-          ...gitListFileOptions,
-          maybeCommitHash,
-        ])
+        runCommand(["git", "show", "--oneline", ...gitListFileOptions, maybeCommitHash])
       );
       const where = `commit ${JSON.stringify(commitDescription)}`;
       for (const changedPath of changedPaths) {
         changedFiles.push({
           path: changedPath,
           where,
-          contents: runCommand([
-            "git",
-            "show",
-            `${maybeCommitHash}:${changedPath}`,
-          ]),
+          contents: runCommand(["git", "show", `${maybeCommitHash}:${changedPath}`]),
         });
       }
     }
@@ -503,9 +455,7 @@ function runSecretScan() {
   }
 
   // Scan every commit.
-  const allCommitHashes = nonEmptyLines(
-    runCommand(["git", "log", "--pretty=format:%H"])
-  );
+  const allCommitHashes = nonEmptyLines(runCommand(["git", "log", "--pretty=format:%H"]));
   for (const hash of allCommitHashes) {
     if (!previouslyScannedCommitHashes.has(hash)) {
       scan(hash);
@@ -523,9 +473,7 @@ function runSecretScan() {
   saveCache(cache);
 
   if (report.length > 0) {
-    console.log(
-      redText(`Secret scan completed with errors.\n\n${secretRemovalAdvice}\n`)
-    );
+    console.log(redText(`Secret scan completed with errors.\n\n${secretRemovalAdvice}\n`));
     return 1;
   } else {
     console.log("Secret scan completed successfully.");
