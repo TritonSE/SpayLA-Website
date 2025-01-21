@@ -25,10 +25,7 @@ module.exports = {
   },
   plugins: ["react-refresh"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     // Allow import styled from "styled-components"
     "import/no-named-as-default": "off",
 
@@ -83,15 +80,7 @@ module.exports = {
       "warn",
       {
         alphabetize: { order: "asc" },
-        groups: [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type",
-        ],
+        groups: ["builtin", "external", "parent", "sibling", "index", "object", "type"],
         "newlines-between": "always",
       },
     ],
