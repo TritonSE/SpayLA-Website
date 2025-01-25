@@ -1,36 +1,70 @@
 .helpOutGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 0;
   align-items: stretch;
-  height: 300px; 
+  align-self: stretch;
 }
 
 .gridImage {
-  width: 100%;
-  height: 100%;
+  width: 720px;
+  height: 493px;
   object-fit: cover;
+  flex-shrink: 0;
   border-radius: 0;
 }
 
 .helpOutText {
-  background-color: #3b5998;
-  color: white;
-  padding: 20px;
-  border-radius: 0;
-  text-align: center;
   display: flex;
+  width: 720px;
+  padding: 95px 51px 93.902px 51px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background: #1b5fb9;
+  color: white;
+  text-align: center;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center; 
-  height: 100%;
 }
 
 .helpOutText h2 {
-  margin-top: 0;
+  color: #fff;
+  font-family: Heebo;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 72px */
+  letter-spacing: 0.96px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.helpOutText p {
+  color: #fff;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 133.333% */
+  margin: 10px 0;
 }
 
 .icon {
-  width: 50px;
+  width: 40px;
+  margin-top: 10px;
+}
+
+.phoneIcon {
+  position: relative;
+  width: 64.997px;
+  height: 68.531px;
+  top: -5px;
+}
+
+.catIcon {
+  height: 96.098px;
+  width: 124px;
   margin-top: 10px;
 }

@@ -12,24 +12,26 @@ export default function HelpOutToday() {
         height={200}
       />
       <div className={styles.helpOutText}>
-        <h2>Help out today!</h2>
+        <h2>
+          Help out today!
+          <Image
+            src="/community_support/speaker_icon.svg"
+            alt="Speaker Icon"
+            className={`${styles.icon} ${styles.phoneIcon}`}
+            width={40}
+            height={40}
+          />
+        </h2>
         <p>
           By calling city officials, signing petitions, and spreading the word to friends and
           family, you can make a massive difference in our community.
         </p>
-        <Image 
-          src="/community_support/speaker_icon.svg"
-          alt="Speaker_Icon"
-          className={styles.icon}
-          width={300}
-          height={200}
-        />
         <Image
           src="/community_support/cat_icon.svg"
-          alt="Icon"
-          className={styles.icon}
-          width={300}
-          height={200}
+          alt="Cat Icon"
+          className={`${styles.icon} ${styles.catIcon}`}
+          width={124}
+          height={96.096}
         />
       </div>
     </div>
