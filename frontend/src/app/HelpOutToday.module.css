@@ -1,0 +1,36 @@
+.helpOutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  height: 300px; 
+}
+
+.gridImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.helpOutText {
+  background-color: #3b5998;
+  color: white;
+  padding: 20px;
+  border-radius: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  height: 100%;
+}
+
+.helpOutText h2 {
+  margin-top: 0;
+}
+
+.icon {
+  width: 50px;
+  margin-top: 10px;
+}
