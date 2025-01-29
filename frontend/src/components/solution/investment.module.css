@@ -1,0 +1,52 @@
+.outerContainer {
+  width: 100%;
+  background-color: #fbfeff;
+}
+
+.innerContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: #fbfeff;
+  padding: 108px 144px;
+  align-items: start;
+  column-gap: 120px;
+  max-width: 2000px; /* Prevents stretching */
+  margin: 0 auto; /* Centers the container */
+}
+
+.budgetSection {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.percentage {
+  font-size: 96px;
+  font-weight: bold;
+  color: #ff8359;
+  letter-spacing: 0;
+}
+
+.subtitle {
+  font-size: 32px;
+  color: #649de0;
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: bold;
+  color: #002c5f;
+}
+
+.description {
+  font-size: 20px;
+  color: #000000;
+  line-height: 1.5;
+  align-items: center;
+  padding-top: 40px;
+}
