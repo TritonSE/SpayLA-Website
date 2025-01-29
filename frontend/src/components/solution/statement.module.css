@@ -1,0 +1,16 @@
+.section {
+  width: 100vw; /* Full viewport width */
+  height: auto;
+  padding: 100px;
+  position: relative;
+  background-image: url("/solution_main.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding: 100px;
+}
