@@ -1,4 +1,5 @@
 .grid {
+  margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(3, 336px);
   width: 1440px;
@@ -7,4 +8,38 @@
   row-gap: 29px;
   grid-auto-rows: 230px;
   justify-content: center;
+}
+.sectionHeader {
+  background: var(--Secondary-Light-Blue, #dfebf3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 171px;
+  padding-right: 171px;
+  gap: 27px;
+}
+.sectionTitle {
+  width: 1098px;
+  color: var(--Primary-Dark-Blue, #2d5177);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.sectionDescription {
+  width: 855.533px;
+  transform: rotate(0.091deg);
+  color: #2d5177;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
 }
