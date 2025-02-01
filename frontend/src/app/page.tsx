@@ -19,6 +19,7 @@ export default function Home() {
             cardTitle={card.cardTitle}
             cardDescription={card.cardDescription}
             backgroundColor={card.backgroundColor}
+            hoverColor={card.hoverColor}
           />
         ))}
       </div>

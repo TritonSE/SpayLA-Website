@@ -6,6 +6,8 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-size: cover;
 }
 
 .background {
@@ -19,7 +21,6 @@
   text-align: center;
   line-height: normal;
   width: 216px;
-  opacity: 0px;
   left: 50%;
   top: 50%;
   position: relative;
@@ -34,6 +35,8 @@
   font-weight: 600;
   line-height: 24.53px;
   text-align: left;
+  position: relative;
+  left: 39px;
   width: 264px;
   gap: 0px;
   opacity: 0;
@@ -44,6 +47,7 @@
 
 .card:hover .cardTitle {
   top: 22px;
+  /* transform: translate(-50%, 0); */
   width: 216px;
   text-align: left;
   left: 25%;
@@ -51,6 +55,8 @@
 
 .card:hover .cardDescription {
   opacity: 1; /* Show the description */
+  width: 264px;
+  left: 0px;
 }
 
 .card:hover {
@@ -59,4 +65,5 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
+  background-size: cover;
 }
