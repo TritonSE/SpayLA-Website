@@ -27,10 +27,10 @@
 
 .percentage {
   font-size: 96px;
-
   font-weight: bold;
-  color: #ff8359;
-  letter-spacing: 0;
+  color: #ff7f50; /* Orange */
+  transition: all 0.3s ease-in-out;
+  text-align: center;
 }
 
 .subtitle {
