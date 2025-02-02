@@ -1,16 +1,83 @@
-.section {
-  width: 100vw; /* Full viewport width */
-  height: auto;
-  padding: 100px;
-  position: relative;
-  background-image: url("/solution_main.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.outerContainer {
+  width: 100%;
+  background-color: #fbfeff;
 }
 
-.imageWrapper {
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  background-image: url("/solution_main.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
+  padding: 70px;
+  background-color: #fbfeff;
+  column-gap: 120px;
+  max-width: 2000px;
+  margin: 0 auto;
+  font-family: var(--font-montserrat);
+  z-index: -1;
+}
+
+.vectorContainer {
   position: relative;
   width: 100%;
-  padding: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svgImage {
+  position: relative;
+  margin: auto;
+  width: 65%;
+  height: auto;
+  z-index: 0;
+}
+.textSection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers text */
+  width: 60%; /* Controls text width */
+  text-align: center;
+  z-index: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textSection {
+  align-self: flex-start;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.subheading {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff8359;
+}
+
+.heading {
+  font-size: 64px;
+  padding-top: 10px;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center; /* Ensures the text itself is centered in a block */
+}
+
+.description {
+  margin: auto;
+  width: 80%;
+  font-size: 20px;
+  padding-top: 40px;
+  font-family: var(--font-open-sans);
+  font-weight: 600;
+  color: white;
+  text-align: center;
 }

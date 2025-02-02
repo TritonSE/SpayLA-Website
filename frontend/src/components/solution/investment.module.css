@@ -1,17 +1,22 @@
 .outerContainer {
   width: 100%;
   background-color: #fbfeff;
+  display: flex;
+  justify-content: center; /* Keeps everything centered */
+  align-items: center;
+  overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 .innerContainer {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  align-content: center;
   background-color: #fbfeff;
   padding: 108px 144px;
-  align-items: start;
   column-gap: 120px;
-  max-width: 2000px; /* Prevents stretching */
-  margin: 0 auto; /* Centers the container */
+  max-width: 2000px;
+  margin: 0 auto;
+  font-family: var(--font-montserrat);
 }
 
 .budgetSection {
@@ -22,6 +27,7 @@
 
 .percentage {
   font-size: 96px;
+
   font-weight: bold;
   color: #ff8359;
   letter-spacing: 0;
@@ -29,6 +35,7 @@
 
 .subtitle {
   font-size: 32px;
+  font-weight: 600;
   color: #649de0;
 }
 
@@ -45,6 +52,7 @@
 
 .description {
   font-size: 20px;
+  font-family: var(--font-open-sans);
   color: #000000;
   line-height: 1.5;
   align-items: center;
