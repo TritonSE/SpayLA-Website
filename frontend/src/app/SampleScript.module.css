@@ -1,0 +1,60 @@
+.sampleScriptGrid {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  align-self: stretch;
+}
+
+.sampleScriptText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5eff4;
+  width: 720px;
+  height: 493px;
+  flex-direction: column;
+  padding: 95px 51px 93.902px 51px;
+  flex-shrink: 0;
+}
+
+@font-face {
+  font-family: "Heebo";
+  src: url("fonts/heebo.regular.ttf");
+  font-style: normal;
+}
+.sampleScriptText h2 {
+  color: #000000;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 150%;
+  gap: 15px;
+  letter-spacing: 0.96px;
+  font-family: "Heebo";
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Regular.ttf");
+}
+
+.sampleScriptText p {
+  font-family: "Open Sans";
+  color: #000000;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  display: flex;
+  text-align: center;
+  margin: 10px 0;
+  width: 618px;
+  height: 96px;
+}
+
+.stringIcon {
+  height: 70.59px;
+  width: 184px;
+  margin-top: 15px;
+}

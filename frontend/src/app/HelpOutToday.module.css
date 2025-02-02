@@ -24,6 +24,7 @@
   color: white;
   text-align: center;
   flex-direction: column;
+  height: 493px;
 }
 @font-face {
   font-family: "Heebo";
@@ -74,5 +75,5 @@
 .catIcon {
   height: 96.098px;
   width: 124px;
-  margin-top: 10px;
+  margin: 10px 0;
 }
