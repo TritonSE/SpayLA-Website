@@ -23,24 +23,13 @@
   margin-left: auto;
   margin-right: auto;
 }
-.sectionTitle {
-  width: 1098x;
-  color: var(--Primary-Dark-Blue, #2d5177);
-  text-align: center;
-  font-family: "Montserrat";
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .sectionDescription {
   width: 855.533px;
   transform: rotate(0.091deg);
   color: #2d5177;
   text-align: center;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

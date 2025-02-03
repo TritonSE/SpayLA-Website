@@ -61,6 +61,12 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("/fonts/Montserrat.woff2") format("woff2");
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -83,4 +89,16 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.sectionTitle {
+  color: var(--Primary-Dark-Blue, #2d5177);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
 }

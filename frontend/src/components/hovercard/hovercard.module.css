@@ -8,6 +8,11 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .background {
@@ -22,7 +27,7 @@
   line-height: normal;
   width: 216px;
   left: 50%;
-  top: 50%;
+  top: 25%;
   position: relative;
   transform: translate(-50%, -50%);
   transition:
@@ -35,7 +40,7 @@
   font-weight: 600;
   line-height: 24.53px;
   text-align: left;
-  position: relative;
+  position: absolute;
   left: 39px;
   width: 264px;
   gap: 0px;
@@ -56,7 +61,7 @@
 .card:hover .cardDescription {
   opacity: 1; /* Show the description */
   width: 264px;
-  left: 0px;
+  left: 39px;
 }
 
 .card:hover {
