@@ -4,7 +4,6 @@ import Statement from "@/components/solution/Statement";
 import AccesibleClinic from "@/components/solution/accesibleClinics";
 import AffordableSurgeries from "@/components/solution/affordableSurgeries";
 
-
 export default function Solution() {
   return (
     <div>
@@ -13,7 +12,6 @@ export default function Solution() {
       <Appointments />
       <AccesibleClinic />
       <AffordableSurgeries />
-      {/* <AffordableSurgeries /> */}
     </div>
   );
 }
