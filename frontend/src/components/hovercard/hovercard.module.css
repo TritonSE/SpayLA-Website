@@ -1,3 +1,20 @@
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .card {
   width: 336px;
   height: 230px;
@@ -8,11 +25,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
 }
 
 .background {
@@ -27,12 +39,13 @@
   line-height: normal;
   width: 216px;
   left: 50%;
-  top: 25%;
+  top: 50%;
   position: relative;
   transform: translate(-50%, -50%);
   transition:
     top 0.3s ease,
-    transform 0.3s ease;
+    fadeOut 0.3s ease-out;
+  /* transform 0.3s ease; */
 }
 
 .cardDescription {
@@ -40,35 +53,43 @@
   font-weight: 600;
   line-height: 24.53px;
   text-align: left;
-  position: absolute;
-  left: 39px;
-  width: 264px;
+  width: 216px;
+  left: 60px;
+  position: relative;
   gap: 0px;
   opacity: 0;
-  transition:
-    opacity 0.3s ease,
-    bottom 0.3s ease;
 }
 
 .card:hover .cardTitle {
-  top: 22px;
-  /* transform: translate(-50%, 0); */
+  top: 0;
+  left: 60px;
   width: 216px;
   text-align: left;
-  left: 25%;
+  transform: none;
+  animation: fadeIn 0.3s ease-in;
+  /* transition: fadeOut 0.3s ease-out; */
+  /* left: 50%; */
+  /* top: 50%; */
+  /* position: relative; */
+  /* transform: translate(-50%, -50%); */
+  /* left: 25%; */
+  /* transform: translate(-25%, 50%); */
 }
 
 .card:hover .cardDescription {
   opacity: 1; /* Show the description */
-  width: 264px;
-  left: 39px;
+  transform: none;
+  animation: fadeIn 0.3s ease-in;
+  /* width: 216px; */
+  /* left: 50%; */
+  /* margin-top: 0%; */
+  /* position: relative; */
+  /* transform: translate(-50%, -50%); */
 }
 
 .card:hover {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 9px;
-  background-size: cover;
 }
