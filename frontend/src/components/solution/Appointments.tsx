@@ -10,7 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
-  Colors,
+  ChartOptions,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
@@ -33,7 +33,7 @@ const Appointments: React.FC = () => {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
     maintainAspectRatio: false,
     layout: {
       padding: {
@@ -57,14 +57,13 @@ const Appointments: React.FC = () => {
           weight: "bold",
           family: "Montserrat",
         },
-        formatter: (value) => value.toLocaleString(), // Format numbers with commas
+        formatter: (value: number) => value.toLocaleString(), // Format numbers with commas
       },
     },
     scales: {
       x: {
         grid: {
           drawOnChartArea: false,
-          drawBorder: false,
         },
         ticks: {
           color: "black",

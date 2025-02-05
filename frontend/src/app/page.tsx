@@ -1,4 +1,3 @@
-import styles from "@/app/page.module.css";
 import Solution from "../components/solution/Solution";
 export default function Home() {
   return (

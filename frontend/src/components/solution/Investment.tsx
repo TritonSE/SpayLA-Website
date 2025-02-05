@@ -23,23 +23,25 @@ const Investment: React.FC = () => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [hasAnimated]);
 
   const startAnimation = () => {
     let currentValue = 100;
     const finalValue = 0.06;
-    let step = (currentValue - finalValue) / 55; // 🔹 Slower decrease
+    const step = (currentValue - finalValue) / 55; // 🔹 Slower decrease
     let lastTime = performance.now();
 
     const updatePercentage = (timestamp: number) => {
-      let deltaTime = timestamp - lastTime;
+      const deltaTime = timestamp - lastTime;
 
       if (deltaTime > 40) {
         // 🔹 Smooth updates (~25 FPS)
         lastTime = timestamp;
         currentValue -= step;
-        let displayValue = currentValue.toFixed(2);
+        const displayValue = currentValue.toFixed(2);
 
         setPercentage(displayValue + "%");
 
