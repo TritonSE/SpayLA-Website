@@ -1,0 +1,39 @@
+.grid {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(3, 336px);
+  width: 100vw;
+  height: 888px;
+  column-gap: 41px;
+  row-gap: 29px;
+  grid-auto-rows: 230px;
+  justify-content: center;
+  align-items: center;
+}
+.sectionHeader {
+  background: var(--Secondary-Light-Blue, #dfebf3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  padding-left: 171px;
+  padding-right: 171px;
+  gap: 27px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionDescription {
+  width: 855.533px;
+  transform: rotate(0.091deg);
+  color: #2d5177;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+}
