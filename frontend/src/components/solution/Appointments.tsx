@@ -1,18 +1,21 @@
 "use client";
-import React from "react";
-import styles from "@/components/solution/appointments.module.css";
-import { Bar } from "react-chartjs-2";
+
 import {
-  Chart,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart,
+  ChartOptions,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-  ChartOptions,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from "react";
+import { Bar } from "react-chartjs-2";
+
+import styles from "@/components/solution/appointments.module.css";
+
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 const Appointments: React.FC = () => {

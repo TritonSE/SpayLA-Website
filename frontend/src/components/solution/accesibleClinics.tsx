@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "@/components/solution/accesibleClinics.module.css";
 
 const AccesibleClinic: React.FC = () => {
@@ -6,7 +7,7 @@ const AccesibleClinic: React.FC = () => {
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
         <div className={styles.imageSection}>
-          <img className={styles.image} alt="Accesible Clinics" src="/accesible_clinics.png" />
+          <img className={styles.image} alt="Accessible Clinics" src="/accesible_clinics.png" />
         </div>
         <div className={styles.textSection}>
           <h2 className={styles.heading}>Accesible Clinics</h2>

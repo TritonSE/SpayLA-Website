@@ -1,5 +1,6 @@
-import styles from "@/components/solution/statement.module.css";
 import Image from "next/image";
+
+import styles from "@/components/solution/statement.module.css";
 export default function Statement() {
   return (
     <div className={styles.outerContainer}>

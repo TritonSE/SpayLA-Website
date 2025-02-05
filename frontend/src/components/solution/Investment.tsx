@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import styles from "@/components/solution/investment.module.css";
 
 const Investment: React.FC = () => {
