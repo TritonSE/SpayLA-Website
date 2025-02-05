@@ -6,7 +6,7 @@ import Statement from "@/components/solution/Statement";
 
 export default function Solution() {
   return (
-    <div>
+    <div className="">
       <Statement />
       <Investment />
       <Appointments />
