@@ -10,7 +10,7 @@ const AccesibleClinic: React.FC = () => {
           <img className={styles.image} alt="Accessible Clinics" src="/accesible_clinics.png" />
         </div>
         <div className={styles.textSection}>
-          <h2 className={styles.heading}>Accesible Clinics</h2>
+          <h2 className={styles.heading}>Accessible Clinics</h2>
           <p className={styles.description}>
             By strategically placing 10 clinics across the city of LA, pet owners no longer have to
             experience long drives during rush hour traffic with a frightened pet.

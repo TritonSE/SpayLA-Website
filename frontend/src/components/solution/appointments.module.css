@@ -43,13 +43,16 @@
 
 .graphSection {
   text-align: center;
-  max-height: 400px; /* Ensure it takes full height */
+  justify-content: flex-end;
+  height: 400px; /* Ensure it takes full height */
   display: flex;
   flex-direction: column;
 }
 
 .graphTitle {
   font-size: 20px;
+  align-items: flex-start;
+  justify-items: flex-start;
   font-family: var(--font-open-sans);
   color: #000000;
 }

@@ -43,6 +43,13 @@ const Appointments: React.FC = () => {
         top: 75,
       },
     },
+    animations: {
+      y: {
+        type: "number",
+        duration: 2000,
+        easing: "easeOutCubic", // Smooth acceleration & deceleration
+      },
+    },
     plugins: {
       tooltip: {
         enabled: false,
@@ -81,6 +88,7 @@ const Appointments: React.FC = () => {
           display: false,
         },
         display: false,
+        beginAtZero: true,
       },
     },
   };

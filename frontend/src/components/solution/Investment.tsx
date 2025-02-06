@@ -10,14 +10,13 @@ const Investment: React.FC = () => {
   const startAnimation = () => {
     let currentValue = 100;
     const finalValue = 0.06;
-    const step = (currentValue - finalValue) / 55; // 🔹 Slower decrease
+    const step = (currentValue - finalValue) / 51;
     let lastTime = performance.now();
 
     const updatePercentage = (timestamp: number) => {
       const deltaTime = timestamp - lastTime;
 
-      if (deltaTime > 40) {
-        // 🔹 Smooth updates (~25 FPS)
+      if (deltaTime > 30) {
         lastTime = timestamp;
         currentValue -= step;
         const displayValue = currentValue.toFixed(2);
@@ -27,7 +26,7 @@ const Investment: React.FC = () => {
         if (currentValue > finalValue + 0.001) {
           requestAnimationFrame(updatePercentage);
         } else {
-          setPercentage("00.06%"); // Ensure final value is correct
+          setPercentage("00.06%");
         }
       } else {
         requestAnimationFrame(updatePercentage);
