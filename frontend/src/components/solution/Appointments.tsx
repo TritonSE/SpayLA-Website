@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Bar } from "react-chartjs-2";
 
 import styles from "@/components/solution/appointments.module.css";
@@ -93,6 +93,35 @@ const Appointments: React.FC = () => {
     },
   };
 
+  const chartRef = useRef<HTMLDivElement | null>(null);
+  const [chartKey, setChartKey] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false); // Track if animation has occurred
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setChartKey((prevKey) => prevKey + 1); // Forces chart re-render
+            setHasAnimated(true); // Mark animation as done
+            observer.unobserve(entry.target); // Stop observing after animation
+          }
+        });
+      },
+      { threshold: 0.5 }, // Trigger when 50% of the chart is visible
+    );
+
+    if (chartRef.current) {
+      observer.observe(chartRef.current);
+    }
+
+    return () => {
+      if (chartRef.current) {
+        observer.unobserve(chartRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
@@ -108,9 +137,9 @@ const Appointments: React.FC = () => {
             This means more surgeries and less time waiting for <br /> an available appointment.
           </p>
         </div>
-        <div className={styles.graphSection}>
+        <div ref={chartRef} className={styles.graphSection}>
           <p className={styles.graphTitle}>Surgeries Per Year</p>
-          <Bar data={data} options={options} />
+          <Bar key={chartKey} data={data} options={options} />
         </div>
       </div>
     </div>
