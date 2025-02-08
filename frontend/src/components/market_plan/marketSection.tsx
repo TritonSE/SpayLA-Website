@@ -1,4 +1,5 @@
 import styles from "./marketSection.module.css";
+
 import { cardDetails } from "@/components/hovercard/carddetail";
 import HoverCard from "@/components/hovercard/hovercard";
 
@@ -13,8 +14,9 @@ export default function MarketSection() {
         </p>
       </div>
       <div className={styles.grid}>
-        {cardDetails.map((card, index) => (
+        {cardDetails.map((card) => (
           <HoverCard
+            key={card.cardTitle}
             backgroundImage={card.backgroundImage}
             cardTitle={card.cardTitle}
             cardDescription={card.cardDescription}

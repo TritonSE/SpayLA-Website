@@ -1,14 +1,16 @@
 "use client";
+
 import React from "react";
+
 import styles from "./hovercard.module.css";
 
-interface hovercardProps {
+type hovercardProps = {
   backgroundImage: string;
   cardTitle: string;
   cardDescription: string;
   backgroundColor: string;
   hoverColor: string;
-}
+};
 
 const HoverCard: React.FC<hovercardProps> = ({
   backgroundImage,
@@ -28,6 +30,8 @@ const HoverCard: React.FC<hovercardProps> = ({
     <div
       className={styles.card}
       style={cardStyle}
+      role="button"
+      tabIndex={0}
       onMouseEnter={(e) => (
         (e.currentTarget.style.background = backgroundHover),
         (e.currentTarget.style.backgroundSize = "cover")
