@@ -53,8 +53,8 @@
   font-weight: 600;
   line-height: 24.53px;
   text-align: left;
-  width: 216px;
-  left: 60px;
+  width: 258px;
+  left: 50px;
   position: relative;
   gap: 0px;
   opacity: 0;
@@ -62,8 +62,8 @@
 
 .card:hover .cardTitle {
   top: 0;
-  left: 60px;
-  width: 216px;
+  left: 50px;
+  width: 258px;
   text-align: left;
   transform: none;
   animation: fadeIn 0.3s ease-in;

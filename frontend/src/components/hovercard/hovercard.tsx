@@ -18,7 +18,7 @@ const HoverCard: React.FC<hovercardProps> = ({
   hoverColor,
 }) => {
   const backgroundProp = `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`;
-  const backgroundHover = `linear-gradient(${hoverColor}, ${backgroundColor}), url(${backgroundImage})`;
+  const backgroundHover = `linear-gradient(${hoverColor}, ${hoverColor}), url(${backgroundImage})`;
   const cardStyle: React.CSSProperties = {
     background: `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`,
     backgroundSize: "cover",
