@@ -53,11 +53,12 @@
   font-weight: 600;
   line-height: 24.53px;
   text-align: left;
-  width: 258px;
+  width: 0px;
   left: 50px;
   position: relative;
   gap: 0px;
   opacity: 0;
+  white-space: pre-line;
 }
 
 .card:hover .cardTitle {

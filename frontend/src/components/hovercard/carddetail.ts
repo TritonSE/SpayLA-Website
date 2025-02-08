@@ -42,7 +42,7 @@ export const cardDetails = [
     backgroundImage: "/market_plan/digital_marketing.jpg",
     cardTitle: "Digital Marketing",
     cardDescription:
-      "Employ social media advertising targeting specific demographics in each community.",
+      "Employ social media advertising targeting specific demographics in each community.\nUtilize Google Ads to reach individuals searching for pet care services.",
     backgroundColor: "rgba(45, 81, 119, 0.5)",
     hoverColor: "rgba(45, 81, 119, 0.7)",
   },
