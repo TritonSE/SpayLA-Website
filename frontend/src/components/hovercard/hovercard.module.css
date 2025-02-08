@@ -16,6 +16,8 @@
 }
 
 .card {
+  display: flex;
+  align-items: center;
   width: 336px;
   height: 230px;
   cursor: pointer;
@@ -24,7 +26,6 @@
     box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  background-size: cover;
 }
 
 .background {
@@ -39,13 +40,12 @@
   line-height: normal;
   width: 216px;
   left: 50%;
-  top: 50%;
+  top: 10%;
   position: relative;
   transform: translate(-50%, -50%);
   transition:
     top 0.3s ease,
     fadeOut 0.3s ease-out;
-  /* transform 0.3s ease; */
 }
 
 .cardDescription {
@@ -62,29 +62,19 @@
 
 .card:hover .cardTitle {
   top: 0;
-  left: 50px;
+  left: 0px;
   width: 258px;
   text-align: left;
   transform: none;
   animation: fadeIn 0.3s ease-in;
-  /* transition: fadeOut 0.3s ease-out; */
-  /* left: 50%; */
-  /* top: 50%; */
-  /* position: relative; */
-  /* transform: translate(-50%, -50%); */
-  /* left: 25%; */
-  /* transform: translate(-25%, 50%); */
 }
 
 .card:hover .cardDescription {
-  opacity: 1; /* Show the description */
+  opacity: 1;
+  width: 258px;
+  left: 0px;
   transform: none;
   animation: fadeIn 0.3s ease-in;
-  /* width: 216px; */
-  /* left: 50%; */
-  /* margin-top: 0%; */
-  /* position: relative; */
-  /* transform: translate(-50%, -50%); */
 }
 
 .card:hover {
