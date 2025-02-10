@@ -1,3 +1,4 @@
+import Solution from "../components/solution/Solution";
 export default function Home() {
   return (
     <main>
@@ -11,7 +12,7 @@ export default function Home() {
         <p>Problem Statement&nbsp;</p>
       </div>
       <div>
-        <p>Solution&nbsp;</p>
+        <Solution />
       </div>
       <div>
         <p>Community Support&nbsp;</p>
