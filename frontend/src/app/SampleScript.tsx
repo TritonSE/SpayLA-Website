@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./SampleScript.module.css";
 
-export default function SampleScript() {
+export default function SampleScript(): JSX.Element {
   return (
     <div className={styles.sampleScriptGrid}>
       <div className={styles.sampleScriptText}>

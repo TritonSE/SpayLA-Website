@@ -1,8 +1,8 @@
 .sampleScriptGrid {
   display: flex;
   gap: 0;
-  align-items: stretch;
-  align-self: stretch;
+  align-items: center;
+  justify-content: center;
 }
 
 .sampleScriptText {
