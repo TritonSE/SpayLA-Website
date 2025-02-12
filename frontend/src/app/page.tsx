@@ -1,3 +1,4 @@
+import WhyNeuter from "@/components/solution/WhyNeuter";
 import Solution from "../components/solution/Solution";
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
       </div>
       <div>
         <p>Marketing Plan&nbsp;</p>
+      </div>
+      <div>
+        <WhyNeuter/>
       </div>
     </main>
   );
