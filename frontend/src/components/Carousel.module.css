@@ -1,0 +1,68 @@
+/* Centers the carousel on the page */
+.carouselContainer {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Inner wrapper acts as the fixed boundary for slides and navigation */
+  .innerWrapper {
+    position: relative;
+    overflow: hidden;
+    /* The width is set inline via the component's prop */
+  }
+  
+  /* Flex container for slides */
+  .carouselInner {
+    display: flex;
+  }
+  
+  /* Each slide occupies 100% of the innerWrapper's width */
+  .carouselItem {
+    flex: 0 0 100%;
+  }
+  
+  /* Navigation container for arrows and slide indicators */
+  .navButtons {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between arrows and the indicator group */
+    z-index: 2;
+  }
+  
+  /* Style for the arrow buttons */
+  .navButton {
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 1.2rem; /* Increase arrow size if desired */
+  }
+  
+  /* Container for the indicator bubbles */
+  .indicators {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  /* Default style for each indicator bubble */
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: background 0.3s ease;
+  }
+  
+  /* Highlighted style for the active indicator */
+  .active {
+    background: rgba(255, 255, 255, 1);
+  }
+  
