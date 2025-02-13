@@ -1,8 +1,15 @@
 .sampleScriptGrid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 720px 720px;
   gap: 0;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1440px) {
+  .sampleScriptGrid {
+    grid-template-columns: 1fr; /* Stacks the content vertically when space is limited */
+  }
 }
 
 .sampleScriptText {

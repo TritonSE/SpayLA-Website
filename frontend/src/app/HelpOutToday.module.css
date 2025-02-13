@@ -1,8 +1,16 @@
 .helpOutGrid {
-  display: flex;
+  display: grid;
   gap: 0;
   align-items: center;
   justify-content: center;
+  grid-template-columns: 720px 720px; /* For larger screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1440px) {
+  .helpOutGrid {
+    grid-template-columns: 1fr; /* Stacks the content vertically when space is limited */
+  }
 }
 
 .gridImage {
