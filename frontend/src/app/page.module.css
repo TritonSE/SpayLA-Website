@@ -9,6 +9,15 @@
 
 .navbar {
   position: sticky;
+  height: 100vh;
+}
+
+.underline {
+  display: none;
+}
+
+a:hover .underline {
+  background: #3d5a80;
 }
 
 .description {
@@ -97,9 +106,6 @@
   filter: blur(45px);
   transform: translateZ(0);
 }
-.logo {
-  position: relative;
-}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -186,9 +192,6 @@
 @media (prefers-color-scheme: dark) {
   .vercelLogo {
     filter: invert(1);
-  }
-  .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
 }
 @keyframes rotate {

@@ -11,6 +11,11 @@ export default function Home() {
       <main>
         <div className="navbar">
           <TopNavigation
+            logoComponent={
+              <a href="#landing">
+                <img src="/logo.png" style={{ width: "278px" }} alt=""></img>
+              </a>
+            }
             logoSrc="/logo.png"
             navItems={[
               {
@@ -44,6 +49,7 @@ export default function Home() {
                 {children}
               </Link>
             )}
+            underlineClassName="underline"
             style={{ position: "fixed", top: 0, zIndex: 10 }}
           />
         </div>
