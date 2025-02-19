@@ -1,46 +1,16 @@
+"use client";
 import Carousel from "@/components/Carousel";
+import Card1 from "@/components/Card1";
+import Card2 from "@/components/Card2";
+import Card3 from "@/components/Card3";
 
 export default function Home() {
   return (
-    <main
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Carousel width={800}>
-        <div
-          style={{
-            background: "#e0e0e0",
-            padding: "2rem",
-            textAlign: "center",
-            height: "200px",
-          }}
-        >
-          Slide 1
-        </div>
-        <div
-          style={{
-            background: "#c0c0c0",
-            padding: "2rem",
-            textAlign: "center",
-            height: "200px",
-          }}
-        >
-          Slide 2
-        </div>
-        <div
-          style={{
-            background: "#a0a0a0",
-            padding: "2rem",
-            textAlign: "center",
-            height: "200px",
-          }}
-        >
-          Slide 3
-        </div>
+    <main style={{ width: "100%", minHeight: "100vh" }}>
+      <Carousel>
+        <Card1 />
+        <Card2 />
+        <Card3 />
       </Carousel>
     </main>
   );

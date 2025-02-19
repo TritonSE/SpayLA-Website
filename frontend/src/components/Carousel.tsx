@@ -5,12 +5,11 @@ import styles from "./Carousel.module.css";
 
 interface CarouselProps {
   children: React.ReactNode[];
-  width?: number; // Carousel width in pixels (default: 300)
 }
 
-const Carousel: React.FC<CarouselProps> = ({ children, width = 300 }) => {
+const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slideWidth, setSlideWidth] = useState(width);
+  const [slideWidth, setSlideWidth] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,59 +18,54 @@ const Carousel: React.FC<CarouselProps> = ({ children, width = 300 }) => {
         setSlideWidth(wrapperRef.current.offsetWidth);
       }
     };
-
     updateWidth();
     window.addEventListener("resize", updateWidth);
     return () => window.removeEventListener("resize", updateWidth);
-  }, [width]);
+  }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % children.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % React.Children.count(children));
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? children.length - 1 : prevIndex - 1
+      prevIndex === 0 ? React.Children.count(children) - 1 : prevIndex - 1
     );
   };
 
   return (
     <div className={styles.carouselContainer}>
-      <div
-        className={styles.innerWrapper}
-        ref={wrapperRef}
-        style={{ width: `${width}px` }} // fixed width defined by prop
-      >
+      <div className={styles.innerWrapper} ref={wrapperRef}>
         <div
           className={styles.carouselInner}
-          style={{
-            transform: `translateX(-${currentIndex * slideWidth}px)`,
-            transition: "transform 0.5s ease-in-out",
-          }}
+          style={{ transform: `translateX(-${currentIndex * slideWidth}px)` }}
         >
           {React.Children.map(children, (child, index) => (
-            <div className={styles.carouselItem} key={index}>
+            <div
+              className={styles.carouselItem}
+              key={index}
+              style={{ minWidth: slideWidth }}
+            >
               {child}
             </div>
           ))}
         </div>
-        {/* Navigation container for arrows and indicators */}
+
+        {/* Navigation: arrows + indicators */}
         <div className={styles.navButtons}>
           <button onClick={prevSlide} className={styles.navButton}>
-            &#8592;
+            ←
           </button>
           <div className={styles.indicators}>
-            {React.Children.map(children, (child, index) => (
+            {React.Children.map(children, (_child, i) => (
               <div
-                key={index}
-                className={`${styles.indicator} ${
-                  index === currentIndex ? styles.active : ""
-                }`}
+                key={i}
+                className={`${styles.indicator} ${i === currentIndex ? styles.active : ""}`}
               />
             ))}
           </div>
           <button onClick={nextSlide} className={styles.navButton}>
-            &#8594;
+            →
           </button>
         </div>
       </div>

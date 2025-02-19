@@ -6,7 +6,12 @@
   padding: 6rem;
   min-height: 100vh;
 }
-
+.imageWrapper {
+  position: relative;
+  width: 500px;  /* Must match the width prop and image width */
+  height: 300px; /* Must match the image height */
+  overflow: hidden;
+}
 .description {
   display: inherit;
   justify-content: inherit;
