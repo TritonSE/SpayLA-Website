@@ -1,57 +1,17 @@
 "use client";
 
-import { ThemeProvider, TopNavigation } from "@tritonse/tse-constellation";
-import Link from "next/link";
+import { ThemeProvider } from "@tritonse/tse-constellation";
 
 import Solution from "../components/solution/Solution";
+
+import Navbar from "@/components/navbar/Navbar";
 
 export default function Home() {
   return (
     <ThemeProvider>
       <main>
         <div className="navbar">
-          <TopNavigation
-            logoComponent={
-              <a href="#landing">
-                <img src="/logo.png" style={{ width: "278px" }} alt=""></img>
-              </a>
-            }
-            logoSrc="/logo.png"
-            navItems={[
-              {
-                icon: "ic_cart",
-                label: "Who We Are",
-                path: "#landing",
-              },
-              {
-                icon: "ic_search",
-                label: "Solution",
-                path: "#solution",
-              },
-              {
-                icon: "ic_settings",
-                label: "Why Neutering?",
-                path: "#neuter",
-              },
-              {
-                icon: "ic_help",
-                label: "Support",
-                path: "#support",
-              },
-              {
-                icon: "ic_help",
-                label: "Marketing Plan",
-                path: "#marketing",
-              },
-            ]}
-            renderLink={(path, className, children, key) => (
-              <Link key={key} href={path ?? ""} className={className}>
-                {children}
-              </Link>
-            )}
-            underlineClassName="underline"
-            style={{ position: "fixed", top: 0, zIndex: 10 }}
-          />
+          <Navbar></Navbar>
         </div>
         <div id="landing">
           <p>Home Page and Landing&nbsp;</p>
