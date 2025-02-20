@@ -1,5 +1,6 @@
-import WhyNeuter from "@/components/solution/WhyNeuter";
 import Solution from "../components/solution/Solution";
+
+import WhyNeuter from "@/components/solution/WhyNeuter";
 export default function Home() {
   return (
     <main>
@@ -14,15 +15,13 @@ export default function Home() {
       </div>
       <div>
         <Solution />
+        <WhyNeuter />
       </div>
       <div>
         <p>Community Support&nbsp;</p>
       </div>
       <div>
         <p>Marketing Plan&nbsp;</p>
-      </div>
-      <div>
-        <WhyNeuter/>
       </div>
     </main>
   );
