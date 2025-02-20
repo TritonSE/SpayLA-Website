@@ -1,9 +1,28 @@
 import MarketSection from "@/components/market_plan/marketSection";
 
+import Solution from "../components/solution/Solution";
+
 export default function Home() {
   return (
     <main>
-      <MarketSection></MarketSection>
+      <div>
+        <p>Navigation Bar&nbsp;</p>
+      </div>
+      <div>
+        <p>Home Page and Landing&nbsp;</p>
+      </div>
+      <div>
+        <p>Problem Statement&nbsp;</p>
+      </div>
+      <div>
+        <Solution />
+      </div>
+      <div>
+        <p>Community Support&nbsp;</p>
+      </div>
+      <div>
+        <MarketSection />
+      </div>
     </main>
   );
 }
