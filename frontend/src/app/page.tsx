@@ -1,8 +1,8 @@
-"use client";
 import Carousel from "@/components/Carousel";
 import Card1 from "@/components/Card1";
 import Card2 from "@/components/Card2";
 import Card3 from "@/components/Card3";
+import WhatIsSpayLA from "@/components/WhatIsSpayLA";
 
 export default function Home() {
   return (
@@ -12,6 +12,9 @@ export default function Home() {
         <Card2 />
         <Card3 />
       </Carousel>
+
+      {/* New section below carousel */}
+      <WhatIsSpayLA />
     </main>
   );
 }
