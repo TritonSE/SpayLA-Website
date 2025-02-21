@@ -54,7 +54,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         {/* Navigation: arrows + indicators */}
         <div className={styles.navButtons}>
           <button onClick={prevSlide} className={styles.navButton}>
-            ←
+            &lt;
           </button>
           <div className={styles.indicators}>
             {React.Children.map(children, (_child, i) => (
@@ -65,7 +65,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
             ))}
           </div>
           <button onClick={nextSlide} className={styles.navButton}>
-            →
+            &gt;
           </button>
         </div>
       </div>

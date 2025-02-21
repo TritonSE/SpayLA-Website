@@ -188,7 +188,7 @@ a {
      border-radius: 4.04px;
      background-color: #ff8359;
      height: 48.5px;
-     display: flex;
+     display: inline-flex;
      flex-direction: row;
      align-items: center;
      justify-content: center;

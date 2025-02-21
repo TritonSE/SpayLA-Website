@@ -6,13 +6,7 @@ export default function Card1() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
       {/* Full background image */}
-      <Image
-        src={newcard1}
-        alt="card1"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
+      <Image src={newcard1} alt="card1" fill style={{ objectFit: "cover" }} priority />
 
       {/* The left gradient (width=950px, height=600px) exactly as in your original code */}
       <div
@@ -70,9 +64,10 @@ export default function Card1() {
             padding: "0 1rem",
           }}
         >
-          <div style={{ color: "#fff", fontWeight: 600 }}>
+          <div 
+          style={{ color: "#fff", fontWeight: 600 }}>
             Learn why we spay and neuter
-          </div>
+            </div>
         </div>
       </div>
     </div>

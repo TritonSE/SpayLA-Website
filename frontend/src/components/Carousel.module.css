@@ -11,7 +11,6 @@
 .innerWrapper {
   position: relative;
   width: 100%;
-  /* No overflow: hidden here either */
 }
 
 .carouselInner {
@@ -34,18 +33,23 @@
   align-items: center;
 }
 
-/* Arrows styled in orange */
+/* 1) Remove the border and background
+   2) Make the font-size bigger if you want larger arrows
+   3) Keep the color as your orange (#ff8359)
+*/
 .navButton {
   background: none;
-  color: #ff8359;
-  border: 2px solid #ff8359;
-  padding: 0.5rem 1rem;
+  border: none;        /* remove the orange box */
+  color: #ff8359;      /* arrow color */
+  font-size: 2rem;     /* adjust for arrow size */
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 1.2rem;
+  padding: 0;          /* no extra padding around the arrow */
 }
 
-/* Indicators (dots) also styled in orange */
+/* Indicator (dot) styles:
+   - Use a gray or neutral color for inactive
+   - Use orange (#ff8359) for the active dot
+*/
 .indicators {
   display: flex;
   gap: 8px;
@@ -53,14 +57,14 @@
 }
 
 .indicator {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: none;
-  border: 2px solid #ff8359;
+  background: #cccccc; /* inactive dot color (gray) */
   transition: background 0.3s ease;
+  border: none;        /* remove any border if you had one */
 }
 
 .active {
-  background: #ff8359;
+  background: #ff8359; /* active dot color (orange) */
 }
