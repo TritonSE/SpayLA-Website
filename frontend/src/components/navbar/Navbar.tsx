@@ -63,7 +63,14 @@ const Navbar: React.FC = () => {
         </Link>
       )}
       underlineClassName={styles.underline}
-      style={{ position: "fixed", top: 0, zIndex: 10 }}
+      style={{
+        position: "fixed",
+        top: 0,
+        zIndex: 10,
+        height: "106px",
+        paddingRight: "106px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
     />
   );
 };
