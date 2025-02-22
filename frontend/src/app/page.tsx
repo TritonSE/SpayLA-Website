@@ -4,6 +4,7 @@ import HelpOutToday from "./HelpOutToday";
 import SampleScript from "./SampleScript";
 import CallPoliticians from "./CallPoliticians";
 
+import Solution from "../components/solution/Solution";
 export default function Home() {
   return (
     <main className={styles.main}>
