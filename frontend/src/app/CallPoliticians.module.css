@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 720px);
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-color: white;
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 95px 51px;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  color: #ee6c4d;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-family: "Montserrat", sans-serif;
+  color: #2d5177;
+  text-align: center;
+  font-size: 1.2rem;
+  max-width: 618px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+@media (max-width: 1440px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .politicianGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    grid-auto-flow: row;
+    grid-auto-rows: 120px;
+    gap: 32px;
+    max-width: 272px;
+    margin: 48px auto;
+  }
+
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .politicianGrid {
+    grid-template-columns: repeat(2, 120px);
+    gap: 32px;
+    max-width: 400px;
+    margin: 48px auto;
+  }
+
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 95px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .politicianGrid {
+    grid-template-columns: repeat(2, 100px);
+    gap: 24px;
+    max-width: 300px;
+  }
+
+  .circle {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.politicianGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 173px);
+  gap: 150px;
+  justify-content: center;
+  margin-top: 48px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.circle {
+  width: 173px;
+  height: 173px;
+  background-color: #dedede;
+  border-radius: 50%;
+}
+
+.politicianInfo {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.politicianName {
+  font-family: "Montserrat", sans-serif;
+  color: #ee6c4d;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.politicianDetails {
+  font-family: "Montserrat", sans-serif;
+  color: #2d5177;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
