@@ -1,0 +1,83 @@
+.sampleScriptGrid {
+  display: grid;
+  grid-template-columns: 720px 720px; /* Two equal columns */
+  grid-template-rows: 493px; /* Fixed row height */
+  gap: 0;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 1440px; /* Match the width in your image */
+  margin: 0 auto;
+}
+
+@media (max-width: 720px) {
+  .sampleScriptGrid {
+    grid-template-columns: 1fr; /* Stacks the content vertically when space is limited */
+    grid-template-rows: auto; /* Let rows auto-size on smaller screens */
+  }
+}
+
+.sampleScriptText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5eff4;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+}
+
+.sampleScriptGrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Regular.ttf");
+}
+
+.sampleScriptText h2 {
+  color: #000000;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 150%;
+  letter-spacing: 0.96px;
+  font-family: "Open Sans";
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.sampleScriptText p {
+  font-family: "Open Sans";
+  color: #000000;
+  font-weight: 400;
+  font-size: 16px; 
+  line-height: 1.5;
+  text-align: center;
+  margin: 10px 0;
+  max-width: 80%;
+}
+
+.icon {
+  width: 89px !important;
+  height: 82px !important;
+}
+
+.innerContainer {
+  max-width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center; 
+}
