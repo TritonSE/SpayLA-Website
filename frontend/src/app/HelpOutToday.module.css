@@ -1,48 +1,50 @@
 .helpOutGrid {
   display: grid;
+  grid-template-columns: 720px 720px; /* Two equal columns */
+  grid-template-rows: 493px; /* Fixed row height */
   gap: 0;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  grid-template-columns: 720px 720px; /* For larger screens */
+  width: 100%;
+  max-width: 1440px; /* Match the width in your image */
+  margin: 0 auto;
 }
 
 /* Responsive adjustments */
-@media (max-width: 1440px) {
+@media (max-width: 720px) {
   .helpOutGrid {
     grid-template-columns: 1fr; /* Stacks the content vertically when space is limited */
   }
 }
 
 .gridImage {
-  width: 720px;
-  height: 493px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 0;
 }
 
 .helpOutText {
   display: flex;
-  width: 720px;
-  padding: 95px 51px 93.902px 51px;
+  width: 100%;
+  height: 100%;
+  padding: 95px 51px;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
   background: #1b5fb9;
   color: white;
   text-align: center;
   flex-direction: column;
-  height: 493px;
 }
+
+
 @font-face {
-  font-family: "Heebo";
-  src: url("fonts/heebo.regular.ttf");
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Regular.ttf");
 }
+
 .helpOutText h2 {
   color: #fff;
-  font-family: "Heebo";
+  font-family: "Open Sans"; 
   font-size: 48px;
   font-style: normal;
   font-weight: 700;
@@ -53,10 +55,7 @@
   align-items: center;
   gap: 10px;
 }
-@font-face {
-  font-family: "Open Sans";
-  src: url("fonts/OpenSans-Regular.ttf");
-}
+
 .helpOutText p {
   color: #fff;
   text-align: center;
