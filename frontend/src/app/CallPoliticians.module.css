@@ -2,12 +2,12 @@
 
 /* Outer container: match the width of other components */
 .callPoliticiansContainer {
-  width: 100%;              /* Use full width */
-  max-width: 1440px;        /* Match the max width of other components */
-  margin: 0 auto;           /* Centers the container */
-  background-color: #fff;   /* White background */
-  padding: 40px 20px;       /* Adjust padding as needed */
-  box-sizing: border-box;   /* Includes padding in total width */
+  width: 100%; /* Use full width */
+  max-width: 1441px; /* Match the max width of other components */
+  margin: 0 auto; /* Centers the container */
+  background-color: #fff; /* White background */
+  padding: 40px 20px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Includes padding in total width, auto shrinks */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,7 +81,7 @@
   }
 
   .politicianGrid {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     max-width: 600px;
     margin: 0 auto;
