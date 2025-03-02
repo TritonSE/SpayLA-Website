@@ -3,15 +3,15 @@ import styles from "@/app/page.module.css";
 import HelpOutToday from "./HelpOutToday";
 import SampleScript from "./SampleScript";
 import CallPoliticians from "./CallPoliticians";
-import SignPetition from "./SignPetition";
-import Solution from "../components/solution/Solution";
+// import SignPetition from "./SignPetition";
+// import Solution from "../components/solution/Solution";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <HelpOutToday />
+      {/* <HelpOutToday /> */}
       <SampleScript />
-      <CallPoliticians />
-      <SignPetition />
+      {/* <CallPoliticians /> */}
+      {/* <SignPetition /> */}
     </main>
   );
 }

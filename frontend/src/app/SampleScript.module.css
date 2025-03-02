@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 .sampleScriptGrid {
   display: grid;
@@ -70,4 +70,308 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.sampleScriptContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: white;
+}
+
+.sampleScriptHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sampleScriptHeader h2 {
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* Script section with card and phone */
+.scriptSection {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 60px;
+}
+
+.scriptCard {
+  width: 700px;
+  height: 400px;
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* First script section (Instagram) specific styles */
+.scriptSection:first-child {
+  justify-content: flex-start;
+}
+
+.scriptSection:first-child .scriptCard {
+  margin-right: 300px; /* Increased from 200px to 300px to move card further left */
+}
+
+/* Second script section (Facebook) specific styles */
+.scriptSection:nth-child(2) .scriptCard {
+  margin-left: 30px; /* Add space to the left to prevent overlap with left images */
+}
+
+.scriptContent {
+  flex: 1;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+
+/* Phone and background styles */
+.phoneImageContainer {
+  position: absolute;
+  width: 410px; /* Reduced from 433px to make left margin smaller */
+  height: 230px; /* Reduced from 247px to make bottom margin smaller */
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.orangeBackground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-top-right-radius: 150px;
+}
+
+.orangeBackgroundImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.phoneOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.phoneImage {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: -11px; /* Keeping this value as requested */
+  right: 0;
+}
+
+.scriptTitle {
+  color: #002c5f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.socialIcon {
+  margin-left: 5px;
+  width: 70px !important;
+  height: 70px !important;
+}
+
+.scriptIntro {
+  color: #002c5f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.scriptText {
+  color: #002c5f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.scriptImageContainer {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scriptImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* Left Images Container */
+.leftImagesContainer {
+  position: relative;
+  width: 420px;
+  height: 336px;
+  margin-right: 30px;
+  z-index: 1;
+}
+
+.blueCircleContainer {
+  position: absolute;
+  top: 19px;
+  left: 100px;
+  z-index: 2;
+}
+
+.blueCircleImage {
+  width: 194px;
+  height: 194px;
+  object-fit: contain;
+}
+
+.phoneMacContainer {
+  position: absolute;
+  top: 95px;
+  left: 200px;
+  z-index: 3;
+}
+
+.phoneMacImage {
+  width: 220px; /* Increased from 180px to 220px */
+  height: 220px; /* Increased from 180px to 220px */
+  object-fit: contain;
+  border-radius: 50%; /* Make the image circular */
+}
+
+.orangeGridContainer {
+  position: absolute;
+  bottom: 0;
+  left: 100px;
+  z-index: 1;
+}
+
+.orangeGridImage {
+  width: 131px;
+  height: 178px;
+  object-fit: contain;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .scriptSection {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 50px;
+  }
+
+  .leftImagesContainer {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .scriptCard,
+  .phoneImageContainer {
+    width: 100%;
+    height: auto;
+  }
+
+  .scriptCard {
+    flex-direction: column;
+  }
+
+  .phoneImageContainer {
+    height: 300px;
+  }
+}
+
+/* Cat and blue background styles */
+.catImageContainer {
+  position: relative;
+  width: 348px;
+  height: 232px;
+  margin-left: 60px; /* Increased from 30px to 60px for more consistent spacing */
+  z-index: 2;
+}
+
+.blueBackground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.blueBackgroundImage {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.catOverlay {
+  position: absolute;
+  top: -30px; /* Increased from -20px to -30px */
+  left: -30px; /* Increased from -20px to -30px */
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.catImage {
+  object-fit: contain;
+}
+
+/* Update the phone script section to have proper spacing */
+.scriptSection:nth-child(3) {
+  justify-content: center;
+  gap: 60px; /* Added gap to ensure consistent spacing */
+}
+
+.scriptSection:nth-child(3) .scriptCard {
+  margin-right: 0;
 }
