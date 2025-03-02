@@ -15,7 +15,7 @@ const PreviewCard: React.FC<previewCardProps> = ({ date }) => {
           <button className={styles.previewButton}>Preview</button>
         </div>
         <div className={styles.cardFooter}>
-          <div className={styles.date}>{date}</div>
+          <div className={styles.date}>{date} Newsletter</div>
           <button className={styles.discardButton}>
             <img className={styles.icon} src="/discardIcon.svg" alt=""></img>
           </button>

@@ -4,7 +4,7 @@ export default function Newsletters() {
   return (
     <main>
       <div>
-        <PreviewCard filepath="" date="03/01/2025"></PreviewCard>
+        <PreviewCard date="03/01/2025"></PreviewCard>
       </div>
     </main>
   );
