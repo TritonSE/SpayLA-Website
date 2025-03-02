@@ -1,0 +1,59 @@
+.card {
+  width: 270px;
+  height: 246px;
+  gap: 8px;
+  border-radius: 10px;
+  padding-top: 12px;
+  padding-right: 13px;
+  padding-bottom: 12px;
+  padding-left: 13px;
+  background: rgba(242, 250, 255, 1);
+}
+
+.discardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 235px;
+  height: 29px;
+  gap: 60px;
+  align-items: center;
+}
+
+.date {
+  color: rgba(0, 0, 0, 1);
+}
+
+.thumbnail {
+  display: flex;
+  width: 243px;
+  height: 182px;
+  border-radius: 10px;
+  background-color: aqua;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.previewButton {
+  margin: 15px;
+  width: 163px;
+  height: 47px;
+  gap: 10px;
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+  color: black;
+}
