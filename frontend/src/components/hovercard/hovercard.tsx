@@ -9,7 +9,6 @@ type hovercardProps = {
   cardTitle: string;
   cardDescription: string;
   backgroundColor: string;
-  hoverColor: string;
 };
 
 const HoverCard: React.FC<hovercardProps> = ({
@@ -17,10 +16,9 @@ const HoverCard: React.FC<hovercardProps> = ({
   cardTitle,
   cardDescription,
   backgroundColor,
-  hoverColor,
 }) => {
   const backgroundProp = `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`;
-  const backgroundHover = `linear-gradient(${hoverColor}, ${hoverColor}), url(${backgroundImage})`;
+  const backgroundHover = `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`;
   const cardStyle: React.CSSProperties = {
     background: `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`,
     backgroundSize: "cover",

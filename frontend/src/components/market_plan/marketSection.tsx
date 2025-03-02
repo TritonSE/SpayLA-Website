@@ -21,7 +21,6 @@ export default function MarketSection() {
             cardTitle={card.cardTitle}
             cardDescription={card.cardDescription}
             backgroundColor={card.backgroundColor}
-            hoverColor={card.hoverColor}
           />
         ))}
       </div>

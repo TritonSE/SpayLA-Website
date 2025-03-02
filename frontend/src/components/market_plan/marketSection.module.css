@@ -11,12 +11,12 @@
   align-items: center;
 }
 .sectionHeader {
-  background: var(--Secondary-Light-Blue, #dfebf3);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 70px;
-  padding-bottom: 70px;
+  padding-bottom: 0px;
   padding-left: 171px;
   padding-right: 171px;
   gap: 27px;

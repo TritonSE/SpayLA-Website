@@ -1,7 +1,6 @@
-import MarketSection from "@/components/market_plan/marketSection";
-
 import Solution from "../components/solution/Solution";
 
+import MarketSection from "@/components/market_plan/marketSection";
 import WhyNeuter from "@/components/solution/WhyNeuter";
 
 export default function Home() {
