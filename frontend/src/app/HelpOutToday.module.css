@@ -1,40 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 
 .helpOutGrid {
-  display: grid;
-  grid-template-columns: 720px 720px; /* Two equal columns */
-  grid-template-rows: 493px; /* Fixed row height */
-  gap: 0;
-  align-items: stretch;
-  justify-content: center;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
   width: 100%;
-  max-width: 1440px; /* Match the width in your image */
+  max-width: 1440px;
+  max-height: 635px;
+  height: auto;
   margin: 0 auto;
+  background-color: #ffffff;
+  padding: 70px 160px;
+  justify-content: space-between;
 }
 
 /* Responsive adjustments */
 @media (max-width: 720px) {
   .helpOutGrid {
-    grid-template-columns: 1fr; /* Stacks the content vertically when space is limited */
+    flex-direction: row; /* Stacks the content vertically when space is limited */
   }
-}
-
-.gridImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .helpOutText {
   display: flex;
-  width: 100%;
-  height: 100%;
-  padding: 87.69px 123px;
+  width: 500.1;
+  height: 333.13px;
   justify-content: space-between;
-  align-items: center;
-  background: #2d5177;
+  align-items: flex-start;
   color: white;
   flex-direction: column;
+  gap: 40px;
 }
 
 @font-face {
@@ -43,42 +38,63 @@
 }
 
 .helpOutText h2 {
-  color: #fff;
+  color: #002c5f;
   font-family: "Montserrat", sans-serif;
-  font-size: 29.49px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.96px;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  height: 36px;
+  height: 48.76px;
+  letter-spacing: 0%;
 }
 
 .helpOutText p {
-  color: #fff;
-  text-align: center;
+  color: black;
+  text-align: left;
   font-family: "Open Sans";
   font-style: normal;
-  font-weight: 600;
-  line-height: 36px; /* 133.333% */
-  font-size: 18px;
+  font-weight: 400;
+  width: 500.1px;
+  height: 135px; /* 133.333% */
+  font-size: 20px;
   align-self: center;
+  line-height: 27.24px;
+  letter-spacing: 0%;
 }
 
-.icon {
-  width: 40px;
-  margin-top: 10px;
+.helpOutBottom {
+  width: 457.7px;
+  height: 67.44px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 18px;
 }
 
-.phoneIcon {
-  width: 89px;
-  height: 81px;
-  top: 48px;
+.helpOutBottomLeft {
+  display: flex;
+  flex-direction: column;
+  width: 372.59px;
+  height: 66px;
+  justify-content: center;
 }
 
-.catIcon {
-  height: 96.098px;
-  width: 124px;
-  margin: 10px 0;
+.helpOutBottomLeft p {
+  width: 372.59px;
+  height: 66px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32.68px;
+  font-weight: 400;
+  font-family: "Open Sans";
+  letter-spacing: 0%;
+}
+.helpOutUnderline {
+  text-align: center;
+  font-size: 24px;
+  line-height: 32.68px;
+  font-weight: 400;
+  font-family: "Open Sans";
+  letter-spacing: 0%;
+  text-decoration: underline;
 }

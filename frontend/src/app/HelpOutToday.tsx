@@ -5,25 +5,25 @@ export default function HelpOutToday(): JSX.Element {
   return (
     <div className={styles.helpOutGrid}>
       <Image
-        src="/community_support/two_cats.png"
-        alt="Cat"
-        className={styles.gridImage}
-        width={720}
-        height={493}
+        src="/community_support/phone_call.png"
+        alt="Phone Call and Typing"
+        width={414}
+        height={339.38}
       />
       <div className={styles.helpOutText}>
-        <Image
-          src="/community_support/speaker_icon.svg"
-          alt="Speaker Icon"
-          className={`${styles.icon} ${styles.phoneIcon}`}
-          width={89}
-          height={81}
-        />
         <h2>Help out today!</h2>
         <p>
-          By calling city officials, signing petitions, and spreading the word to friends and
-          family, you can make a massive difference in our community.
+          Find your representative today and get started reaching out to local officials. By
+          bringing up important concerns to your local government via calling, emailing, or
+          messaging on social media, you can make a massive difference in our community.
         </p>
+        <div className={styles.helpOutBottom}>
+          <div className={styles.helpOutBottomLeft}>
+            <p>Find your local representative at: </p>
+            <p className={styles.helpOutUnderline}> neighborhoodinfo.lacity.gov</p>
+          </div>
+          <Image src="/community_support/paw.png" alt="Paw Icon" width={66} height={66} />
+        </div>
       </div>
     </div>
   );
