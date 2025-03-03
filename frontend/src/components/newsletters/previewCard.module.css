@@ -21,12 +21,12 @@
   justify-content: space-between;
   width: 235px;
   height: 29px;
-  gap: 60px;
   align-items: center;
 }
 
 .date {
   color: rgba(0, 0, 0, 1);
+  text-wrap: nowrap;
 }
 
 .thumbnail {

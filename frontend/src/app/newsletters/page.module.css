@@ -1,0 +1,26 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+.content {
+  width: 1152px;
+  margin: auto;
+}
+
+.title {
+  width: 1152;
+  height: 44;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 43.58px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 44px 24px;
+}
