@@ -1,4 +1,7 @@
 {
+  "devDependencies": {
+    "@types/react": "^19.0.8"
+  },
   "dependencies": {
     "bootstrap": "^5.3.3"
   }
