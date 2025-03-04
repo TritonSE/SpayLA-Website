@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import newcard2 from "./newcard2.png"; // Update path as needed
+import newcard2 from "./carousel_2.png"; // Update path as needed
 
 export default function Card2() {
   return (
@@ -51,8 +51,8 @@ export default function Card2() {
           Make a Difference
         </b>
         <div style={{ fontSize: "22px" }}>
-          You can make a difference! Whether it&apos;s calling city officials, signing petitions,
-          or spreading awareness, every action helps.
+        <b>Contact your city and state officials and demand change.</b><br />
+        Call or post publicly on their Instagram to let them know millions of animals dying in our streets is barbaric.
         </div>
         <div
           style={{
@@ -64,12 +64,12 @@ export default function Card2() {
             justifyContent: "center",
             fontSize: "20.22px",
             cursor: "pointer",
-            width: "auto",
+            width: "500px",
             padding: "0 1rem",
           }}
         >
           <div style={{ color: "#fff", fontWeight: 600 }}>
-            Ways to support
+            Find you City, County and State officials
           </div>
         </div>
       </div>

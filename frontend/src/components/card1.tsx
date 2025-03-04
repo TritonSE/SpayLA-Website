@@ -1,12 +1,18 @@
 "use client";
 import Image from "next/image";
-import newcard1 from "./newcard1.png"; // Update path as needed
+import newcard1 from "./carousel_1.png"; // Update path as needed
 
 export default function Card1() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
       {/* Full background image */}
-      <Image src={newcard1} alt="card1" fill style={{ objectFit: "cover" }} priority />
+      <Image
+        src={newcard1}
+        alt="card1"
+        fill
+        style={{ objectFit: "cover", transform: "scaleX(-1)"}}
+        priority
+      />
 
       {/* The left gradient (width=950px, height=600px) exactly as in your original code */}
       <div
@@ -41,14 +47,12 @@ export default function Card1() {
           fontFamily: "Montserrat, sans-serif",
         }}
       >
-        <b style={{ fontSize: "45px", lineHeight: "150%", letterSpacing: "0.02em" }}>
-          Too Many Animals,
-          <br />
-          Not Enough Homes
+        <b style={{ fontSize: "65px", lineHeight: "150%", letterSpacing: "0.02em" }}>
+          LET'S FIX LA
         </b>
         <div style={{ fontSize: "22px" }}>
-          Let’s advocate for <b>available</b>, <b>accessible</b>, and <b>affordable</b> spay and
-          neuter clinics to reduce overpopulation in Los Angeles.
+          Advocate for <b>affordable</b>, <b>available</b>, and <b>accesible</b> spay/ neuter
+          clinics for all dogs and cats in Los Angeles.
         </div>
         <div
           style={{
@@ -60,14 +64,11 @@ export default function Card1() {
             justifyContent: "center",
             fontSize: "20.22px",
             cursor: "pointer",
-            width: "auto",
+            width: "350px",
             padding: "0 1rem",
           }}
         >
-          <div 
-          style={{ color: "#fff", fontWeight: 600 }}>
-            Learn why we spay and neuter
-            </div>
+          <div style={{ color: "#fff", fontWeight: 600 }}>Learn why we spay/neuter</div>
         </div>
       </div>
     </div>

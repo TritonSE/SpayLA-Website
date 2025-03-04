@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-// Update these imports to your actual file names
+// Keep your imports the same; just rename for clarity
 import catSilhouette from "./roundIcon.png";
 import pawSilhouette from "./pawIcon.png";
 
@@ -43,35 +43,33 @@ export default function WhatIsSpayLA() {
           fontFamily: "Open Sans, sans-serif",
         }}
       >
-        Spay.LA aims to combat animal overpopulation by creating <b>available</b>, <br />{" "}
+        Spay.LA aims to combat animal overpopulation by creating <b>available</b>, <br />
         <b>accessible</b>, and <b>affordable</b> spay and neuter clinics for the millions of pets{" "}
-        <br /> and community cats in Los Angeles.
+        <br />
+        and community cats in Los Angeles.
       </p>
 
-      {/* Cat silhouette, bottom-right but slightly offset from the paw */}
+      {/* Flex container pinned to bottom-right for both silhouettes */}
       <div
         style={{
           position: "absolute",
-          bottom: -40,
-          right: 500, // Shift it left so it doesn't overlap the paw
-          width: "120px",
-          height: "80px",
+          bottom: -60,
+          right: 100,
+          display: "flex",
+          alignItems: "flex-end", // both images align at bottom
+          gap: "6rem", // space between the two images
+          padding: "1rem", // optional padding from the corner
         }}
       >
-        <Image src={catSilhouette} alt="Cat Silhouette" fill style={{ objectFit: "contain" }} />
-      </div>
+        {/* Cat silhouette (round icon) */}
+        <div style={{ position: "relative", width: "120px", height: "80px" }}>
+          <Image src={catSilhouette} alt="Cat Silhouette" fill style={{ objectFit: "contain" }} />
+        </div>
 
-      {/* Paw silhouette, anchored to the bottom-right corner */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: -50,
-          right: 300,
-          width: "120px",
-          height: "300px",
-        }}
-      >
-        <Image src={pawSilhouette} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
+        {/* Paw silhouette (tall icon) */}
+        <div style={{ position: "relative", width: "120px", height: "300px" }}>
+          <Image src={pawSilhouette} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
+        </div>
       </div>
     </section>
   );

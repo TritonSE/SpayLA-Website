@@ -1,17 +1,11 @@
 "use client";
 import Image from "next/image";
-import newcard3 from "./newcard3.png"; // Update path as needed
+import newcard3 from "./carousel_3.png"; // Update path as needed
 
 export default function Card3() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
-      <Image
-        src={newcard3}
-        alt="card3"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
+      <Image src={newcard3} alt="card3" fill style={{ objectFit: "cover" }} priority />
 
       <div
         style={{
@@ -50,8 +44,8 @@ export default function Card3() {
           We&apos;re Here to Help
         </b>
         <div style={{ fontSize: "22px" }}>
-          Lets work together! Reach out to explore partnership opportunities or more ways to
-          support our mission.
+          Email us at <b>FIX@Spay.LA</b> or call <b> (818) 718-4800</b> for assistance <br />
+          with low-cost spay/neuter services, questions, and inquiries.
         </div>
         <div
           style={{
@@ -63,13 +57,11 @@ export default function Card3() {
             justifyContent: "center",
             fontSize: "20.22px",
             cursor: "pointer",
-            width: "auto",
+            width: "200px",
             padding: "0 1rem",
           }}
         >
-          <div style={{ color: "#fff", fontWeight: 600 }}>
-            Contact Us
-          </div>
+          <div style={{ color: "#fff", fontWeight: 600 }}>Contact Us</div>
         </div>
       </div>
     </div>
