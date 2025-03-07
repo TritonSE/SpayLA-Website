@@ -23,7 +23,7 @@ export default function HelpOutToday(): JSX.Element {
               funding demands for spay/neuter clinics
             </a>
           </div>
-          <Image src="/community_support/paw.png" alt="Paw Icon" width={66} height={66} />
+          <Image src="/community_support/paw.svg" alt="Paw Icon" width={66} height={66} />
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ export default function HelpOutToday(): JSX.Element {
   return (
     <div className={styles.helpOutGrid}>
       <Image
-        src="/community_support/phone_call.png"
+        src="/community_support/phone_call.svg"
         alt="Phone Call and Typing"
         width={414}
         height={339.38}
@@ -22,7 +22,7 @@ export default function HelpOutToday(): JSX.Element {
             <p>Find your local representative at: </p>
             <p className={styles.helpOutUnderline}> neighborhoodinfo.lacity.gov</p>
           </div>
-          <Image src="/community_support/paw.png" alt="Paw Icon" width={66} height={66} />
+          <Image src="/community_support/paw.svg" alt="Paw Icon" width={66} height={66} />
         </div>
       </div>
     </div>
