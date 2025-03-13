@@ -11,7 +11,9 @@ export default function Newsletters() {
     <main className={styles.page}>
       <div className={styles.content}>
         <h1 className={styles.title}>Edit Newsletter</h1>
-        <Button></Button>
+        <Button className={styles.upload} leadingIcon="ic_upload">
+          Upload PDF/Image
+        </Button>
         <div className={styles.grid}>
           {Array.from({ length: 8 }, (_, index) => (
             <PreviewCard key={index} date="3/01/2025"></PreviewCard>
