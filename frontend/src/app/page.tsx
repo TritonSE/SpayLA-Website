@@ -6,6 +6,8 @@ import Solution from "../components/solution/Solution";
 
 import Navbar from "@/components/navbar/Navbar";
 
+import CommunitySupport from "@/components/community_support/CommunitySupport";
+
 export default function Home() {
   return (
     <ThemeProvider>
@@ -26,7 +28,7 @@ export default function Home() {
           <p>Why Neutering&nbsp;</p>
         </div>
         <div id="support">
-          <p>Community Support&nbsp;</p>
+          <CommunitySupport />
         </div>
         <div id="marketing">
           <p>Marketing Plan&nbsp;</p>
