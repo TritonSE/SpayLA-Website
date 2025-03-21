@@ -5,10 +5,8 @@ import { ThemeProvider } from "@tritonse/tse-constellation";
 import Solution from "../components/solution/Solution";
 
 import Navbar from "@/components/navbar/Navbar";
-  
-import HelpOutToday from "../components/community_support/HelpOutToday";
-import SampleScript from "../components/community_support/SampleScript";
-import SignPetition from "../components/community_support/SignPetition";
+
+import CommunitySupport from "@/components/community_support/CommunitySupport";
 
 export default function Home() {
   return (
@@ -30,9 +28,7 @@ export default function Home() {
           <p>Why Neutering&nbsp;</p>
         </div>
         <div id="support">
-           <HelpOutToday />
-           <SampleScript />
-           <SignPetition />
+          <CommunitySupport />
         </div>
         <div id="marketing">
           <p>Marketing Plan&nbsp;</p>
