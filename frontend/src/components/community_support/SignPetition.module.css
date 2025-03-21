@@ -33,7 +33,7 @@
 
 @font-face {
   font-family: "Open Sans";
-  src: url("fonts/OpenSans-Regular.ttf");
+  src: url("../../app/fonts/OpenSans-Regular.ttf");
 }
 
 .signPetitionText h2 {
