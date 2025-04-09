@@ -2,26 +2,36 @@
 
 import { ThemeProvider } from "@tritonse/tse-constellation";
 
-import Solution from "../components/solution/Solution";
-
+import Carousel from "@/components/Carousel";
+import WhatIsSpayLA from "@/components/WhatIsSpayLa";
+import Card1 from "@/components/card1";
+import Card2 from "@/components/card2";
+import Card3 from "@/components/card3";
 import CommunitySupport from "@/components/community_support/CommunitySupport";
 import MarketSection from "@/components/market_plan/marketSection";
 import Navbar from "@/components/navbar/Navbar";
+import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
 
 export default function Home() {
   return (
     <ThemeProvider>
-      <main>
+      <main style={{ width: "100%", minHeight: "100vh" }}>
         <div className="navbar">
-          <Navbar></Navbar>
+          <Navbar />
         </div>
-        <div id="landing">
-          <p>Home Page and Landing&nbsp;</p>
+
+        <div className="home">
+          <Carousel>
+            <Card1 />
+            <Card2 />
+            <Card3 />
+          </Carousel>
+
+          <WhatIsSpayLA />
         </div>
-        <div>
-          <p>Problem Statement&nbsp;</p>
-        </div>
+
+        {/* Solution content */}
         <div id="solution">
           <Solution />
         </div>
