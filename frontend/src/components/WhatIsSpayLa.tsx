@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 
 // Keep your imports the same; just rename for clarity
-import catSilhouette from "./roundIcon.png";
 import pawSilhouette from "./pawIcon.png";
+import catSilhouette from "./roundIcon.png";
 
 export default function WhatIsSpayLA() {
   return (

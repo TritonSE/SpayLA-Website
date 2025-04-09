@@ -160,15 +160,6 @@ a {
   /* Align or justify as needed */
 }
 
-/* Example if you need alignment in the parent: 
-   .overlayParent, .togetherWeParent, .haveQuestionsParent {
-     align-items: flex-start;
-     justify-content: flex-start;
-   } */
-
-/* ------------------------------------------ */
-/* Typography / Buttons                       */
-/* ------------------------------------------ */
 .overlay {
   /* For your large overlay text, e.g. "Too Many Animals" */
   position: relative;

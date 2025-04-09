@@ -1,17 +1,12 @@
 "use client";
 import Image from "next/image";
+
 import newcard2 from "./carousel_2.png"; // Update path as needed
 
 export default function Card2() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
-      <Image
-        src={newcard2}
-        alt="card2"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
+      <Image src={newcard2} alt="card2" fill style={{ objectFit: "cover" }} priority />
 
       {/* Same gradient overlay, if needed */}
       <div
@@ -51,8 +46,10 @@ export default function Card2() {
           Make a Difference
         </b>
         <div style={{ fontSize: "22px" }}>
-        <b>Contact your city and state officials and demand change.</b><br />
-        Call or post publicly on their Instagram to let them know millions of animals dying in our streets is barbaric.
+          <b>Contact your city and state officials and demand change.</b>
+          <br />
+          Call or post publicly on their Instagram to let them know millions of animals dying in our
+          streets is barbaric.
         </div>
         <div
           style={{

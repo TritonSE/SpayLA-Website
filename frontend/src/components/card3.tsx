@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import newcard3 from "./carousel_3.png"; // Update path as needed
 
 export default function Card3() {

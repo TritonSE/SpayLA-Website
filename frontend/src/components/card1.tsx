@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import newcard1 from "./carousel_1.png"; // Update path as needed
 
 export default function Card1() {
@@ -10,7 +11,7 @@ export default function Card1() {
         src={newcard1}
         alt="card1"
         fill
-        style={{ objectFit: "cover", transform: "scaleX(-1)"}}
+        style={{ objectFit: "cover", transform: "scaleX(-1)" }}
         priority
       />
 
@@ -48,7 +49,7 @@ export default function Card1() {
         }}
       >
         <b style={{ fontSize: "65px", lineHeight: "150%", letterSpacing: "0.02em" }}>
-          LET'S FIX LA
+          {"LET'S FIX LA"}
         </b>
         <div style={{ fontSize: "22px" }}>
           Advocate for <b>affordable</b>, <b>available</b>, and <b>accesible</b> spay/ neuter

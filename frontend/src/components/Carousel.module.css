@@ -39,11 +39,11 @@
 */
 .navButton {
   background: none;
-  border: none;        /* remove the orange box */
-  color: #ff8359;      /* arrow color */
-  font-size: 2rem;     /* adjust for arrow size */
+  border: none; /* remove the orange box */
+  color: #ff8359; /* arrow color */
+  font-size: 2rem; /* adjust for arrow size */
   cursor: pointer;
-  padding: 0;          /* no extra padding around the arrow */
+  padding: 0; /* no extra padding around the arrow */
 }
 
 /* Indicator (dot) styles:
@@ -62,7 +62,7 @@
   border-radius: 50%;
   background: #cccccc; /* inactive dot color (gray) */
   transition: background 0.3s ease;
-  border: none;        /* remove any border if you had one */
+  border: none; /* remove any border if you had one */
 }
 
 .active {

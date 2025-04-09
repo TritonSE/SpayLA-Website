@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import styles from "./Carousel.module.css";
 
-interface CarouselProps {
+type CarouselProps = {
   children: React.ReactNode[];
-}
+};
 
 const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +21,9 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
     };
     updateWidth();
     window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+    };
   }, []);
 
   const nextSlide = () => {
@@ -29,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? React.Children.count(children) - 1 : prevIndex - 1
+      prevIndex === 0 ? React.Children.count(children) - 1 : prevIndex - 1,
     );
   };
 
@@ -41,11 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
           style={{ transform: `translateX(-${currentIndex * slideWidth}px)` }}
         >
           {React.Children.map(children, (child, index) => (
-            <div
-              className={styles.carouselItem}
-              key={index}
-              style={{ minWidth: slideWidth }}
-            >
+            <div className={styles.carouselItem} key={index} style={{ minWidth: slideWidth }}>
               {child}
             </div>
           ))}
