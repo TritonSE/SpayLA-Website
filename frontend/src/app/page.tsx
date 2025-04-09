@@ -4,9 +4,10 @@ import { ThemeProvider } from "@tritonse/tse-constellation";
 
 import Solution from "../components/solution/Solution";
 
-import Navbar from "@/components/navbar/Navbar";
-
 import CommunitySupport from "@/components/community_support/CommunitySupport";
+import MarketSection from "@/components/market_plan/marketSection";
+import Navbar from "@/components/navbar/Navbar";
+import WhyNeuter from "@/components/solution/WhyNeuter";
 
 export default function Home() {
   return (
@@ -25,13 +26,13 @@ export default function Home() {
           <Solution />
         </div>
         <div id="neuter">
-          <p>Why Neutering&nbsp;</p>
+          <WhyNeuter />
         </div>
         <div id="support">
           <CommunitySupport />
         </div>
         <div id="marketing">
-          <p>Marketing Plan&nbsp;</p>
+          <MarketSection />
         </div>
       </main>
     </ThemeProvider>
