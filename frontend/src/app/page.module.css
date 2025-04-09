@@ -1,14 +1,14 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 6rem;
+  padding: 0;
   min-height: 100vh;
 }
 .imageWrapper {
   position: relative;
-  width: 500px;  /* Must match the width prop and image width */
+  width: 500px; /* Must match the width prop and image width */
   height: 300px; /* Must match the image height */
   overflow: hidden;
 }

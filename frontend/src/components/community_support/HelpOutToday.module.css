@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+.helpOutGrid {
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1440px;
+  max-height: 635px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 70px 160px;
+  justify-content: space-between;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .helpOutGrid {
+    flex-direction: row; /* Stacks the content vertically when space is limited */
+  }
+}
+
+.helpOutText {
+  display: flex;
+  width: 500.1;
+  height: 333.13px;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: white;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../app/fonts/OpenSans-Regular.ttf");
+}
+
+.helpOutText h2 {
+  color: #002c5f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.96px;
+  height: 48.76px;
+  letter-spacing: 0%;
+}
+
+.helpOutText p {
+  color: black;
+  text-align: left;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  width: 500.1px;
+  height: 135px; /* 133.333% */
+  font-size: 20px;
+  align-self: center;
+  line-height: 27.24px;
+  letter-spacing: 0%;
+}
+
+.helpOutBottom {
+  width: 457.7px;
+  height: 67.44px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 18px;
+}
+
+.helpOutBottomLeft {
+  display: flex;
+  flex-direction: column;
+  width: 372.59px;
+  height: 66px;
+  justify-content: center;
+}
+
+.helpOutBottomLeft p {
+  width: 372.59px;
+  height: 66px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32.68px;
+  font-weight: 400;
+  font-family: "Open Sans";
+  letter-spacing: 0%;
+}
+.helpOutUnderline {
+  text-align: center;
+  font-size: 24px;
+  line-height: 32.68px;
+  font-weight: 400;
+  font-family: "Open Sans";
+  letter-spacing: 0%;
+  text-decoration: underline;
+}

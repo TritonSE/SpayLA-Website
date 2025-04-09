@@ -1,0 +1,58 @@
+.outerContainer {
+  width: 100%;
+  background-color: #dfebf3;
+  display: flex;
+  justify-content: center; /* Keeps everything centered */
+  align-items: center;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+.innerContainer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 5fr 3fr;
+  background-color: #dfebf3;
+  padding: 70px 240px;
+  column-gap: 150px;
+  max-width: 2000px; /* Prevents stretching */
+  margin: 0 auto; /* Centers the container */
+  font-family: var(--font-montserrat);
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.heading {
+  font-size: 40px;
+  font-weight: bold;
+  color: #002c5f;
+}
+
+.description {
+  font-size: 20px;
+  color: #000000;
+  line-height: 1.5;
+  align-items: center;
+  font-family: var(--font-open-sans);
+  padding-top: 40px;
+}
+
+.graphSection {
+  text-align: center;
+  justify-content: flex-end;
+  height: 400px; /* Ensure it takes full height */
+  display: flex;
+  flex-direction: column;
+}
+
+.graphTitle {
+  font-size: 20px;
+  align-items: flex-start;
+  justify-items: flex-start;
+  font-family: var(--font-open-sans);
+  color: #000000;
+}

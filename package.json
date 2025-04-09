@@ -1,5 +1,9 @@
 {
   "devDependencies": {
-    "@tritonse/tse-constellation": "^0.0.8"
+    "@tritonse/tse-constellation": "^0.0.8",
+    "@types/react": "^18"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
   }
 }
