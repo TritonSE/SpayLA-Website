@@ -10,6 +10,7 @@ import Card3 from "@/components/card3";
 import CommunitySupport from "@/components/community_support/CommunitySupport";
 import MarketSection from "@/components/market_plan/marketSection";
 import Navbar from "@/components/navbar/Navbar";
+import Problem from "@/components/problem/Problem";
 import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
 
@@ -29,6 +30,10 @@ export default function Home() {
           </Carousel>
 
           <WhatIsSpayLA />
+        </div>
+        {/* Problem Statement*/}
+        <div id="problem">
+          <Problem />
         </div>
 
         {/* Solution content */}
