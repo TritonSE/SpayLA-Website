@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  background-color: #dfebf3;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-montserrat);
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: bold;
+  color: #2d5177;
+  text-align: left;
+  width: 100%;
+  padding-left: 220px;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 370px;
+  height: 505px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImage {
+  width: 35%; /* or whatever size you want */
+  height: auto; /* preserves aspect ratio */
+}
+
+.cardText {
+  padding: 40px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+  flex-grow: 1;
+  font-family: var(--font-open-sans);
+  justify-content: center;
+}
+
+.cardText h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.cardText p {
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.cardText a {
+  display: block;
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 0.875rem;
+}

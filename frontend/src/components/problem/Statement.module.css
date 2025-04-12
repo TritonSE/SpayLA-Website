@@ -1,0 +1,65 @@
+.outerContainer {
+  width: 100%;
+  background-color: #fbfeff;
+  padding: 35px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.innerContainer {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  background-color: #fbfeff;
+  padding: 108px 144px;
+  align-items: center;
+  justify-content: center;
+  column-gap: 120px;
+  max-width: 2000px; /* Prevents stretching */
+  margin: 0 auto; /* Centers the container */
+}
+
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.image {
+  width: 80%;
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.problem {
+  font-family: var(--font-open-sans);
+  color: #ff7f50;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-left: 100px;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: bold;
+  color: #2d5177;
+  padding-left: 100px;
+}
+
+.description {
+  font-family: var(--font-open-sans);
+  font-size: 20px;
+  color: #000000;
+  line-height: 1.5;
+  align-items: center;
+  padding-top: 30px;
+  padding-left: 100px;
+  margin-top: 10px;
+}
