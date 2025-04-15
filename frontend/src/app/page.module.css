@@ -5,6 +5,10 @@
   min-height: 100vh;
 }
 
+.content {
+  margin-top: 106px;
+}
+
 .imageWrapper {
   position: relative;
   width: 500px; /* Must match the width prop and image width */
