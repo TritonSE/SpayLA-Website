@@ -1,8 +1,16 @@
 import { TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "@/components/navbar/Navbar.module.css";
+
+const sections = [
+  { id: "landing", label: "Who We Are" },
+  { id: "solution", label: "Solution" },
+  { id: "neuter", label: "Why Neutering?" },
+  { id: "support", label: "Support" },
+  { id: "marketing", label: "Marketing Plan" },
+];
 
 const Navbar: React.FC = () => {
   const [activeNav, setActiveNav] = useState<string | null>(null);
@@ -11,6 +19,25 @@ const Navbar: React.FC = () => {
     setActiveNav((prev) => (prev === label ? null : label));
     console.log("Active: ", activeNav);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id);
+        if (section && section.offsetTop <= scrollPos) {
+          setActiveNav(sections[i].label);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <TopNavigation
