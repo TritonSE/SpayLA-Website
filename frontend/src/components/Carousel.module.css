@@ -1,0 +1,70 @@
+/* Carousel.module.css */
+
+/* The main container can grow to fit each card’s height. */
+.carouselContainer {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  /* No overflow: hidden here so it won't clip the top of slides */
+}
+
+.innerWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carouselInner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselItem {
+  flex: 0 0 auto; /* We'll set the width inline in Carousel.tsx */
+}
+
+/* Navigation container */
+.navButtons {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* 1) Remove the border and background
+   2) Make the font-size bigger if you want larger arrows
+   3) Keep the color as your orange (#ff8359)
+*/
+.navButton {
+  background: none;
+  border: none; /* remove the orange box */
+  color: #ff8359; /* arrow color */
+  font-size: 2rem; /* adjust for arrow size */
+  cursor: pointer;
+  padding: 0; /* no extra padding around the arrow */
+}
+
+/* Indicator (dot) styles:
+   - Use a gray or neutral color for inactive
+   - Use orange (#ff8359) for the active dot
+*/
+.indicators {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cccccc; /* inactive dot color (gray) */
+  transition: background 0.3s ease;
+  border: none; /* remove any border if you had one */
+}
+
+.active {
+  background: #ff8359; /* active dot color (orange) */
+}

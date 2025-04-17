@@ -35,6 +35,8 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+  --font-open-sans: "Open Sans", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -65,6 +67,7 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -77,8 +80,7 @@ body {
 }
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
+  background-color: white;
 }
 a {
   color: inherit;
@@ -88,4 +90,153 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+/* ------------------------------------------ */
+/* Main Card Containers                      */
+/* ------------------------------------------ */
+/* Each card is 1306px wide and 579px tall, 
+   positioned relative so internal elements 
+   can be absolutely positioned within. */
+.card1,
+.heroShot2,
+.heroShot3 {
+  position: relative;
+  width: 1306px; /* unify your card width */
+  height: 579px; /* unify your card height */
+  overflow: hidden; /* ensures content doesn’t spill outside */
+  text-align: center; /* if you want centered text by default */
+}
+
+/* ------------------------------------------ */
+/* Gradients / Overlays                      */
+/* ------------------------------------------ */
+.rectangle,
+.rectangleContainer,
+.hero3Child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 950px; /* Adjust as needed for your gradient coverage */
+  height: 579px; /* match the card height */
+  background: linear-gradient(
+    90deg,
+    #2d5177 36.5%,
+    rgba(58, 104, 153, 0.67) 76.5%,
+    rgba(84, 150, 221, 0)
+  );
+}
+
+/* ------------------------------------------ */
+/* Next.js Images (Optional Classes)          */
+/* ------------------------------------------ */
+/* If you're applying .newcard2/.newcard3 to 
+      <Image> elements or a container, remove absolute 
+      positioning or ensure the parent is relative. */
+.newcard2,
+.newcard3 {
+  /* Example if used directly on <Image> with fill: 
+        you wouldn't need width/height here. 
+        If you're using these classes for standard <img> or 
+        a <div> background, adjust accordingly. */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ------------------------------------------ */
+/* Text / Overlay Containers                  */
+/* ------------------------------------------ */
+.overlayParent,
+.togetherWeParent,
+.haveQuestionsParent {
+  position: absolute;
+  top: 126px;
+  left: 89px;
+  width: 715px;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  /* Align or justify as needed */
+}
+
+.overlay {
+  /* For your large overlay text, e.g. "Too Many Animals" */
+  position: relative;
+  color: white;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 45px;
+}
+
+.letsAdvocateContainer,
+.advocateContainer,
+.letsWorkTogether {
+  position: relative;
+  font-size: 22px;
+  color: white;
+  font-family: "Open Sans", sans-serif; /* or Montserrat if you prefer */
+}
+
+/* Learn More, Ways to Support, Contact Us Buttons */
+.learnMoreButton,
+.waysToSupportButton,
+.contactUsButton {
+  border-radius: 4.04px;
+  background-color: #ff8359;
+  height: 48.5px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20.22px;
+}
+
+.learnMoreText,
+.waysToSupportText,
+.contactUsText {
+  position: relative;
+  line-height: 24.27px;
+  font-weight: 600;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* If you use an extra .opacity wrapper for a button's background */
+.opacity {
+  align-self: stretch;
+  flex: 1;
+  border-radius: 4.04px;
+  background-color: #ff8359;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+/* Larger headings (e.g. "Have Questions? We're Here to Help") */
+.haveQuestionsContainer,
+.togetherWeContainer {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: 0.02em;
+  line-height: 150%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 45px;
+  color: white;
+}
+
+.sectionTitle {
+  color: var(--Primary-Dark-Blue, #2d5177);
+  text-align: center;
+  font-family: var(--font-montserrat);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
 }
