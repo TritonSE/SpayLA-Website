@@ -4,16 +4,19 @@ import styles from "./previewCard.module.css";
 
 type previewCardProps = {
   //   filepath: string;
+  onPreview: () => void;
   date: string;
   children?: React.ReactNode;
 };
 
-const PreviewCard: React.FC<previewCardProps> = ({ date, children }) => {
+const PreviewCard: React.FC<previewCardProps> = ({ onPreview, date, children }) => {
   return (
     <div className={styles.card}>
       <div className={styles.content}>
         <div className={styles.thumbnail}>
-          <button className={styles.previewButton}>Preview</button>
+          <button className={styles.previewButton} onClick={onPreview}>
+            Preview
+          </button>
           {children}
         </div>
         <div className={styles.cardFooter}>
