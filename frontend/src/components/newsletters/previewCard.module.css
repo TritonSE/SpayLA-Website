@@ -46,6 +46,7 @@
   background-color: lightgray;
   justify-content: center;
   overflow: hidden;
+  border: none;
 }
 
 .thumbnail > * {
