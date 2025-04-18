@@ -109,6 +109,9 @@ export default function Newsletters() {
               onPreview={() => {
                 openModal(url);
               }}
+              onDelete={() => {
+                setPreviewData((prev) => prev.filter((_, i) => i !== idx));
+              }}
             >
               <img src={url} alt={`preview-${idx}`} style={{ width: "100%" }} />
             </PreviewCard>
