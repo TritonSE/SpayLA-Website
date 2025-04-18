@@ -10,9 +10,18 @@
   background: rgba(242, 250, 255, 1);
 }
 
+.card:hover {
+  background: rgba(223, 235, 243, 1);
+}
+
 .discardButton {
   background-color: transparent;
   border: none;
+}
+
+.icon {
+  width: 26px;
+  height: 27px;
 }
 
 .cardFooter {
@@ -34,7 +43,7 @@
   width: 243px;
   height: 182px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: lightgray;
   justify-content: center;
 }
 
@@ -44,8 +53,8 @@
   gap: 8px;
 }
 
-.previewButton {
-  position: absolute;
+/* .previewButton {
+>>>>>>> Stashed changes
   margin: 15px;
   width: 163px;
   height: 47px;
@@ -57,4 +66,4 @@
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
   color: black;
-}
+} */
