@@ -45,6 +45,11 @@
   border-radius: 10px;
   background-color: lightgray;
   justify-content: center;
+  overflow: hidden;
+}
+
+.thumbnail > * {
+  height: 300px;
 }
 
 .content {
@@ -52,18 +57,3 @@
   flex-direction: column;
   gap: 8px;
 }
-
-/* .previewButton {
->>>>>>> Stashed changes
-  margin: 15px;
-  width: 163px;
-  height: 47px;
-  gap: 10px;
-  border-radius: 30px;
-  font-size: 20px;
-  padding: 10px;
-  border: none;
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
-  color: black;
-} */
