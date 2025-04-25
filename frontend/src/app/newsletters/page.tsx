@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 
 import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
+import ToastNotification from "@/components/newsletters/toastNotification";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
@@ -16,6 +17,25 @@ export default function Newsletters() {
   const [previewData, setPreviewData] = useState<string[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
+
+  const noop = () => {
+    // no operation
+  };
+
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [undoCallback, setUndoCallback] = useState<() => void>(() => noop);
+
+  const showToast = (message: string, undo?: () => void) => {
+    setToastMessage(message);
+    setUndoCallback(() => undo ?? noop);
+    setToastVisible(true);
+
+    // Optional auto-dismiss:
+    setTimeout(() => {
+      setToastVisible(false);
+    }, 5000);
+  };
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
@@ -67,6 +87,13 @@ export default function Newsletters() {
     const validResults = results.filter((url): url is string => !!url); // filter out nulls
 
     setPreviewData((prev) => [...prev, ...validResults]);
+
+    if (validResults.length > 0) {
+      showToast("Newsletter uploaded successfully.", () => {
+        // Undo logic: remove the just-added files
+        setPreviewData((prev) => prev.slice(0, prev.length - validResults.length));
+      });
+    }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +114,15 @@ export default function Newsletters() {
     <main className={styles.page}>
       <div className={styles.content}>
         <h1 className={styles.title}>Edit Newsletter</h1>
+
+        <ToastNotification
+          show={toastVisible}
+          message={toastMessage}
+          onUndo={undoCallback}
+          onRequestClose={() => {
+            setToastVisible(false);
+          }}
+        />
 
         <Button className={styles.upload} leadingIcon="ic_upload" onClick={handleButtonClick}>
           Upload PDF/Image
@@ -110,7 +146,17 @@ export default function Newsletters() {
                 openModal(url);
               }}
               onDelete={() => {
+                const deleted = previewData[idx];
                 setPreviewData((prev) => prev.filter((_, i) => i !== idx));
+
+                showToast("Newsletter deleted.", () => {
+                  // re-insert the deleted item at the same position
+                  setPreviewData((prev) => {
+                    const updated = [...prev];
+                    updated.splice(idx, 0, deleted);
+                    return updated;
+                  });
+                });
               }}
             >
               <img src={url} alt={`preview-${idx}`} style={{ width: "100%" }} />
