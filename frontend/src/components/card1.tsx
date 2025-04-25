@@ -52,10 +52,11 @@ export default function Card1() {
           {"LET'S FIX LA"}
         </b>
         <div style={{ fontSize: "22px" }}>
-          Advocate for <b>affordable</b>, <b>available</b>, and <b>accesible</b> spay/ neuter
+          Advocate for <b>affordable</b>, <b>available</b>, and <b>accessible</b> spay/ neuter
           clinics for all dogs and cats in Los Angeles.
         </div>
-        <div
+        <a
+          href = "#neuter"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",
@@ -70,7 +71,7 @@ export default function Card1() {
           }}
         >
           <div style={{ color: "#fff", fontWeight: 600 }}>Learn why we spay/neuter</div>
-        </div>
+        </a>
       </div>
     </div>
   );

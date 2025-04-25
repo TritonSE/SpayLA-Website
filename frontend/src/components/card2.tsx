@@ -51,7 +51,8 @@ export default function Card2() {
           Call or post publicly on their Instagram to let them know millions of animals dying in our
           streets is barbaric.
         </div>
-        <div
+        <a
+          href = "https://neighborhoodinfo.lacity.gov/"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",
@@ -66,9 +67,9 @@ export default function Card2() {
           }}
         >
           <div style={{ color: "#fff", fontWeight: 600 }}>
-            Find you City, County and State officials
+            Find your City, County and State officials
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );
