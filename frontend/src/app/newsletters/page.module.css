@@ -35,3 +35,7 @@
 .upload:hover {
   background-color: rgba(62, 95, 130, 1) !important;
 }
+
+.change-my-color {
+  fill: green;
+}
