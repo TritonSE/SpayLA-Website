@@ -34,7 +34,7 @@ export default function Newsletters() {
     // Optional auto-dismiss:
     setTimeout(() => {
       setToastVisible(false);
-    }, 5000);
+    }, 3000);
   };
 
   const handleButtonClick = () => {
@@ -98,6 +98,9 @@ export default function Newsletters() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     void processFiles(event);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const openModal = (url: string) => {
@@ -149,7 +152,7 @@ export default function Newsletters() {
                 const deleted = previewData[idx];
                 setPreviewData((prev) => prev.filter((_, i) => i !== idx));
 
-                showToast("Newsletter deleted.", () => {
+                showToast("Newsletter deleted successfully.", () => {
                   // re-insert the deleted item at the same position
                   setPreviewData((prev) => {
                     const updated = [...prev];
