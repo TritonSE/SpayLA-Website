@@ -1,0 +1,19 @@
+.underline {
+  background: transparent !important;
+  transition: background 0.3s linear;
+  border-radius: 4px;
+}
+
+a:hover .underline {
+  display: inline !important;
+  background: #3d5a80 !important;
+}
+
+.active .underline {
+  background: #ee6c4d !important;
+  transition: none;
+}
+
+.inactive {
+  background: transparent !important;
+}
