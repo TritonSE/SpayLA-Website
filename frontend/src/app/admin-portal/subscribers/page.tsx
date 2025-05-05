@@ -4,17 +4,15 @@ import { ThemeProvider } from "@tritonse/tse-constellation";
 
 import Navbar from "../admin-navbar/admin-navbar";
 
-import styles from "@/app/page.module.css";
-
-export default function AdminNavbarPage() {
+export default function SubscribersPage() {
   return (
     <ThemeProvider>
-      <main className={styles.main} style={{ width: "100%", minHeight: "100vh" }}>
-        <div className={styles.navbar}>
-          <Navbar />
-        </div>
-
-        <div className={styles.content}> </div>
+      <main style={{ width: "100%", minHeight: "100vh", paddingTop: "120px", textAlign: "center" }}>
+        <Navbar />
+        <h1 style={{ fontSize: "40px", color: "#2d5177" }}>Subscribers Page</h1>
+        <p style={{ color: "black" }}>
+          This is where you can view or manage newsletter subscribers.
+        </p>
       </main>
     </ThemeProvider>
   );
