@@ -56,7 +56,7 @@ export default function Card1() {
           clinics for all dogs and cats in Los Angeles.
         </div>
         <a
-          href = "#neuter"
+          href="#neuter"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",

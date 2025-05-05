@@ -52,7 +52,7 @@ export default function Card2() {
           streets is barbaric.
         </div>
         <a
-          href = "https://neighborhoodinfo.lacity.gov/"
+          href="https://neighborhoodinfo.lacity.gov/"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",

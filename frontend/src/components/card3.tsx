@@ -49,7 +49,7 @@ export default function Card3() {
           with low-cost spay/neuter services, questions, and inquiries.
         </div>
         <a
-          href = "#support"
+          href="#support"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",
