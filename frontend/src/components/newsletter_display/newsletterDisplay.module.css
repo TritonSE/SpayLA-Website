@@ -4,11 +4,12 @@
   width: 100vw;
   justify-content: space-around;
 }
+
 .latest {
   width: 634px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin-top: 70px;
   align-items: center;
   align-self: stretch;
   gap: 50px;
@@ -35,13 +36,18 @@
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
 }
 
+.rightSection {
+  flex-direction: column;
+  display: flex;
+  background-color: rgba(223, 235, 243, 1);
+}
+
 .previous {
   flex-direction: column;
   display: flex;
-  justify-content: center;
+  margin-top: 70px;
   width: 806px;
   height: 551px;
-  background-color: rgba(223, 235, 243, 1);
 }
 
 .previousTitle {
@@ -58,6 +64,15 @@
 .content {
   padding-left: 80px;
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.newsletterList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .newsletterView {
@@ -68,31 +83,67 @@
   padding-bottom: 14px;
   gap: 10px;
   border-radius: 10px;
+  color: black;
+}
+
+.newsletterView:hover {
+  background-color: white !important;
 }
 
 .timeSelect {
-  padding-bottom: 31px;
+  display: flex;
+  flex-direction: row;
   gap: 10px;
 }
 
-.sixMonth {
+.timespan {
   height: 40px;
   border-radius: 4px;
-  background-color: #ff8359;
-  font-size: 14px;
-}
-
-.year {
-  height: 40px;
-  border-radius: 4px;
-  background-color: rgba(216, 216, 216, 1);
+  background-color: white;
   font-size: 14px;
   color: black;
-  word-wrap: "break-word";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timespan:hover {
+  background-color: #ff8359 !important;
+}
+
+.active {
+  background-color: #ff8359;
+  color: white;
 }
 
 .pageSelector {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-top: 20px;
+}
+
+.pageButton {
+  background-color: transparent !important;
+}
+
+.pageButton.disabledButton {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+.pageButton:hover {
+  --action-background: transparent !important;
+}
+
+.button {
+  background-color: transparent !important;
+  color: black !important;
+  font-weight: 600;
+}
+
+.button:hover {
+  --action-background: transparent !important;
+  border: 1px solid #ff8359 !important;
+  border-radius: 4px !important;
 }
