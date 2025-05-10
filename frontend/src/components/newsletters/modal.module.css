@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #2d5177;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalHeader {
+  color: #2d5177;
+  height: 35px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.close {
+  padding: 0;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.previewImage {
+  height: 80vh;
+  aspect-ratio: 8.5 / 11;
+  object-fit: contain;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
