@@ -1,8 +1,14 @@
 .section {
   display: flex;
-  flex-direction: row;
   width: 100vw;
   justify-content: space-around;
+  align-items: center;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: row;
+  width: 1440px;
 }
 
 .latest {
@@ -48,6 +54,7 @@
   margin-top: 70px;
   width: 806px;
   height: 551px;
+  align-items: center;
 }
 
 .previousTitle {
@@ -62,10 +69,10 @@
 }
 
 .content {
-  padding-left: 80px;
   padding-top: 40px;
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 30px;
 }
 
@@ -108,7 +115,7 @@
 }
 
 .timespan:hover {
-  background-color: #ff8359 !important;
+  background-color: #f89d7f !important;
 }
 
 .active {
