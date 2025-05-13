@@ -12,6 +12,7 @@ import CommunitySupport from "@/components/community_support/CommunitySupport";
 import MarketSection from "@/components/market_plan/marketSection";
 import Navbar from "@/components/navbar/Navbar";
 import Problem from "@/components/problem/Problem";
+import ProblemCarousel from "@/components/problem/ProblemCarousel";
 import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
 
@@ -36,6 +37,7 @@ export default function Home() {
           {/* Problem Statement*/}
           <div id="problem">
             <Problem />
+            <ProblemCarousel />
           </div>
 
           {/* Solution content */}
