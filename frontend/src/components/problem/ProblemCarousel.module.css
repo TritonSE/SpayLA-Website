@@ -17,7 +17,6 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 1.5rem;
-  gap: rem;
   position: relative;
 }
 
@@ -42,35 +41,51 @@
 
 .carousel {
   overflow: visible;
-  padding: 0 3rem; /* reduce outer padding to reduce peek */
+  padding: 0 1.5rem; /* reduce outer padding to reduce peek */
 }
 
 .carouselContainer {
   display: flex;
-  gap: 6rem; /* optional but smaller gap = tighter peek */
+  margin: 0 auto; /* ✅ center container itself if needed */
+  box-sizing: border-box;
+  gap: 2rem;
 }
 
 .slide {
-  flex: 0 0 97%; /* small peek (~3%) */
+  flex: 0 0 100%; /* small peek (~3%) */
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }
 
 .slideCard {
-  background: #e0f2fe;
+  background: #dfebf3;
   border-radius: 1.25rem;
-  padding: 2rem 3rem;
-  max-width: 2000px;
-  margin: 0 auto;
+  padding: 4rem 4rem;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0rem;
+  justify-content: start;
+}
+
+.slideParagraph {
+  font-size: 20px;
+  line-height: 1.75rem;
+  align-self: center;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-family: var(--font-open-sans);
+  font-weight: 400;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 32px;
+  font-family: var(--font-montserrat);
   font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 1rem;
+  text-align: center;
+  color: #2d5177;
+
+  padding-bottom: 5rem;
 }
 
 .bottomContent {
@@ -108,7 +123,7 @@
   border: 2px solid #ccc;
 }
 
-.rightImage {
+.rightColumn {
   position: relative;
   display: flex;
   justify-content: center;
@@ -121,6 +136,15 @@
   height: auto;
 }
 
+.catImage {
+  align-self: center;
+}
+
+.vetDogImage {
+  width: 100%;
+  max-width: 400px;
+  align-self: center;
+}
 .slidePlaceholder {
   background: #f3f4f6;
   border-radius: 1rem;
