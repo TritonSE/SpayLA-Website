@@ -18,11 +18,7 @@ const AffordableSurgeries: React.FC = () => {
           </p>
         </div>
         <div className={styles.imageSection}>
-          <img
-            className={styles.image}
-            alt="Affordable Surgeries"
-            src="/affordable_surgeries.png"
-          ></img>
+          <img className={styles.image} alt="Affordable Surgeries" src="/circleCat.png"></img>
         </div>
       </div>
     </div>

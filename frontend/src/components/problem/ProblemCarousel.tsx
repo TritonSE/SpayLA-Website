@@ -1,6 +1,6 @@
 "use client";
 import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./ProblemCarousel.module.css";
 
@@ -13,8 +13,57 @@ export default function ProblemCarousel() {
     slidesToScroll: 1,
     align: "start",
   });
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("✅ ProblemCarousel is in view!");
+          const scrollY = window.scrollY;
+
+          // Freeze scroll
+          document.body.style.position = "fixed";
+          document.body.style.top = `-${scrollY}px`;
+          document.body.style.left = "0";
+          document.body.style.right = "0";
+          document.body.style.overflow = "hidden";
+          document.body.style.width = "100%";
+
+          // Unfreeze after 3 seconds
+          setTimeout(() => {
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.overflow = "";
+            document.body.style.width = "";
+
+            window.scrollTo(0, scrollY); // Restore previous scroll position
+            sessionStorage.setItem("problemCarouselFrozen", "true");
+            console.log("🆓 Scroll unfrozen and restored");
+          }, 3000);
+
+          observer.disconnect(); // Trigger only once
+        } else {
+          console.log("⛔ ProblemCarousel is out of view.");
+        }
+      },
+      {
+        threshold: 1, // 50% of component must be visible
+      },
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -48,7 +97,7 @@ export default function ProblemCarousel() {
       </div>
 
       <div className={styles.carousel} ref={emblaRef}>
-        <div className={styles.carouselContainer}>
+        <div className={styles.carouselContainer} ref={containerRef}>
           <div className={styles.slide}>
             <div className={styles.slideCard}>
               <h2 className={styles.title}>Spay/neuter surgeries are too expensive to afford</h2>
@@ -74,7 +123,7 @@ export default function ProblemCarousel() {
 
                 {/* Right half */}
                 <div className={styles.rightColumn}>
-                  <img src="/bigdog.png" alt="Big Dog" className={styles.dogImage} />
+                  <img src="/bigdog.png" alt="Big Dog" />
                 </div>
               </div>
             </div>
@@ -114,7 +163,9 @@ export default function ProblemCarousel() {
           {/* Slide 3 */}
           <div className={styles.slide}>
             <div className={styles.slideCard}>
-              <h2 className={styles.title}>The spay/neuter appointment system is overwhelmed</h2>
+              <h2 className={styles.title}>
+                Spay/neuter clinics are too far and difficult to reach
+              </h2>
               <div className={styles.bottomContent}>
                 {/* Left half: text + cat image */}
                 <div className={styles.leftColumn}>
