@@ -14,7 +14,7 @@ export default function WhatIsSpayLA() {
         backgroundColor: "#DFEBF3",
         position: "relative",
         padding: "6rem 2rem",
-        overflow: "hidden",
+        overflow: "visible",
       }}
     >
       {/* Heading */}
@@ -52,7 +52,7 @@ export default function WhatIsSpayLA() {
       <div
         style={{
           position: "absolute",
-          bottom: -60,
+          bottom: -55,
           right: 100,
           display: "flex",
           alignItems: "flex-end", // both images align at bottom
@@ -66,7 +66,7 @@ export default function WhatIsSpayLA() {
         </div>
 
         {/* Paw silhouette (tall icon) */}
-        <div style={{ position: "relative", width: "120px", height: "300px" }}>
+        <div style={{ position: "relative", width: "120px", height: "300px"}}>
           <Image src={pawSilhouette} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
         </div>
       </div>
