@@ -66,7 +66,7 @@ export default function WhatIsSpayLA() {
         </div>
 
         {/* Paw silhouette (tall icon) */}
-        <div style={{ position: "relative", width: "120px", height: "300px"}}>
+        <div style={{ position: "relative", width: "120px", height: "300px" }}>
           <Image src={pawSilhouette} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
         </div>
       </div>
