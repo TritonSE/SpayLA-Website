@@ -1,8 +1,16 @@
 import { TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "@/components/navbar/Navbar.module.css";
+
+const sections = [
+  { id: "landing", label: "Who We Are" },
+  { id: "solution", label: "Solution" },
+  { id: "neuter", label: "Why Neutering?" },
+  { id: "support", label: "Support" },
+  { id: "marketing", label: "Marketing Plan" },
+];
 
 const Navbar: React.FC = () => {
   const [activeNav, setActiveNav] = useState<string | null>(null);
@@ -12,11 +20,54 @@ const Navbar: React.FC = () => {
     console.log("Active: ", activeNav);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollOffset = 120; // navbar height + buffer
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+
+          // Check if the section is near the top of the viewport
+          if (rect.top <= scrollOffset) {
+            const newHash = `#${sections[i].id}`;
+            if (window.location.hash !== newHash) {
+              history.replaceState(null, "", newHash);
+            }
+            setActiveNav(sections[i].label);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <TopNavigation
       logoComponent={
-        <a href="#landing">
-          <img src="/logo.png" style={{ width: "278px" }} alt="" />
+        <a
+          href="#landing"
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById("landing");
+            if (el) {
+              window.scrollTo({
+                top: el.offsetTop - 106, // navbar offset
+                behavior: "smooth",
+              });
+            }
+            setActiveNav("Who We Are");
+          }}
+        >
+          <img src="/logo.png" style={{ width: "278px" }} alt="SpayLA Logo" />
         </a>
       }
       logoSrc="/logo.png"
@@ -54,8 +105,16 @@ const Navbar: React.FC = () => {
           className={`${className} ${styles.underline} ${
             activeNav === key ? styles.active : styles.inactive
           }`}
-          onClick={() => {
-            console.log("Key: ", key);
+          onClick={(e) => {
+            e.preventDefault();
+            const id = path?.replace("#", "");
+            const el = document.getElementById(id ?? "");
+            if (el) {
+              window.scrollTo({
+                top: el.offsetTop - 106, // Adjust to match navbar height
+                behavior: "smooth",
+              });
+            }
             handleNavClick(key as string);
           }}
         >
