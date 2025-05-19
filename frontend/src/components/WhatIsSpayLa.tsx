@@ -21,7 +21,7 @@ export default function WhatIsSpayLA() {
       <GeorgeCat
         contentImage={"/george-cat/george_cat1.png"}
         clickable={false}
-        positionProp={{ left: "10px" }}
+        positionProp={{ left: "100px", top: "70px" }}
       ></GeorgeCat>
 
       {/* Heading */}

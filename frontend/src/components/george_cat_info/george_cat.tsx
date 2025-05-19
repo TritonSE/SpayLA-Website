@@ -23,7 +23,7 @@ const GeorgeCat: React.FC<georgecatProps> = ({ contentImage, clickable, link, po
       onClick={handleClick}
       style={{ position: "absolute", ...positionProp }}
     >
-      <img src={contentImage} alt="Content"></img>
+      <img style={{ height: 94.8653 }} src={contentImage} alt="Content"></img>
     </button>
   );
 };
