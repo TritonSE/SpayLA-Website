@@ -34,7 +34,7 @@ export default function Newsletters() {
     // Optional auto-dismiss:
     setTimeout(() => {
       setToastVisible(false);
-    }, 5000);
+    }, 3000);
   };
 
   const handleButtonClick = () => {
@@ -98,6 +98,9 @@ export default function Newsletters() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     void processFiles(event);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const openModal = (url: string) => {
