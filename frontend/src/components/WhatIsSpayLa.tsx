@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 // Keep your imports the same; just rename for clarity
+import GeorgeCat from "./george_cat_info/george_cat";
 import pawSilhouette from "./pawIcon.png";
 import catSilhouette from "./roundIcon.png";
 
@@ -17,6 +18,12 @@ export default function WhatIsSpayLA() {
         overflow: "hidden",
       }}
     >
+      <GeorgeCat
+        contentImage={"/george-cat/george_cat1.png"}
+        clickable={false}
+        positionProp={{ left: "10px" }}
+      ></GeorgeCat>
+
       {/* Heading */}
       <h2
         style={{

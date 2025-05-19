@@ -32,7 +32,8 @@
     "react-hook-form": "^7.49.3",
     "react-pdf": "^9.2.1",
     "styled-components": "^6.1.8",
-    "ts-jest": "^29.1.1"
+    "ts-jest": "^29.1.1",
+    "uri-js": "^4.4.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.0.3",
