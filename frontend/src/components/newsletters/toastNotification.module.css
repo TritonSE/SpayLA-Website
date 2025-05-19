@@ -16,18 +16,31 @@
 
 .message {
   color: black;
+  font-weight: 600;
+  width: 309px;
 }
 .undoButton {
-  border: 1px solid black;
+  border: 1.5px solid black;
+  height: 48px;
+  width: 91px;
   color: black;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 12px 24px 12px 24px;
   background: transparent;
+  gap: 6px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .closeButton {
   padding: 0;
-  margin-left: auto;
-  margin-right: 8px;
+  margin-left: 8px;
+  margin-right: 3px;
+  color: black;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }

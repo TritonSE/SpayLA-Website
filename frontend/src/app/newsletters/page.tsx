@@ -141,7 +141,7 @@ export default function Newsletters() {
           {previewData.map((url, idx) => (
             <PreviewCard
               key={idx}
-              date={`Uploaded File ${idx + 1}`}
+              date={`${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}`}
               onPreview={() => {
                 openModal(url);
               }}
@@ -149,7 +149,7 @@ export default function Newsletters() {
                 const deleted = previewData[idx];
                 setPreviewData((prev) => prev.filter((_, i) => i !== idx));
 
-                showToast("Newsletter deleted.", () => {
+                showToast("Newsletter deleted successfully.", () => {
                   // re-insert the deleted item at the same position
                   setPreviewData((prev) => {
                     const updated = [...prev];
