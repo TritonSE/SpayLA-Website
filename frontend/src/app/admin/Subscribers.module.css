@@ -1,0 +1,157 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../app/fonts/OpenSans-Regular.ttf");
+}
+.outer {
+  width: 100%;
+}
+.container {
+  padding: 50px;
+  width: 1135px;
+  gap: 50px;
+  top: 148px;
+  left: 140px;
+  display: flex;
+  flex-direction: column;
+  height: 956px;
+}
+
+.header {
+  width: 1112px;
+  height: 44px;
+  font-family: "Open Sans";
+  color: #000000;
+  size: 32px;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.emailFunctions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  flex-direction: row;
+  width: 1112px;
+}
+
+.copyEmails {
+  background-color: #2d5177;
+  width: 199px;
+  height: 48px;
+  border-radius: 4px;
+  gap: 10px;
+
+  color: white;
+  font-family: "Open Sans";
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 2%;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyEmails:hover {
+  background-color: #1b3650;
+}
+
+.deleteSubscribers {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+}
+
+.toast {
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1.5rem;
+  width: 512px;
+  height: 72px;
+  padding: 12px 24px 12px 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.undoButton {
+  width: 91px;
+  height: 40px;
+  border-radius: 4px;
+  padding: 12px 24px;
+  gap: 6px;
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.toastClose {
+  background: none;
+  border: none;
+  color: #999;
+}
+
+.subscribersTable {
+  width: 1112px;
+  height: 714px;
+  color: black;
+  font-family: "Open Sans";
+  border-collapse: collapse;
+}
+
+.subscribersTable th,
+.subscribersTable td {
+  padding: 0.75rem;
+  border: 1px solid #000;
+  text-align: center;
+}
+
+.subscribersTable th {
+  font-weight: normal;
+}
+
+.subscribersTable input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid black;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.subscribersTable input[type="checkbox"]:checked {
+  background-color: black;
+}
+
+.subscribersTable input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5.5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.subscribersTable input[type="checkbox"]:checked::after {
+  display: block;
+}
