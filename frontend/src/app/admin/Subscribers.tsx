@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import styles from "./Subscribers.module.css";
 
-interface Subscriber {
+type Subscriber = {
   name: string;
   email: string;
   date: string;
   id: number;
-}
+};
 
 const subscriberList: Subscriber[] = Array.from({ length: 20 }, (_, i) => ({
   name: "Irene Joo",
