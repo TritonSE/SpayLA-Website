@@ -14,10 +14,10 @@ import Navbar from "@/components/navbar/Navbar";
 import Problem from "@/components/problem/Problem";
 import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
-import Login from '@/components/auth/Login';
-import ForgotPassword from '@/components/auth/ForgotPassword';
-import ResetPassword from '@/components/auth/ResetPassword';
-import PasswordResetSuccess from '@/components/auth/PasswordResetSuccess';
+import Login from "@/components/auth/Login";
+import ForgotPassword from "@/components/auth/ForgotPassword";
+import ResetPassword from "@/components/auth/ResetPassword";
+import PasswordResetSuccess from "@/components/auth/PasswordResetSuccess";
 
 export default function Home() {
   return (
