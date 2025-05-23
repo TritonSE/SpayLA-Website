@@ -21,13 +21,7 @@ export default function ResetPassword() {
 
   return (
     <div className={styles.container}>
-      <Image
-        src="/logo.png"
-        alt="SpayLA Logo"
-        width={380}
-        height={100}
-        className={styles.logo}
-      />
+      <Image src="/logo.png" alt="SpayLA Logo" width={380} height={100} className={styles.logo} />
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
