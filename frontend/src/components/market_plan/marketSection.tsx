@@ -1,3 +1,5 @@
+import GeorgeCat from "../george_cat_info/george_cat";
+
 import styles from "./marketSection.module.css";
 
 import { cardDetails } from "@/components/hovercard/carddetail";
@@ -5,7 +7,17 @@ import HoverCard from "@/components/hovercard/hovercard";
 
 export default function MarketSection() {
   return (
-    <main>
+    <section
+      style={{
+        width: "100%",
+        position: "relative",
+      }}
+    >
+      <GeorgeCat
+        contentImage={"/george-cat/george_cat9.png"}
+        clickable={false}
+        positionProp={{ left: "115px", top: "70px" }}
+      ></GeorgeCat>
       <div className={styles.sectionHeader}>
         <h1 className="sectionTitle">Marketing Plan</h1>
         <p className={styles.sectionDescription}>
@@ -24,6 +36,6 @@ export default function MarketSection() {
           />
         ))}
       </div>
-    </main>
+    </section>
   );
 }
