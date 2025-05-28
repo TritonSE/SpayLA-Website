@@ -27,7 +27,7 @@ export default function SubscriberSignup() {
   }, []);
 
   return (
-    <div className={styles.subscriberContainer}>
+    <div className={styles.subscriberContainer} style={{ width: "100vw", margin: 0, padding: 0 }}>
       <div className={styles.signupSection}>
         <div className={styles.headerSection}>
           <Image

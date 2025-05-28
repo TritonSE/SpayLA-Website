@@ -4,8 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  margin: 0;
   height: 673px;
   font-family: var(--font-montserrat);
 }
@@ -117,6 +116,7 @@
   height: 328px;
   box-sizing: border-box;
   position: relative;
+  align-items: center;
 }
 
 .contactHeading {
@@ -133,6 +133,8 @@
   justify-content: center;
   gap: 120px;
   margin-bottom: 70px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 /* Contact Us Column */
@@ -262,14 +264,16 @@
 @media screen and (max-width: 768px) {
   .subscriberContainer {
     height: 597px;
-    max-width: 320px;
-    width: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
   }
 
   .signupSection {
     height: 597px;
-    padding: 30px 16px;
+    padding: 30px 0;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -311,7 +315,8 @@
   .formContainer {
     flex-direction: column;
     gap: 15px;
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
     height: 250px;
     align-items: center;
     display: flex;
