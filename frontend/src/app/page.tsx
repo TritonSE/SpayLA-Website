@@ -11,9 +11,11 @@ import Card3 from "@/components/card3";
 import CommunitySupport from "@/components/community_support/CommunitySupport";
 import MarketSection from "@/components/market_plan/marketSection";
 import Navbar from "@/components/navbar/Navbar";
+import Newsletter from "@/components/newsletter_display/newsletterDisplay";
 import Problem from "@/components/problem/Problem";
 import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
+import SubscriberSignup from "@/components/subscribers_signup/SubscriberSignup";
 
 export default function Home() {
   return (
@@ -50,6 +52,12 @@ export default function Home() {
           </div>
           <div id="marketing">
             <MarketSection />
+          </div>
+          <div id="newsletter">
+            <Newsletter />
+          </div>
+          <div id="subscribe">
+            <SubscriberSignup />
           </div>
         </div>
       </main>

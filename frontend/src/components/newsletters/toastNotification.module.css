@@ -12,6 +12,8 @@
   gap: 1rem;
   min-width: 300px;
   z-index: 1000;
+  width: 512px;
+  height: 72px;
 }
 
 .message {
@@ -43,4 +45,6 @@
   cursor: pointer;
   overflow: hidden;
   outline: none;
+  fill: black;
+
 }

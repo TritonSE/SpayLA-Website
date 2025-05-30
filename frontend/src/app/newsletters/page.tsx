@@ -6,6 +6,8 @@ const NewsletterClient = dynamic(() => import("./newsletteradminClient"), {
   ssr: false,
 });
 
+
+
 export default function NewslettersPage() {
   return <NewsletterClient />;
 }
