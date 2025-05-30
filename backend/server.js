@@ -45,6 +45,11 @@ mongoose
 const User = require("./models/User");
 app.post("/api/users", async (req, res) => {
   const newUser = new User(req.body);
-  await newUser.save();
-  res.status(201).send(newUser);
+  try {
+    await newUser.save();
+    res.status(201).send(newUser);
+  } catch (err) {
+    console.error("Error saving user:", err);
+    res.status(500).json({ error: "Failed to create user" });
+  }
 });
