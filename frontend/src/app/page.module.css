@@ -122,7 +122,9 @@
 /* Mobile */
 @media (max-width: 700px) {
   .content {
-    padding: 4rem;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
   }
   .grid {
     grid-template-columns: 1fr;
