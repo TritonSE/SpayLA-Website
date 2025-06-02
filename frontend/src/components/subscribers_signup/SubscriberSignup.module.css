@@ -80,6 +80,7 @@
   font-family: var(--font-montserrat);
   font-size: 16px;
   background-color: white;
+  color: black;
 }
 
 .nameField {
@@ -95,6 +96,23 @@
   width: 103px;
   padding: 0;
   background-color: #ff8359;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doneButton {
+  height: 34px;
+  width: 103px;
+  padding: 0;
+  background-color: #2877d2;
   border: none;
   border-radius: 4px;
   color: white;
@@ -316,7 +334,6 @@
     gap: 15px;
     width: 100%;
     max-width: 288px;
-    height: 250px;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -327,30 +344,67 @@
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .inputLabel {
     margin-bottom: 8px;
     font-size: 16px;
     align-self: flex-start;
+    width: 288px;
   }
 
   .inputField {
-    width: 268px !important;
-    height: 37px;
+    width: 288px !important;
+    height: 40px;
     border-radius: 4px;
     font-size: 16px;
+    color: black;
+    box-sizing: border-box;
+  }
+
+  .nameField {
+    color: black;
   }
 
   .signupButton {
-    width: 288px;
-    height: 48px;
+    width: 288px !important;
+    height: 40px;
     margin-top: 15px;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 600;
     background-color: #ff8359;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 288px;
+    max-width: 288px;
+  }
+
+  .doneButton {
+    width: 288px !important;
+    height: 40px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #2877d2;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 288px;
+    max-width: 288px;
   }
 
   .contactSection {

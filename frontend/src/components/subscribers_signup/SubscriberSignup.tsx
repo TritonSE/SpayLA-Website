@@ -8,6 +8,7 @@ export default function SubscriberSignup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,6 +27,12 @@ export default function SubscriberSignup() {
     };
   }, []);
 
+  const handleSubmit = () => {
+    if (firstName && lastName && email) {
+      setIsSubmitted(true);
+    }
+  };
+
   return (
     <div className={styles.subscriberContainer} style={{ width: "100vw", margin: 0, padding: 0 }}>
       <div className={styles.signupSection}>
@@ -37,17 +44,21 @@ export default function SubscriberSignup() {
             height={isMobile ? 50 : 41}
             className={styles.pawIcon}
           />
-          <h2 className={styles.heading}>Helping Paws, One Email at a Time</h2>
+          <h2 className={styles.heading}>
+            {isSubmitted ? "Thanks for signing up!" : "Helping Paws, One Email at a Time"}
+          </h2>
         </div>
         {isMobile ? (
           <p className={styles.description}>
-            Sign up for our newsletter to get the latest spay/neuter updates and ways you can help
-            our furry friends!
+            {isSubmitted
+              ? "You're officially on the mailing list to receive the latest updates on our spay/neuter efforts and recent news."
+              : "Sign up for our newsletter to get the latest spay/neuter updates and ways you can help our furry friends!"}
           </p>
         ) : (
           <p className={styles.description}>
-            Sign up for our newsletter to get the latest spay/neuter updates and ways you can help
-            our furry friends!
+            {isSubmitted
+              ? "You're officially on the mailing list to receive the latest updates on our spay/neuter efforts and recent news."
+              : "Sign up for our newsletter to get the latest spay/neuter updates and ways you can help our furry friends!"}
           </p>
         )}
         <div className={styles.formContainer}>
@@ -64,6 +75,7 @@ export default function SubscriberSignup() {
               onChange={(e) => {
                 setFirstName(e.target.value);
               }}
+              disabled={isSubmitted}
             />
           </div>
           <div className={styles.inputGroup}>
@@ -79,6 +91,7 @@ export default function SubscriberSignup() {
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
+              disabled={isSubmitted}
             />
           </div>
           <div className={styles.inputGroup}>
@@ -94,9 +107,16 @@ export default function SubscriberSignup() {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
+              disabled={isSubmitted}
             />
           </div>
-          <button className={styles.signupButton}>Sign Up</button>
+          <button
+            className={isSubmitted ? styles.doneButton : styles.signupButton}
+            onClick={handleSubmit}
+            disabled={isSubmitted}
+          >
+            {isSubmitted ? "Done!" : "Sign Up"}
+          </button>
         </div>
       </div>
 
