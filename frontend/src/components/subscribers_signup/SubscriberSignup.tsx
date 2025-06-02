@@ -100,71 +100,69 @@ export default function SubscriberSignup() {
         </div>
       </div>
 
-      {!isMobile && (
-        <div className={styles.contactSection}>
-          <h2 className={styles.contactHeading}>Got questions? Interested in getting involved?</h2>
+      <div className={styles.contactSection}>
+        <h2 className={styles.contactHeading}>Got questions? Interested in getting involved?</h2>
 
-          <div className={styles.bottomContent}>
-            <div className={styles.contactUsColumn}>
-              <h3 className={styles.columnHeading}>Contact Us!</h3>
-              <div className={styles.contactTable}>
-                <div className={styles.contactRow}>
-                  <span className={styles.contactLabel}>Email:</span>
-                  <span className={styles.contactLabel}>Phone:</span>
-                </div>
-                <div className={styles.contactRow}>
-                  <span className={styles.contactValue}>sample@gmail.com</span>
-                  <span className={styles.contactValue}>123-456-7890</span>
-                </div>
+        <div className={styles.bottomContent}>
+          <div className={styles.contactUsColumn}>
+            <h3 className={styles.columnHeading}>Contact Us!</h3>
+            <div className={styles.contactTable}>
+              <div className={styles.contactRow}>
+                <span className={styles.contactLabel}>Email:</span>
+                <span className={styles.contactLabel}>Phone:</span>
               </div>
-            </div>
-
-            <div className={styles.stayConnectedColumn}>
-              <h3 className={styles.columnHeading}>Stay Connected!</h3>
-              <div className={styles.socialContent}>
-                <div className={styles.socialRow}>
-                  <div className={styles.socialIconWrapper}>
-                    <Image
-                      src="/subcribers_singup/instagram_icon.svg"
-                      alt="Instagram"
-                      width={69}
-                      height={69}
-                      className={styles.socialIcon}
-                    />
-                  </div>
-                  <div className={styles.socialTextColumn}>
-                    <span className={styles.socialLabel}>Instagram:</span>
-                    <span className={styles.socialHandle}>@spayla</span>
-                  </div>
-                </div>
-
-                <div className={styles.socialRow}>
-                  <div className={styles.socialIconWrapper}>
-                    <Image
-                      src="/subcribers_singup/facebook_icon.svg"
-                      alt="Facebook"
-                      width={69}
-                      height={69}
-                      className={styles.socialIcon}
-                    />
-                  </div>
-                  <div className={styles.socialTextColumn}>
-                    <span className={styles.socialLabel}>Facebook:</span>
-                    <span className={styles.socialHandle}>@spayla</span>
-                  </div>
-                </div>
+              <div className={styles.contactRow}>
+                <span className={styles.contactValue}>sample@gmail.com</span>
+                <span className={styles.contactValue}>123-456-7890</span>
               </div>
             </div>
           </div>
 
-          <div className={styles.footer}>
-            <div className={styles.footerContent}>
-              <Image src="/subcribers_singup/tse_icon.svg" alt="TSE Icon" width={19} height={26} />
-              <span>Built for free by Triton Software Engineering</span>
+          <div className={styles.stayConnectedColumn}>
+            <h3 className={styles.columnHeading}>Stay Connected!</h3>
+            <div className={styles.socialContent}>
+              <div className={styles.socialRow}>
+                <div className={styles.socialIconWrapper}>
+                  <Image
+                    src="/subcribers_singup/instagram_icon.svg"
+                    alt="Instagram"
+                    width={69}
+                    height={69}
+                    className={styles.socialIcon}
+                  />
+                </div>
+                <div className={styles.socialTextColumn}>
+                  <span className={styles.socialLabel}>Instagram:</span>
+                  <span className={styles.socialHandle}>@spayla</span>
+                </div>
+              </div>
+
+              <div className={styles.socialRow}>
+                <div className={styles.socialIconWrapper}>
+                  <Image
+                    src="/subcribers_singup/facebook_icon.svg"
+                    alt="Facebook"
+                    width={69}
+                    height={69}
+                    className={styles.socialIcon}
+                  />
+                </div>
+                <div className={styles.socialTextColumn}>
+                  <span className={styles.socialLabel}>Facebook:</span>
+                  <span className={styles.socialHandle}>@spayla</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      )}
+
+        <div className={styles.footer}>
+          <div className={styles.footerContent}>
+            <Image src="/subcribers_singup/tse_icon.svg" alt="TSE Icon" width={19} height={26} />
+            <span>Built for free by Triton Software Engineering</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

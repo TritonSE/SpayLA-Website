@@ -167,11 +167,12 @@
   width: 426px;
   height: 88px;
   display: grid;
-  grid-template-columns: 183px 183px;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 40px 40px;
-  column-gap: 60px;
+  column-gap: 20px;
   row-gap: 8px;
   justify-content: center;
+  align-items: center;
 }
 
 .contactRow {
@@ -183,19 +184,17 @@
   font-size: 18px;
   font-weight: 500;
   color: white;
-  text-align: left;
+  text-align: center;
   align-self: center;
-  padding-left: 15px;
 }
 
 .contactValue {
   font-family: var(--font-montserrat);
   font-size: 18px;
   color: white;
-  text-align: left;
+  text-align: center;
   grid-row: 2;
   align-self: center;
-  padding-left: 15px;
 }
 
 .socialContent {
@@ -263,15 +262,15 @@
 /* Mobile responsiveness */
 @media screen and (max-width: 768px) {
   .subscriberContainer {
-    height: 597px;
+    height: auto;
     width: 100vw;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .signupSection {
-    height: 597px;
+    height: auto;
     padding: 30px 0;
     width: 100vw;
     display: flex;
@@ -368,12 +367,14 @@
     flex-direction: column;
     gap: 40px;
     margin-bottom: 40px;
+    align-items: center;
   }
 
   .contactUsColumn,
   .stayConnectedColumn {
     width: 288px;
     height: auto;
+    align-items: center;
   }
 
   .columnHeading {
@@ -388,6 +389,8 @@
     grid-template-rows: repeat(4, auto);
     row-gap: 8px;
     column-gap: 0;
+    align-items: center;
+    justify-items: center;
   }
 
   .contactValue {
@@ -397,10 +400,12 @@
   .socialContent {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
   }
 
   .socialRow {
     height: auto;
+    align-items: center;
   }
 
   .socialIcon {
