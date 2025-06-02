@@ -1,0 +1,36 @@
+.frame {
+  position: fixed;
+  margin-top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 300px;
+  z-index: 1000;
+  width: 512px;
+  height: 72px;
+}
+
+.message {
+  color: black;
+}
+.undoButton {
+  border: 1px solid black;
+  color: black;
+  border-radius: 6px;
+  padding: 12px 24px 12px 24px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.closeButton {
+  padding: 0;
+  margin-left: auto;
+  margin-right: 8px;
+  fill: black;
+}
