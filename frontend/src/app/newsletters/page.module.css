@@ -30,6 +30,8 @@
   background-color: rgba(45, 81, 119, 1);
   margin-top: 50px;
   margin-bottom: 50px;
+  width: 227px;
+  font-size: 16px;
 }
 
 .upload:hover {

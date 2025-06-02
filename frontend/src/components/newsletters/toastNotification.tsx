@@ -1,4 +1,4 @@
-import { Button } from "@tritonse/tse-constellation";
+// import { Button } from "@tritonse/tse-constellation";
 import React from "react";
 
 import styles from "../newsletters/toastNotification.module.css";
@@ -32,11 +32,9 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
           Undo
         </button>
       )}
-      <Button
-        className={styles.closeButton}
-        leadingIcon="ic_close_large"
-        onClick={onRequestClose}
-      />
+      <button className={styles.closeButton} onClick={onRequestClose}>
+        <img src="/ic_close_large.svg" alt="Close" />
+      </button>
     </div>
   );
 };
