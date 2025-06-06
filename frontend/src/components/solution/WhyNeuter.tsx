@@ -13,10 +13,11 @@ const WhyNeuter: React.FC = () => {
           <div className={styles.cardText} style={{ backgroundColor: "#FF8359" }}>
             <h3>Euthanasia rates</h3>
             <p>
-              A short blurb that talks about euthanasia rates and how shelters will have to kill
-              animals.
+              The cruel reality of animal overcrowding at the 6 Los Angeles City Shelters and a 72%
+              increase in euthanasia rates don’t need to be “business as usual”. With adequate
+              access to low cost spay/neuter services we can lower euthanasia rates and save animal
+              lives.
             </p>
-            <a href="/">Read More</a>
           </div>
         </div>
 
@@ -26,10 +27,12 @@ const WhyNeuter: React.FC = () => {
           <div className={styles.cardText} style={{ backgroundColor: "#2D5177" }}>
             <h3>Animal Diseases</h3>
             <p>
-              A short blurb that talks about euthanasia rates and how shelters will have to kill
-              animals.
+              Spaying helps prevent uterine infections and breast cancer, which is fatal in about
+              50% of dogs and 90% of cats.
             </p>
-            <a href="/">Read More</a>
+            <p>
+              Neutering males can also prevent testicular cancer when done before six months of age.
+            </p>
           </div>
         </div>
 
@@ -39,10 +42,11 @@ const WhyNeuter: React.FC = () => {
           <div className={styles.cardText} style={{ backgroundColor: "#649DE0" }}>
             <h3>Pet Health</h3>
             <p>
-              A short blurb that talks about euthanasia rates and how shelters will have to kill
-              animals.
+              Thousands of stray animals die on Los Angeles streets each month. Starvation, disease
+              and injuries affect a community’s quality of life. Unneutered dogs are 3 times more
+              likely to bite or initiate a dog fight. 10% of all traffic accidents are caused by
+              animals in the road.
             </p>
-            <a href="/">Read More</a>
           </div>
         </div>
       </div>

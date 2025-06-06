@@ -1,10 +1,24 @@
 "use client";
 import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./ProblemCarousel.module.css";
 
-const TABS = ["Unaffordable Surgeries", "Unavailable Appointments", "Inaccessible Clinics"];
+const TABS = [
+  {
+    label: "Unaffordable Surgeries",
+    icon: "/black_dollar.svg",
+  },
+  {
+    label: "Unavailable Appointments",
+    icon: "/black_hospital.svg",
+  },
+  {
+    label: "Inaccessible Clinics",
+    icon: "/black_car.svg",
+  },
+];
 
 export default function ProblemCarousel() {
   const [emblaRef, emblaApi]: UseEmblaCarouselType = useEmblaCarousel({
@@ -82,7 +96,7 @@ export default function ProblemCarousel() {
     <div className={styles.outerWrapper}>
       <div className={styles.tabsWrapper}>
         <div className={styles.tabs}>
-          {TABS.map((label, i) => (
+          {TABS.map((tab, i) => (
             <button
               key={i}
               onClick={() => {
@@ -90,7 +104,16 @@ export default function ProblemCarousel() {
               }}
               className={`${styles.tab} ${selectedIndex === i ? styles.active : ""}`}
             >
-              {label}
+              <span className={styles.tabIconLabel}>
+                <Image
+                  src={tab.icon}
+                  alt={`${tab.label} icon`}
+                  width={18}
+                  height={18}
+                  className={styles.tabIcon}
+                />
+                {tab.label}
+              </span>
             </button>
           ))}
         </div>
@@ -141,12 +164,16 @@ export default function ProblemCarousel() {
                     <strong>fraction of the necessary services</strong> for meaningful impact on
                     animal overpopulation in Los Angeles.
                   </p>
-                  <img src="/circleCat.png" alt="Circle Cat" className={styles.catImage} />
+                  <div className={styles.imageGroup}>
+                    <img src="/circleCat.png" alt="Circle Cat" className={styles.catImage} />
+                  </div>
                 </div>
 
                 {/* Right half: photo of vet + dog */}
                 <div className={styles.leftColumn}>
-                  <img src="/happyDog.png" alt="Happy Dog" className={styles.vetDogImage} />
+                  <div className={styles.imageGroup}>
+                    <img src="/happyDog.png" alt="Happy Dog" className={styles.vetDogImage} />
+                  </div>
                   <p className={styles.slideParagraph}>
                     Spay/neuter appointments in Los Angeles are <strong>stretched thin</strong>{" "}
                     between nonprofit organizations, shelters without on-site clinics, and pet
@@ -176,12 +203,16 @@ export default function ProblemCarousel() {
                     make accessing spay/neuter services difficult, with long, stressful commutes
                     during traffic hours being a major barrier for pet owners and their pets.
                   </p>
-                  <img src="/subway.png" alt="Subway" />
+                  <div>
+                    <img src="/subway.png" alt="Subway" />
+                  </div>
                 </div>
 
                 {/* Right half: photo of vet + dog */}
                 <div className={styles.leftColumn}>
-                  <img src="cars.png" alt="Cars" className={styles.vetDogImage} />
+                  <div>
+                    <img src="cars.png" alt="Cars" className={styles.vetDogImage} />
+                  </div>
                   <p className={styles.slideParagraph} style={{ width: "70%", marginTop: "20px" }}>
                     No pet owner wants to transport their frightened pet and hand them off to
                     veterinary staff for surgery.
