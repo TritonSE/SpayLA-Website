@@ -1,10 +1,9 @@
 "use client";
-import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./ProblemCarousel.module.css";
-
 const TABS = [
   {
     label: "Unaffordable Surgeries",
@@ -21,7 +20,7 @@ const TABS = [
 ];
 
 export default function ProblemCarousel() {
-  const [emblaRef, emblaApi]: UseEmblaCarouselType = useEmblaCarousel({
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     containScroll: "trimSnaps", // keeps first and last slide tight
     slidesToScroll: 1,
