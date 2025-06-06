@@ -48,7 +48,8 @@ export default function Card3() {
           Email us at <b>FIX@Spay.LA</b> or call <b> (818) 718-4800</b> for assistance <br />
           with low-cost spay/neuter services, questions, and inquiries.
         </div>
-        <div
+        <a
+          href="#support"
           style={{
             borderRadius: "4px",
             backgroundColor: "#ff8359",
@@ -63,7 +64,7 @@ export default function Card3() {
           }}
         >
           <div style={{ color: "#fff", fontWeight: 600 }}>Contact Us</div>
-        </div>
+        </a>
       </div>
     </div>
   );
