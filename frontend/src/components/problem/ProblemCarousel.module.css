@@ -1,0 +1,235 @@
+.outerWrapper {
+  max-width: 2000px;
+  padding: 5%;
+  margin: 0 auto;
+}
+
+.tabsWrapper {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.tab {
+  text-align: center;
+  padding: 1rem 6rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  border-bottom: 3px solid;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.active {
+  border-color: #f97316; /* orange-500 */
+  color: #000;
+  font-weight: 600;
+}
+
+.carousel {
+  overflow: visible;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 1.5rem; /* reduce outer padding to reduce peek */
+}
+
+.carouselContainer {
+  display: flex;
+  height: 700px;
+  margin: 0 auto; /* ✅ center container itself if needed */
+  box-sizing: border-box;
+  gap: 2rem;
+}
+
+.slide {
+  flex: 0 0 100%; /* small peek (~3%) */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.slideCard {
+  height: 100%;
+  background: #dfebf3;
+  border-radius: 1.25rem;
+  padding: 4rem 4rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: scale(0.85); /* Adjust to 0.8 or 0.75 if needed */
+  transform-origin: top center;
+}
+
+.slideParagraph {
+  font-size: 20px;
+  line-height: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-family: var(--font-open-sans);
+  font-weight: 400;
+}
+
+.title {
+  font-size: 32px;
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  text-align: center;
+  color: #2d5177;
+  padding-bottom: 5rem;
+}
+
+.bottomContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.leftColumn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.imageRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.imageRow img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 2px solid #ccc;
+}
+
+.tabIconLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tabIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.rightColumn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.leftColumn img,
+.rightColumn img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  height: 100%;
+}
+
+.twoCatImage {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+.vetDogImage {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+.dogImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.orangeCatImage {
+  align-self: center;
+}
+
+.vetDogImage {
+  width: 100%;
+  max-width: 400px;
+  align-self: center;
+}
+.slidePlaceholder {
+  background: #f3f4f6;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 1280px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .slideParagraph {
+    font-size: 18px;
+    line-height: 1.6rem;
+  }
+
+  .tab {
+    font-size: 1rem;
+    padding: 0.75rem 3rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .slideParagraph {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .tab {
+    font-size: 0.95rem;
+    padding: 0.6rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+    padding-bottom: 2rem;
+  }
+
+  .slideParagraph {
+    font-size: 14px;
+    line-height: 1.4rem;
+  }
+
+  .tab {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}

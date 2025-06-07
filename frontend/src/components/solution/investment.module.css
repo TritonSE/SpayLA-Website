@@ -1,6 +1,6 @@
 .outerContainer {
   width: 100%;
-  background-color: #fbfeff;
+  background-color: #dfebf3;
   display: flex;
   justify-content: center; /* Keeps everything centered */
   align-items: center;
@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-content: center;
-  background-color: #fbfeff;
+  background-color: #dfebf3;
   padding: 108px 144px;
   column-gap: 120px;
   max-width: 2000px;
