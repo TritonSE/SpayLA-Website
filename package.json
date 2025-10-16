@@ -1,11 +1,13 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "embla-carousel-react": "^8.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",
     "mongoose": "^8.15.1",
+
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

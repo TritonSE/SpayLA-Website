@@ -1,7 +1,8 @@
 "use client";
-import styles from "./SubscriberSignup.module.css";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import styles from "./SubscriberSignup.module.css";
 
 export default function SubscriberSignup() {
   const [firstName, setFirstName] = useState("");

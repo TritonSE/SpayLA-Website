@@ -10,16 +10,15 @@ const Statement: React.FC = () => {
           <p className={styles.problem}>The Problem</p>
           <h2 className={styles.heading}>Animal Overpopulation</h2>
           <p className={styles.description}>
-            There are only{" "}
-            <span style={{ fontWeight: "bold" }}> 7 low-cost spay/neuter clinics</span> for millions
-            <br />
-            of street cats, stray dogs and families who can no longer
-            <br /> afford the high price of services.
-            <br />
-            <br />
-            <span style={{ fontWeight: "bold" }}>This is not enough</span> to support the rapidly
-            growing <br />
-            population of animals in Los Angeles.
+            Los Angeles has only{" "}
+            <span style={{ fontWeight: "bold" }}>7 low-cost spay/neuter clinics</span> for <br />
+            millions of stray animals and struggling pet owners who
+            <br /> can no longer afford the high price of services.{" "}
+            <span style={{ fontWeight: "bold" }}>
+              This is
+              <br /> not enough
+            </span>{" "}
+            to support the growing animal population.
           </p>
         </div>
         <div className={styles.imageSection}>
