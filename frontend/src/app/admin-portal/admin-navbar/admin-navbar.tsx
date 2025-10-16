@@ -3,7 +3,6 @@
 import { TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 import styles from "./admin-navbar.module.css"; // Adjust path as needed
 

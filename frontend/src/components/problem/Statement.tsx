@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/components/problem/Statement.module.css";
 
 const Statement: React.FC = () => {
@@ -22,7 +20,7 @@ const Statement: React.FC = () => {
           </p>
         </div>
         <div className={styles.imageSection}>
-          <img className={styles.image} alt="Overpopulation" src="/overpopulation.svg"></img>
+          <img className={styles.image} alt="Overpopulation" src="/overpopulation.svg" />
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/components/solution/WhyNeuter.module.css";
 
 const WhyNeuter: React.FC = () => {
@@ -9,7 +7,7 @@ const WhyNeuter: React.FC = () => {
       <div className={styles.cardContainer}>
         {/* Card 1 */}
         <div className={styles.card}>
-          <img src="card_1.png" alt="Euthanasia Rates" className={styles.cardImage} />
+          <img src="/card_1.png" alt="Euthanasia Rates" className={styles.cardImage} />
           <div className={styles.cardText} style={{ backgroundColor: "#FF8359" }}>
             <h3>Euthanasia rates</h3>
             <p>

@@ -1,6 +1,3 @@
-// import { Button } from "@tritonse/tse-constellation";
-import React from "react";
-
 import styles from "../newsletters/toastNotification.module.css";
 
 type ToastNotificationProps = {

@@ -1,6 +1,6 @@
 import { TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "@/components/navbar/Navbar.module.css";
 
@@ -17,7 +17,6 @@ const Navbar: React.FC = () => {
 
   const handleNavClick = (label: string) => {
     setActiveNav((prev) => (prev === label ? null : label));
-    console.log("Active: ", activeNav);
   };
 
   useEffect(() => {

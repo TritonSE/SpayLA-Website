@@ -2,7 +2,7 @@
 // import { useState} from "react";
 import dynamic from "next/dynamic";
 
-const NewsletterClient = dynamic(() => import("./newsletteradminClient"), {
+const NewsletterClient = dynamic(async () => import("./newsletteradminClient"), {
   ssr: false,
 });
 

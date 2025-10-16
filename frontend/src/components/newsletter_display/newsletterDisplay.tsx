@@ -33,10 +33,6 @@ export default function NewsletterDisplay() {
     setModalImageUrl(null);
   };
 
-  //   const goPreviousPage = () => {};
-
-  //   const goNextPage = () => {};
-
   const getFilteredNewsletters = () => {
     const now = new Date();
     const sixMonthsAgo = new Date();
@@ -79,10 +75,10 @@ export default function NewsletterDisplay() {
               <button
                 className={styles.thumbnail}
                 onClick={() => {
-                  openModal("some url");
+                  openModal("/demo-newsletter.png");
                 }}
               >
-                <img src={"some url"} alt="url" style={{ width: "100%" }} />
+                <img src="/demo-newsletter.png" alt="url" style={{ width: "100%" }} />
               </button>
             </div>
           </div>

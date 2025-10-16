@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/components/problem/Challenges.module.css";
 
 const Challenges: React.FC = () => {

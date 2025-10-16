@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "@/components/solution/investment.module.css";
 
@@ -21,7 +21,7 @@ const Investment: React.FC = () => {
         currentValue -= step;
         const displayValue = currentValue.toFixed(2);
 
-        setPercentage(displayValue + "%");
+        setPercentage(`${displayValue}%`);
 
         if (currentValue > finalValue + 0.001) {
           requestAnimationFrame(updatePercentage);

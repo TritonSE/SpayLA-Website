@@ -41,7 +41,7 @@ export default function NewsletterClient() {
     fileInputRef.current?.click();
   };
 
-  const readFileAsArrayBuffer = (file: File): Promise<ArrayBuffer> => {
+  const readFileAsArrayBuffer = async (file: File): Promise<ArrayBuffer> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
