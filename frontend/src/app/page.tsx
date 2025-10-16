@@ -35,6 +35,10 @@ export default function Home() {
     };
   }, []);
   return (
+    // <PasswordResetSuccess/>
+    // <ResetPassword />
+    // <ForgotPassword />
+    // <Login />
     <ThemeProvider>
       <main className={styles.main} style={{ width: "100%", minHeight: "100vh" }}>
         <div className={styles.navbar}>
