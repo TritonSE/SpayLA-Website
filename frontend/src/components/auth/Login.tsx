@@ -1,8 +1,9 @@
 // SignIn.tsx
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
+import React, { useState } from "react";
+
 import styles from "./Auth.module.css";
 
 export default function SignIn() {
@@ -28,7 +29,9 @@ export default function SignIn() {
             type="text"
             placeholder="Enter email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             className={styles.input}
           />
           {emailError && <span className={styles.error}>* wrong email</span>}
@@ -39,7 +42,9 @@ export default function SignIn() {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             className={styles.input}
           />
           {passwordError && <span className={styles.error}>* wrong password</span>}

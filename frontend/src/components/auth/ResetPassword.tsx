@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
+import React, { useState } from "react";
+
 import styles from "./Auth.module.css"; // Adjust if your CSS is elsewhere
 
 export default function ResetPassword() {
@@ -25,21 +26,31 @@ export default function ResetPassword() {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
-          <label className={styles.label}>New Password</label>
+          <label className={styles.label} htmlFor="newPassword">
+            New Password
+          </label>
           <input
+            name="newPassword"
             type="password"
             value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
             className={styles.input}
           />
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label}>Confirm Password</label>
+          <label className={styles.label} htmlFor="confirmPassword">
+            Confirm Password
+          </label>
           <input
             type="password"
+            name="confirmPassword"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
             className={styles.input}
           />
         </div>

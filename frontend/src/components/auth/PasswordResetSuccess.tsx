@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./Auth.module.css";
 import { useRouter } from "next/navigation";
+
+import styles from "./Auth.module.css";
 
 export default function PasswordResetSuccess() {
   const router = useRouter();
