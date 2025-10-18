@@ -1,9 +1,9 @@
 import { Button } from "@tritonse/tse-constellation";
 import { useState } from "react";
 
-import Modal from "../newsletters/modal";
-
 import styles from "./newsletterDisplay.module.css";
+
+import Modal from "@/components/newsletters/modal";
 
 export default function NewsletterDisplay() {
   const allNewsletters = [

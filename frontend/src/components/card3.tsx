@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
 
-import newcard3 from "./carousel_3.png"; // Update path as needed
-
 export default function Card3() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
-      <Image src={newcard3} alt="card3" fill style={{ objectFit: "cover" }} priority />
+      <Image src={"/carousel_3.png"} alt="card3" fill style={{ objectFit: "cover" }} priority />
 
       <div
         style={{

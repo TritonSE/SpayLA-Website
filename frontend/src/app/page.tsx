@@ -8,15 +8,15 @@ import Card1 from "@/components/card1";
 import Card2 from "@/components/card2";
 import Card3 from "@/components/card3";
 import Carousel from "@/components/Carousel";
-import CommunitySupport from "@/components/community_support/CommunitySupport";
-import MarketSection from "@/components/market_plan/marketSection";
+import CommunitySupport from "@/components/community-support/CommunitySupport";
+import MarketSection from "@/components/market-plan/marketSection";
 import Navbar from "@/components/navbar/Navbar";
-import Newsletter from "@/components/newsletter_display/newsletterDisplay";
+import Newsletter from "@/components/newsletter-display/newsletterDisplay";
 import ProblemCarousel from "@/components/problem/ProblemCarousel";
 import ProblemMobile from "@/components/problem/ProblemMobile";
 import Solution from "@/components/solution/Solution";
 import WhyNeuter from "@/components/solution/WhyNeuter";
-import SubscriberSignup from "@/components/subscribers_signup/SubscriberSignup";
+import SubscriberSignup from "@/components/subscribers-signup/SubscriberSignup";
 import WhatIsSpayLA from "@/components/WhatIsSpayLa";
 
 export default function Home() {
