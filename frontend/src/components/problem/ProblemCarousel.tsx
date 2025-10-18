@@ -36,7 +36,6 @@ export default function ProblemCarousel() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          console.log("✅ ProblemCarousel is in view!");
           const scrollY = window.scrollY;
 
           // Freeze scroll
@@ -58,12 +57,9 @@ export default function ProblemCarousel() {
 
             window.scrollTo(0, scrollY); // Restore previous scroll position
             sessionStorage.setItem("problemCarouselFrozen", "true");
-            console.log("🆓 Scroll unfrozen and restored");
           }, 3000);
 
           observer.disconnect(); // Trigger only once
-        } else {
-          console.log("⛔ ProblemCarousel is out of view.");
         }
       },
       {
@@ -210,7 +206,7 @@ export default function ProblemCarousel() {
                 {/* Right half: photo of vet + dog */}
                 <div className={styles.leftColumn}>
                   <div>
-                    <img src="cars.png" alt="Cars" className={styles.vetDogImage} />
+                    <img src="/cars.png" alt="Cars" className={styles.vetDogImage} />
                   </div>
                   <p className={styles.slideParagraph} style={{ width: "70%", marginTop: "20px" }}>
                     No pet owner wants to transport their frightened pet and hand them off to

@@ -1,14 +1,12 @@
 "use client";
 import Image from "next/image";
 
-import newcard1 from "./carousel_1.png"; // Update path as needed
-
 export default function Card1() {
   return (
     <div style={{ position: "relative", width: "100%", height: "600px" }}>
       {/* Full background image */}
       <Image
-        src={newcard1}
+        src={"/carousel_1.png"}
         alt="card1"
         fill
         style={{ objectFit: "cover", transform: "scaleX(-1)" }}

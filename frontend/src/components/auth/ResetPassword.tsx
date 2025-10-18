@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import styles from "./Auth.module.css"; // Adjust if your CSS is elsewhere
 
@@ -13,10 +13,8 @@ export default function ResetPassword() {
     e.preventDefault();
     if (newPassword === confirmPassword) {
       // Proceed with password reset
-      console.log("Password reset successful.");
     } else {
       // Handle mismatch
-      console.log("Passwords do not match.");
     }
   };
 

@@ -1,9 +1,9 @@
 import { Button } from "@tritonse/tse-constellation";
 import { useState } from "react";
 
-import Modal from "../newsletters/modal";
-
 import styles from "./newsletterDisplay.module.css";
+
+import Modal from "@/components/newsletters/modal";
 
 export default function NewsletterDisplay() {
   const allNewsletters = [
@@ -32,10 +32,6 @@ export default function NewsletterDisplay() {
     setModalOpen(false);
     setModalImageUrl(null);
   };
-
-  //   const goPreviousPage = () => {};
-
-  //   const goNextPage = () => {};
 
   const getFilteredNewsletters = () => {
     const now = new Date();
@@ -79,10 +75,10 @@ export default function NewsletterDisplay() {
               <button
                 className={styles.thumbnail}
                 onClick={() => {
-                  openModal("some url");
+                  openModal("/demo-newsletter.png");
                 }}
               >
-                <img src={"some url"} alt="url" style={{ width: "100%" }} />
+                <img src="/demo-newsletter.png" alt="url" style={{ width: "100%" }} />
               </button>
             </div>
           </div>

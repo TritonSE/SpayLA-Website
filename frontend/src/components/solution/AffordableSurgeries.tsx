@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/components/solution/affordableSuergies.module.css";
 
 const AffordableSurgeries: React.FC = () => {
@@ -18,7 +16,7 @@ const AffordableSurgeries: React.FC = () => {
           </p>
         </div>
         <div className={styles.imageSection}>
-          <img className={styles.image} alt="Affordable Surgeries" src="/circleCat.png"></img>
+          <img className={styles.image} alt="Affordable Surgeries" src="/circleCat.png" />
         </div>
       </div>
     </div>

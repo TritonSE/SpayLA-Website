@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 
 import styles from "./Carousel.module.css";
 
@@ -27,12 +27,12 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % React.Children.count(children));
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % Children.count(children));
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? React.Children.count(children) - 1 : prevIndex - 1,
+      prevIndex === 0 ? Children.count(children) - 1 : prevIndex - 1,
     );
   };
 
@@ -43,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
           className={styles.carouselInner}
           style={{ transform: `translateX(-${currentIndex * slideWidth}px)` }}
         >
-          {React.Children.map(children, (child, index) => (
+          {Children.map(children, (child, index) => (
             <div className={styles.carouselItem} key={index} style={{ minWidth: slideWidth }}>
               {child}
             </div>
@@ -56,7 +56,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
             &lt;
           </button>
           <div className={styles.indicators}>
-            {React.Children.map(children, (_child, i) => (
+            {Children.map(children, (_child, i) => (
               <div
                 key={i}
                 className={`${styles.indicator} ${i === currentIndex ? styles.active : ""}`}

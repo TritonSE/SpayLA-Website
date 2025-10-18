@@ -1,18 +1,11 @@
 "use client";
 
-import {
-  BarElement,
-  CategoryScale,
-  Chart,
-  ChartOptions,
-  Legend,
-  LinearScale,
-  Title,
-  Tooltip,
-} from "chart.js";
+import { BarElement, CategoryScale, Chart, Legend, LinearScale, Title, Tooltip } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bar } from "react-chartjs-2";
+
+import type { ChartOptions } from "chart.js";
 
 import styles from "@/components/solution/appointments.module.css";
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "@/components/solution/accesibleClinics.module.css";
 
 const AccesibleClinic: React.FC = () => {

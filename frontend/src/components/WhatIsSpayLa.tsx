@@ -2,10 +2,6 @@
 
 import Image from "next/image";
 
-// Keep your imports the same; just rename for clarity
-import pawSilhouette from "./pawIcon.png";
-import catSilhouette from "./roundIcon.png";
-
 export default function WhatIsSpayLA() {
   return (
     <section
@@ -62,12 +58,17 @@ export default function WhatIsSpayLA() {
       >
         {/* Cat silhouette (round icon) */}
         <div style={{ position: "relative", width: "120px", height: "80px" }}>
-          <Image src={catSilhouette} alt="Cat Silhouette" fill style={{ objectFit: "contain" }} />
+          <Image
+            src={"/roundIcon.png"}
+            alt="Cat Silhouette"
+            fill
+            style={{ objectFit: "contain" }}
+          />
         </div>
 
         {/* Paw silhouette (tall icon) */}
         <div style={{ position: "relative", width: "120px", height: "300px" }}>
-          <Image src={pawSilhouette} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
+          <Image src={"/pawIcon.png"} alt="Paw Silhouette" fill style={{ objectFit: "contain" }} />
         </div>
       </div>
     </section>

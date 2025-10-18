@@ -3,9 +3,8 @@
 import { TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
-import styles from "./admin-navbar.module.css"; // Adjust path as needed
+import styles from "./AdminNavbar.module.css";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -13,7 +12,7 @@ const Navbar: React.FC = () => {
   return (
     <TopNavigation
       logoComponent={
-        <Link href="/admin-portal/newsletters">
+        <Link href="/admin">
           <img src="/logo.png" style={{ width: "278px" }} alt="SpayLA Logo" />
         </Link>
       }
@@ -22,12 +21,12 @@ const Navbar: React.FC = () => {
         {
           icon: "ic_cart",
           label: "Edit Newsletter",
-          path: "/admin-portal/newsletters",
+          path: "/admin",
         },
         {
           icon: "ic_search",
           label: "Subscribers",
-          path: "/admin-portal/subscribers",
+          path: "/admin/subscribers",
         },
       ]}
       renderLink={(path, className, children, key) => (
