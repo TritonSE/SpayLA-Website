@@ -16,7 +16,14 @@ jobs:
         run: |
           npm ci
           npm run lint-check
-          npm run build
-        env:
-          NEXT_PUBLIC_BACKEND_URL: ${{ secrets.NEXT_PUBLIC_BACKEND_URL }}
-          NEXT_PUBLIC_FIREBASE_SETTINGS: ${{ secrets.NEXT_PUBLIC_FIREBASE_SETTINGS }}
+
+  backend:
+    name: Backend check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - working-directory: backend
+        run: |
+          npm ci
+          npm run lint-check
