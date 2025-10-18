@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@tritonse/tse-constellation";
-import * as pdfjsLib from "pdfjs-dist";
 import { useRef, useState } from "react";
 
 import styles from "./page.module.css";
@@ -9,7 +8,22 @@ import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
 import ToastNotification from "@/components/newsletters/toastNotification";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+// Minimal types to use with pdfjs-dist dynamic import
+type PdfViewport = { width: number; height: number };
+type PdfPage = {
+  getViewport: (opts: { scale: number }) => PdfViewport;
+  render: (args: { canvasContext: CanvasRenderingContext2D; viewport: PdfViewport }) => {
+    promise: Promise<void>;
+  };
+};
+type PdfDocument = { getPage: (n: number) => Promise<PdfPage> };
+type PdfJsModule = {
+  getDocument: (src: Uint8Array | ArrayBuffer | string) => { promise: Promise<PdfDocument> };
+  GlobalWorkerOptions: { workerSrc: string };
+};
+
+// Cache for pdfjs module once dynamically loaded on the client
+let pdfjsLibRef: PdfJsModule | null = null;
 
 export default function NewslettersPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -56,9 +70,17 @@ export default function NewslettersPage() {
 
     const previewPromises = files.map(async (file) => {
       if (file.type === "application/pdf") {
+        // Dynamically import pdfjs on the client only when needed
+        if (!pdfjsLibRef) {
+          const mod = (await import("pdfjs-dist")) as unknown as PdfJsModule;
+          pdfjsLibRef = mod;
+          // Point worker to a static file in /public
+          pdfjsLibRef.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+        }
+
         const arrayBuffer = await readFileAsArrayBuffer(file);
         const typedarray = new Uint8Array(arrayBuffer);
-        const pdf = await pdfjsLib.getDocument(typedarray).promise;
+        const pdf = await pdfjsLibRef.getDocument(typedarray).promise;
         const page = await pdf.getPage(1);
 
         const viewport = page.getViewport({ scale: 2 });
