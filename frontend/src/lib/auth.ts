@@ -14,12 +14,10 @@ type FirebaseResponse =
   | {
       success: true;
       user: User;
-      error?: undefined;
     }
   | {
       success: false;
       error: ResponseError;
-      user?: undefined;
     };
 
 /* Returns user, or string error message if an error occurred.  */

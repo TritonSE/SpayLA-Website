@@ -28,17 +28,15 @@ export default function SignIn() {
       setPasswordError(false);
     }
 
-    login(email.trim(), password.trim())
-      .then((res) => {
-        if (!res.success) {
-          if (res.error.field === "email") {
-            setEmailError(true);
-          } else if (res.error.field === "password") {
-            setPasswordError(true);
-          }
+    void login(email.trim(), password.trim()).then((res) => {
+      if (!res.success) {
+        if (res.error.field === "email") {
+          setEmailError(true);
+        } else if (res.error.field === "password") {
+          setPasswordError(true);
         }
-      })
-      .catch((err) => console.error(err));
+      }
+    });
   };
 
   return (
