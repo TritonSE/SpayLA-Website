@@ -1,10 +1,12 @@
 "use client";
 
-import { TopNavigation } from "@tritonse/tse-constellation";
+import { Button, TopNavigation } from "@tritonse/tse-constellation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import styles from "./AdminNavbar.module.css";
+
+import { logout } from "@/lib/auth";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -12,7 +14,12 @@ const Navbar: React.FC = () => {
   return (
     <TopNavigation
       logoComponent={
-        <Link href="/admin">
+        <Link
+          href="/admin"
+          style={{
+            marginRight: "150px",
+          }}
+        >
           <img src="/logo.png" style={{ width: "278px" }} alt="SpayLA Logo" />
         </Link>
       }
@@ -29,6 +36,11 @@ const Navbar: React.FC = () => {
           path: "/admin/subscribers",
         },
       ]}
+      actionElement={
+        <Button className={styles.logoutButton} onClick={() => void logout()}>
+          Logout
+        </Button>
+      }
       renderLink={(path, className, children, key) => (
         <Link
           key={key}
