@@ -21,7 +21,7 @@
     "email-validator": "^2.0.4",
     "embla-carousel-react": "^8.6.0",
     "envalid": "^8.0.0",
-    "firebase": "^10.11.0",
+    "firebase": "^10.14.1",
     "html-to-draftjs": "^1.5.0",
     "moment": "^2.30.1",
     "next": "^15.1.7",

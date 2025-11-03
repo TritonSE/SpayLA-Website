@@ -23,6 +23,8 @@
     "envalid": "^8.1.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
+    "firebase-admin": "^13.5.0",
+    "http-errors": "^2.0.0",
     "mongoose": "^8.19.1"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "@types/node": "^24.8.1",
     "eslint": "^9.38.0",
     "husky": "^9.1.7",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
