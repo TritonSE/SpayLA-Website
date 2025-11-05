@@ -45,6 +45,15 @@ export default antfu({
         varsIgnorePattern: "^_",
       },
     ],
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        varsIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      },
+    ],
     "array-callback-return": "error",
     eqeqeq: "error",
     "no-await-in-loop": "error",

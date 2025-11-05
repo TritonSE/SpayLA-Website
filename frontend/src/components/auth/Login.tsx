@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import styles from "./Auth.module.css";
 
+import { login } from "@/lib/auth";
+
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,9 +15,28 @@ export default function SignIn() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Dummy validation
-    setEmailError(email !== "test@example.com");
-    setPasswordError(password !== "password123");
+
+    if (email.trim() === "") {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+
+    if (password.trim() === "") {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+
+    void login(email.trim(), password.trim()).then((res) => {
+      if (!res.success) {
+        if (res.error.field === "email") {
+          setEmailError(true);
+        } else if (res.error.field === "password") {
+          setPasswordError(true);
+        }
+      }
+    });
   };
 
   return (
