@@ -8,7 +8,7 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
-    "types": ["node"],
+    // "types": [],
 
     // Style Options
     // "noImplicitReturns": true,
@@ -39,7 +39,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     // "verbatimModuleSyntax": true,
-    "noUncheckedSideEffectImports": true,
+    // "noUncheckedSideEffectImports": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules", "dist"]
