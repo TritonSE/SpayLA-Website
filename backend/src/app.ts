@@ -20,7 +20,7 @@ app.use(
 app.use(log);
 
 // Routes
-app.get("/", (req, res) => {
+app.get("/api/hi", (req, res) => {
   res.send("SpayLA Backend is running!");
 });
 
