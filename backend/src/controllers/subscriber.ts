@@ -1,5 +1,6 @@
 import { matchedData, validationResult } from "express-validator";
 
+import type { Subscriber as SubscriberType, SubscriberIds } from "../types/subscriber";
 import Subscriber from "../models/subscriber";
 import validationErrorParser from "../utils/validationErrorParser";
 
@@ -11,7 +12,8 @@ export const createSubscriber: RequestHandler = async (req, res, next) => {
     const errorMessage = validationErrorParser(errors);
     return res.status(400).json({ message: errorMessage });
   }
-  const { name, email } = matchedData(req) as { name: string; email: string };
+  const data = matchedData(req) as unknown as SubscriberType;
+  const { name, email } = data;
   try {
     const existingSubscriber = await Subscriber.findOne({ email });
     if (existingSubscriber) {
@@ -40,7 +42,8 @@ export const deleteSubscribers: RequestHandler = async (req, res, next) => {
     const errorMessage = validationErrorParser(errors);
     return res.status(400).json({ message: errorMessage });
   }
-  const { ids } = matchedData(req) as { ids: string[] };
+  const data = matchedData(req) as unknown as SubscriberIds;
+  const { ids } = data;
 
   try {
     const result = await Subscriber.deleteMany({
