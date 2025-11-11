@@ -1,4 +1,4 @@
-import { get, handleAPIError, post } from "./requests";
+import { get, handleAPIError, httpDelete, post } from "./requests";
 
 import type { APIResult } from "./requests";
 
@@ -17,7 +17,7 @@ type Subscriber = {
 
 export async function getSubscribers(): Promise<APIResult<Subscriber[]>> {
   try {
-    const response = await get("/api/subscribers");
+    const response = await get("/api/subscribers", {}, true);
     const data = (await response.json()) as Subscriber[];
     return { success: true, data };
   } catch (e) {
@@ -44,5 +44,15 @@ export async function createSubscriber(
       }
     }
     return handleAPIError(error);
+  }
+}
+
+export async function deleteSubscribers(ids: string[]): Promise<APIResult<{ message: string }>> {
+  try {
+    const response = await httpDelete("/api/subscribers", { ids }, {}, true);
+    const data = (await response.json()) as { message: string };
+    return { success: true, data };
+  } catch (e) {
+    return handleAPIError(e);
   }
 }

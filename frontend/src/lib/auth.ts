@@ -60,3 +60,15 @@ export async function login(email: string, password: string): Promise<FirebaseRe
 export async function logout() {
   await auth.signOut();
 }
+
+/**
+ * Returns the current user's auth token, or null if the user is not signed in.
+ *
+ * @returns The current user's auth token, or null if the user is not signed in.
+ */
+export async function getAuthToken(): Promise<string | null> {
+  if (!auth.currentUser) {
+    return null;
+  }
+  return auth.currentUser.getIdToken();
+}

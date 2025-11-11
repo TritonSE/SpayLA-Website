@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 
-import { getSubscribers } from "@/api/subscribers";
+import { deleteSubscribers, getSubscribers } from "@/api/subscribers";
 
 type Subscriber = {
   _id: string;
@@ -13,19 +13,12 @@ type Subscriber = {
   createdAt: string;
 };
 
-// const subscriberList: Subscriber[] = Array.from({ length: 20 }, (_, i) => ({
-//   name: "Irene Joo",
-//   email: "irenejoo@ucsd.edu",
-//   date: "4/9/2025",
-//   id: i,
-// }));
-
 export default function Subscribers() {
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [undoCache, setUndoCache] = useState<Subscriber[]>([]);
+  // const [undoCache, setUndoCache] = useState<Subscriber[]>([]);
   const [toast, setToast] = useState<React.ReactNode>("");
 
   useEffect(() => {
@@ -51,26 +44,32 @@ export default function Subscribers() {
     }, 3000);
   };
 
-  const undoDelete = () => {
-    setSubscribers((prev) => [...prev, ...undoCache]);
-    setUndoCache([]);
-    setToast("");
-  };
+  // const undoDelete = () => {
+  //   setSubscribers((prev) => [...prev, ...undoCache]);
+  //   setUndoCache([]);
+  //   setToast("");
+  // };
 
-  const deleteSubscribers = () => {
-    const toDelete = subscribers.filter((s) => selected.has(s._id));
-    const remaining = subscribers.filter((s) => !selected.has(s._id));
-    setUndoCache(toDelete);
-    setSubscribers(remaining);
-    setSelected(new Set());
-    setToast(
-      <>
-        Subscriber deleted successfully.
-        <button onClick={undoDelete} className={styles.undoButton}>
-          Undo
-        </button>
-      </>,
-    );
+  const handleDelete = async () => {
+    const idsToDelete = Array.from(selected);
+    if (idsToDelete.length === 0) {
+      setToast("Please select subscribers to delete.");
+      setTimeout(() => setToast(""), 3000);
+      return;
+    }
+
+    const result = await deleteSubscribers(idsToDelete);
+
+    if (result.success) {
+      setSubscribers((currentSubscribers) =>
+        currentSubscribers.filter((sub) => !selected.has(sub._id)),
+      );
+      setSelected(new Set());
+      setToast(result.data.message);
+    } else {
+      setToast(result.error);
+    }
+    setTimeout(() => setToast(""), 5000);
   };
 
   const toggleSelect = (id: string) => {
@@ -129,7 +128,12 @@ export default function Subscribers() {
             </span>
             <span>Copy All Emails</span>
           </button>
-          <button onClick={deleteSubscribers} className={styles.deleteSubscribers}>
+          <button
+            onClick={() => {
+              void handleDelete();
+            }}
+            className={styles.deleteSubscribers}
+          >
             <img src="/trash.svg" alt="Trash Icon" className={styles.icon} />
           </button>
         </div>

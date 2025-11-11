@@ -1,3 +1,5 @@
+import { getAuthToken } from "@/lib/auth";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -11,6 +13,7 @@ type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
  * @param headers The headers of the request
+ * @param authenticated Whether the request should be authenticated
  * @returns The Response object returned by `fetch()
  */
 async function fetchRequest(
@@ -18,12 +21,20 @@ async function fetchRequest(
   url: string,
   body: unknown,
   headers: Record<string, string>,
+  authenticated: boolean,
 ): Promise<Response> {
   const hasBody = body !== undefined;
 
   const newHeaders = { ...headers };
   if (hasBody) {
     newHeaders["Content-Type"] = "application/json";
+  }
+
+  if (authenticated) {
+    const token = await getAuthToken();
+    if (token) {
+      newHeaders.Authorization = `Bearer ${token}`;
+    }
   }
 
   const response = await fetch(url, {
@@ -70,9 +81,13 @@ export async function assertOk(response: Response): Promise<void> {
  * @param headers The headers of the request (optional)
  * @returns The Response object returned by `fetch()`
  */
-export async function get(url: string, headers: Record<string, string> = {}): Promise<Response> {
+export async function get(
+  url: string,
+  headers: Record<string, string> = {},
+  authenticated = false,
+): Promise<Response> {
   // GET requests do not have a body
-  const response = await fetchRequest("GET", API_BASE_URL + url, undefined, headers);
+  const response = await fetchRequest("GET", API_BASE_URL + url, undefined, headers, authenticated);
   await assertOk(response);
   return response;
 }
@@ -83,14 +98,16 @@ export async function get(url: string, headers: Record<string, string> = {}): Pr
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
  * @param headers The headers of the request (optional)
+ * @param authenticated Whether the request should be authenticated
  * @returns The Response object returned by `fetch()`
  */
 export async function post(
   url: string,
   body: unknown,
   headers: Record<string, string> = {},
+  authenticated = false,
 ): Promise<Response> {
-  const response = await fetchRequest("POST", API_BASE_URL + url, body, headers);
+  const response = await fetchRequest("POST", API_BASE_URL + url, body, headers, authenticated);
   await assertOk(response);
   return response;
 }
@@ -101,14 +118,16 @@ export async function post(
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
  * @param headers The headers of the request (optional)
+ * @param authenticated Whether the request should be authenticated
  * @returns The Response object returned by `fetch()`
  */
 export async function put(
   url: string,
   body: unknown,
   headers: Record<string, string> = {},
+  authenticated = false,
 ): Promise<Response> {
-  const response = await fetchRequest("PUT", API_BASE_URL + url, body, headers);
+  const response = await fetchRequest("PUT", API_BASE_URL + url, body, headers, authenticated);
   await assertOk(response);
   return response;
 }
@@ -119,14 +138,16 @@ export async function put(
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
  * @param headers The headers of the request (optional)
+ * @param authenticated Whether the request should be authenticated
  * @returns The Response object returned by `fetch()`
  */
 export async function patch(
   url: string,
   body: unknown,
   headers: Record<string, string> = {},
+  authenticated = false,
 ): Promise<Response> {
-  const response = await fetchRequest("PATCH", API_BASE_URL + url, body, headers);
+  const response = await fetchRequest("PATCH", API_BASE_URL + url, body, headers, authenticated);
   await assertOk(response);
   return response;
 }
@@ -136,13 +157,16 @@ export async function patch(
  *
  * @param url The URL to request
  * @param headers The headers of the request (optional)
+ * @param authenticated Whether the request should be authenticated
  * @returns The Response object returned by `fetch()`
  */
 export async function httpDelete(
   url: string,
+  body: unknown,
   headers: Record<string, string> = {},
+  authenticated = false,
 ): Promise<Response> {
-  const response = await fetchRequest("DELETE", API_BASE_URL + url, undefined, headers);
+  const response = await fetchRequest("DELETE", API_BASE_URL + url, body, headers, authenticated);
   await assertOk(response);
   return response;
 }
