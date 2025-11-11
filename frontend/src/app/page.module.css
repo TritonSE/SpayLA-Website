@@ -73,6 +73,13 @@
   line-height: 1.5;
   max-width: 30ch;
 }
+.centerContentWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0; /* Add some vertical padding for spacing */
+}
+
 .center {
   display: flex;
   justify-content: center;

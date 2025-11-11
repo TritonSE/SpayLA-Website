@@ -1,22 +1,18 @@
+import { matchedData, validationResult } from "express-validator";
+
 import Subscriber from "../models/subscriber";
+import validationErrorParser from "../utils/validationErrorParser";
 
 import type { RequestHandler } from "express";
 
-interface CreateSubscriberBody {
-  name: string;
-  email: string;
-}
-export const createSubscriber: RequestHandler<
-  unknown,
-  unknown,
-  CreateSubscriberBody,
-  unknown
-> = async (req, res, next) => {
-  const { name, email } = req.body;
+export const createSubscriber: RequestHandler = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessage = validationErrorParser(errors);
+    return res.status(400).json({ message: errorMessage });
+  }
+  const { name, email } = matchedData(req) as { name: string; email: string };
   try {
-    if (!name || !email) {
-      return res.status(400).json({ message: "Name and email are required" });
-    }
     const existingSubscriber = await Subscriber.findOne({ email });
     if (existingSubscriber) {
       return res.status(409).json({ message: "Subscriber already exists" });
@@ -31,8 +27,31 @@ export const createSubscriber: RequestHandler<
 
 export const getSubscribers: RequestHandler = async (req, res, next) => {
   try {
-    const subscribers = await Subscriber.find({});
+    const subscribers = await Subscriber.find();
     res.status(200).json(subscribers);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteSubscribers: RequestHandler = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessage = validationErrorParser(errors);
+    return res.status(400).json({ message: errorMessage });
+  }
+  const { ids } = matchedData(req) as { ids: string[] };
+
+  try {
+    const result = await Subscriber.deleteMany({
+      _id: { $in: ids }, //condition
+    });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No subscribers found with the provided IDs." });
+    }
+
+    res.status(200).json({ message: `${result.deletedCount} subscriber(s) deleted sucessfully.` });
   } catch (error) {
     next(error);
   }

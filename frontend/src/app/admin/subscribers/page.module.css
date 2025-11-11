@@ -4,16 +4,20 @@
 }
 .outer {
   width: 100%;
+  min-height: 100vh; /* Ensure it takes full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   padding: 50px;
-  width: 1135px;
+  /* width: 1135px; */ /* Remove fixed width */
   gap: 50px;
-  top: 148px;
-  left: 140px;
+  /* top: 148px; */ /* Remove fixed positioning */
+  /* left: 140px; */ /* Remove fixed positioning */
   display: flex;
   flex-direction: column;
-  height: 956px;
+  /* height: 956px; */ /* Remove fixed height */
 }
 
 .header {

@@ -4,11 +4,23 @@ import { useEffect, useState } from "react";
 
 import styles from "./SubscriberSignup.module.css";
 
+import type { FormEvent } from "react";
+
+import { createSubscriber } from "@/api/subscribers";
+import ToastNotification from "@/components/newsletters/toastNotification";
+
+type ToastInfo = {
+  message: string;
+};
+
 export default function SubscriberSignup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [toastInfo, setToastInfo] = useState<ToastInfo | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,8 +39,51 @@ export default function SubscriberSignup() {
     };
   }, []);
 
+  useEffect(() => {
+    if (toastInfo) {
+      const timer = setTimeout(() => {
+        setToastInfo(null);
+      }, 5000); // Hide after 5 seconds
+
+      // Cleanup function to clear the timer if the component unmounts
+      return () => clearTimeout(timer);
+    }
+  }, [toastInfo]);
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    if (!firstName || !lastName || !email) {
+      setToastInfo({ message: "Please fill out all fields." });
+      setIsLoading(false);
+      return;
+    }
+
+    const result = await createSubscriber({
+      name: `${firstName} ${lastName}`,
+      email,
+    });
+
+    setIsLoading(false);
+
+    if (result.success) {
+      setToastInfo({ message: "Thank you for subscribing!" });
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+    } else {
+      setToastInfo({ message: result.error });
+      console.error(result.error);
+    }
+  };
+
   return (
     <div className={styles.subscriberContainer} style={{ width: "100vw", margin: 0, padding: 0 }}>
+      <ToastNotification
+        show={!!toastInfo}
+        message={toastInfo?.message || ""}
+        onRequestClose={() => setToastInfo(null)}
+      />
       <div className={styles.signupSection}>
         <div className={styles.headerSection}>
           <Image
@@ -51,7 +106,12 @@ export default function SubscriberSignup() {
             our furry friends!
           </p>
         )}
-        <div className={styles.formContainer}>
+        <form
+          className={styles.formContainer}
+          onSubmit={(e) => {
+            void handleSubmit(e);
+          }}
+        >
           <div className={styles.inputGroup}>
             <label htmlFor="firstName" className={styles.inputLabel}>
               First Name*
@@ -97,8 +157,10 @@ export default function SubscriberSignup() {
               }}
             />
           </div>
-          <button className={styles.signupButton}>Sign Up</button>
-        </div>
+          <button type="submit" className={styles.signupButton} disabled={isLoading}>
+            {isLoading ? "Signing Up..." : "Sign Up"}
+          </button>
+        </form>
       </div>
 
       {!isMobile && (

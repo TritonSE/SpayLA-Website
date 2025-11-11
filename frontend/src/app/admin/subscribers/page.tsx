@@ -1,29 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 
+import { getSubscribers } from "@/api/subscribers";
+
 type Subscriber = {
+  _id: string;
   name: string;
   email: string;
-  date: string;
-  id: number;
+  createdAt: string;
 };
 
-const subscriberList: Subscriber[] = Array.from({ length: 20 }, (_, i) => ({
-  name: "Irene Joo",
-  email: "irenejoo@ucsd.edu",
-  date: "4/9/2025",
-  id: i,
-}));
+// const subscriberList: Subscriber[] = Array.from({ length: 20 }, (_, i) => ({
+//   name: "Irene Joo",
+//   email: "irenejoo@ucsd.edu",
+//   date: "4/9/2025",
+//   id: i,
+// }));
 
 export default function Subscribers() {
-  const [subscribers, setSubscribers] = useState(subscriberList);
-  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
   const [undoCache, setUndoCache] = useState<Subscriber[]>([]);
   const [toast, setToast] = useState<React.ReactNode>("");
 
+  useEffect(() => {
+    const fetchSubscribers = async () => {
+      setIsLoading(true);
+      const result = await getSubscribers();
+      if (result.success) {
+        setSubscribers(result.data);
+        setError(null);
+      } else {
+        setError(result.error);
+      }
+      setIsLoading(false);
+    };
+    void fetchSubscribers();
+  }, []);
   const copyEmails = async () => {
     const emails = subscribers.map((s) => s.email).join(", ");
     await navigator.clipboard.writeText(emails);
@@ -40,8 +58,8 @@ export default function Subscribers() {
   };
 
   const deleteSubscribers = () => {
-    const toDelete = subscribers.filter((s) => selected.has(s.id));
-    const remaining = subscribers.filter((s) => !selected.has(s.id));
+    const toDelete = subscribers.filter((s) => selected.has(s._id));
+    const remaining = subscribers.filter((s) => !selected.has(s._id));
     setUndoCache(toDelete);
     setSubscribers(remaining);
     setSelected(new Set());
@@ -55,7 +73,7 @@ export default function Subscribers() {
     );
   };
 
-  const toggleSelect = (id: number) => {
+  const toggleSelect = (id: string) => {
     const updated = new Set(selected);
     if (updated.has(id)) {
       updated.delete(id);
@@ -64,6 +82,22 @@ export default function Subscribers() {
     }
     setSelected(updated);
   };
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <p>Loading subscribers...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <p className={styles.errorText}>Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.outer}>
@@ -110,16 +144,16 @@ export default function Subscribers() {
           </thead>
           <tbody>
             {subscribers.map((sub) => (
-              <tr key={sub.id}>
+              <tr key={sub._id}>
                 <td>{sub.name}</td>
                 <td>{sub.email}</td>
-                <td>{sub.date}</td>
+                <td>{new Date(sub.createdAt).toLocaleDateString()}</td>
                 <td>
                   <input
                     type="checkbox"
-                    checked={selected.has(sub.id)}
+                    checked={selected.has(sub._id)}
                     onChange={() => {
-                      toggleSelect(sub.id);
+                      toggleSelect(sub._id);
                     }}
                   />
                 </td>
