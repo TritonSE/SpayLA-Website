@@ -1,6 +1,7 @@
 import { getAuthToken } from "@/lib/auth";
+import env from "@/util/env";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const API_BASE_URL = env.NEXT_PUBLIC_BACKEND_URL;
 type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 /**
