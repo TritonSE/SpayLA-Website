@@ -4,6 +4,7 @@ import express from "express";
 import { env } from "./env";
 import errorHandler from "./middleware/errorHandler";
 import { log } from "./middleware/logger";
+import newsletterRoutes from "./routes/newsletters";
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.use(
   }),
 );
 
+// middleware to parse JSON request bodies
+app.use(express.json());
+
 // middleware to log requests
 app.use(log);
 
@@ -21,7 +25,8 @@ app.get("/", (req, res) => {
   res.send("SpayLA Backend is running!");
 });
 
-// Global error handler: all errors thrown by server are handled here
+app.use("/api/newsletters", newsletterRoutes);
+
 app.use(errorHandler);
 
 export default app;
