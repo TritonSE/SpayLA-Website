@@ -74,7 +74,7 @@ export default function Home() {
           <div id="newsletter">
             <Newsletter />
           </div>
-          <div id="subscribe">
+          <div id="subscribe" className={styles.centerContentWrapper}>
             <SubscriberSignup />
           </div>
         </div>
