@@ -29,8 +29,8 @@ export async function createSubscriber(
 ): Promise<APIResult<Subscriber>> {
   try {
     const response = await post("/api/subscribers", subscriberData);
-    const data = (await response.json()) as { subscriber: Subscriber };
-    return { success: true, data: data.subscriber };
+    const data = (await response.json()) as Subscriber;
+    return { success: true, data };
   } catch (error) {
     if (error instanceof Error) {
       const match = /\{.*\}/.exec(error.message);
@@ -50,6 +50,9 @@ export async function createSubscriber(
 export async function deleteSubscribers(ids: string[]): Promise<APIResult<{ message: string }>> {
   try {
     const response = await httpDelete("/api/subscribers", { ids }, {}, true);
+    if (response.status === 204) {
+      return { success: true, data: { message: "Subscriber(s) deleted successfully." } };
+    }
     const data = (await response.json()) as { message: string };
     return { success: true, data };
   } catch (e) {
