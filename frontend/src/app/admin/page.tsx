@@ -1,12 +1,17 @@
 "use client";
 import { Button } from "@tritonse/tse-constellation";
-import { useRef, useState } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./page.module.css";
 
+import type { Newsletter } from "@/api/newsletters";
+
+import { createNewsletter, getNewsletters } from "@/api/newsletters";
 import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
 import ToastNotification from "@/components/newsletters/toastNotification";
+import { storage } from "@/lib/firebase";
 
 // Minimal types to use with pdfjs-dist dynamic import
 type PdfViewport = { width: number; height: number };
@@ -25,11 +30,17 @@ type PdfJsModule = {
 // Cache for pdfjs module once dynamically loaded on the client
 let pdfjsLibRef: PdfJsModule | null = null;
 
+type NewsletterPreview = {
+  newsletter: Newsletter;
+  previewUrl: string;
+};
+
 export default function NewslettersPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewData, setPreviewData] = useState<string[]>([]);
+  const [newsletters, setNewsletters] = useState<NewsletterPreview[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   const noop = () => {
     // no operation
@@ -50,8 +61,62 @@ export default function NewslettersPage() {
     }, 3000);
   };
 
+  const generatePreviewFromUrl = async (url: string): Promise<string> => {
+    if (url.toLowerCase().includes(".pdf")) {
+      try {
+        if (!pdfjsLibRef) {
+          const mod = (await import("pdfjs-dist")) as unknown as PdfJsModule;
+          pdfjsLibRef = mod;
+          pdfjsLibRef.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+        }
+
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const typedarray = new Uint8Array(arrayBuffer);
+
+        const pdf = await pdfjsLibRef.getDocument(typedarray).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 2 });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        if (!context) return url;
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({ canvasContext: context, viewport }).promise;
+        return canvas.toDataURL("image/png");
+      } catch {
+        return "/demo-newsletter.png";
+      }
+    }
+    return url;
+  };
+
+  // Load existing newsletters on mount
+  useEffect(() => {
+    const loadNewsletters = async () => {
+      const result = await getNewsletters();
+      if (result.success) {
+        const previews = await Promise.all(
+          result.data.map(async (newsletter) => {
+            const previewUrl = await generatePreviewFromUrl(newsletter.fileLink);
+            return { newsletter, previewUrl };
+          }),
+        );
+        setNewsletters(previews);
+      } else {
+        showToast(`Error loading newsletters: ${result.error}`);
+      }
+    };
+
+    void loadNewsletters();
+  }, []);
+
   const handleButtonClick = () => {
-    fileInputRef.current?.click();
+    if (!isUploading) {
+      fileInputRef.current?.click();
+    }
   };
 
   const readFileAsArrayBuffer = async (file: File): Promise<ArrayBuffer> => {
@@ -67,53 +132,90 @@ export default function NewslettersPage() {
 
   const processFiles = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files ?? []);
+    if (files.length === 0) return;
 
-    const previewPromises = files.map(async (file) => {
-      if (file.type === "application/pdf") {
-        // Dynamically import pdfjs on the client only when needed
-        if (!pdfjsLibRef) {
-          const mod = (await import("pdfjs-dist")) as unknown as PdfJsModule;
-          pdfjsLibRef = mod;
-          // Point worker to a static file in /public
-          pdfjsLibRef.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+    setIsUploading(true);
+
+    try {
+      const uploadedNewsletters: NewsletterPreview[] = [];
+
+      for (const file of files) {
+        try {
+          // Upload file to Firebase Storage
+          const timestamp = Date.now();
+          const fileName = `newsletters/${timestamp}_${file.name}`;
+          const storageRef = ref(storage, fileName);
+          await uploadBytes(storageRef, file);
+          const downloadURL = await getDownloadURL(storageRef);
+
+          // Create newsletter record in backend
+          const newsletterData = {
+            date: new Date().toISOString(),
+            fileLink: downloadURL,
+          };
+
+          const result = await createNewsletter(newsletterData);
+
+          if (!result.success) {
+            showToast(`Error uploading ${file.name}: ${result.error}`);
+            continue;
+          }
+
+          // Generate preview
+          let previewUrl: string;
+          if (file.type === "application/pdf") {
+            if (!pdfjsLibRef) {
+              const mod = (await import("pdfjs-dist")) as unknown as PdfJsModule;
+              pdfjsLibRef = mod;
+              pdfjsLibRef.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+            }
+
+            const arrayBuffer = await readFileAsArrayBuffer(file);
+            const typedarray = new Uint8Array(arrayBuffer);
+            const pdf = await pdfjsLibRef.getDocument(typedarray).promise;
+            const page = await pdf.getPage(1);
+            const viewport = page.getViewport({ scale: 2 });
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            if (!context) {
+              previewUrl = downloadURL;
+            } else {
+              canvas.width = viewport.width;
+              canvas.height = viewport.height;
+              await page.render({ canvasContext: context, viewport }).promise;
+              previewUrl = canvas.toDataURL("image/png");
+            }
+          } else {
+            previewUrl = URL.createObjectURL(file);
+          }
+
+          uploadedNewsletters.push({
+            newsletter: result.data,
+            previewUrl,
+          });
+        } catch (error) {
+          if (error instanceof Error) {
+            showToast(`Error uploading ${file.name}: ${error.message}`);
+          } else {
+            showToast(`Error uploading ${file.name}`);
+          }
         }
-
-        const arrayBuffer = await readFileAsArrayBuffer(file);
-        const typedarray = new Uint8Array(arrayBuffer);
-        const pdf = await pdfjsLibRef.getDocument(typedarray).promise;
-        const page = await pdf.getPage(1);
-
-        const viewport = page.getViewport({ scale: 2 });
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-
-        if (!context) {
-          console.error("Failed to get 2D context");
-          return null;
-        }
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        await page.render({ canvasContext: context, viewport }).promise;
-        return canvas.toDataURL("image/png");
-      } else if (file.type.startsWith("image/")) {
-        return URL.createObjectURL(file);
       }
 
-      return null; // skip unsupported file types
-    });
-
-    const results = await Promise.all(previewPromises);
-    const validResults = results.filter((url): url is string => !!url); // filter out nulls
-
-    setPreviewData((prev) => [...prev, ...validResults]);
-
-    if (validResults.length > 0) {
-      showToast("Newsletter uploaded successfully.", () => {
-        // Undo logic: remove the just-added files
-        setPreviewData((prev) => prev.slice(0, prev.length - validResults.length));
-      });
+      if (uploadedNewsletters.length > 0) {
+        setNewsletters((prev) => [...uploadedNewsletters, ...prev]);
+        showToast(`${uploadedNewsletters.length} newsletter(s) uploaded successfully.`, () => {
+          // Undo: remove uploaded newsletters
+          setNewsletters((prev) =>
+            prev.filter(
+              (n) => !uploadedNewsletters.some((u) => u.newsletter._id === n.newsletter._id),
+            ),
+          );
+        });
+      }
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -148,8 +250,13 @@ export default function NewslettersPage() {
           }}
         />
 
-        <Button className={styles.upload} leadingIcon="ic_upload" onClick={handleButtonClick}>
-          Upload PDF/Image
+        <Button
+          className={styles.upload}
+          leadingIcon="ic_upload"
+          onClick={handleButtonClick}
+          disabled={isUploading}
+        >
+          {isUploading ? "Uploading..." : "Upload PDF/Image"}
         </Button>
 
         <input
@@ -162,30 +269,41 @@ export default function NewslettersPage() {
         />
 
         <div className={styles.grid}>
-          {previewData.map((url, idx) => (
-            <PreviewCard
-              key={idx}
-              date={`${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}`}
-              onPreview={() => {
-                openModal(url);
-              }}
-              onDelete={() => {
-                const deleted = previewData[idx];
-                setPreviewData((prev) => prev.filter((_, i) => i !== idx));
+          {newsletters.map((item, idx) => {
+            const date = new Date(item.newsletter.date);
+            const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
-                showToast("Newsletter deleted successfully.", () => {
-                  // re-insert the deleted item at the same position
-                  setPreviewData((prev) => {
-                    const updated = [...prev];
-                    updated.splice(idx, 0, deleted);
-                    return updated;
+            return (
+              <PreviewCard
+                key={item.newsletter._id}
+                date={formattedDate}
+                onPreview={() => {
+                  openModal(item.previewUrl);
+                }}
+                onDelete={() => {
+                  const deleted = item;
+                  setNewsletters((prev) =>
+                    prev.filter((n) => n.newsletter._id !== item.newsletter._id),
+                  );
+
+                  showToast("Newsletter deleted successfully.", () => {
+                    // re-insert the deleted item at the same position
+                    setNewsletters((prev) => {
+                      const updated = [...prev];
+                      updated.splice(idx, 0, deleted);
+                      return updated;
+                    });
                   });
-                });
-              }}
-            >
-              <img src={url} alt={`preview-${idx}`} style={{ width: "100%" }} />
-            </PreviewCard>
-          ))}
+                }}
+              >
+                <img
+                  src={item.previewUrl}
+                  alt={`newsletter-${item.newsletter._id}`}
+                  style={{ width: "100%" }}
+                />
+              </PreviewCard>
+            );
+          })}
         </div>
       </div>
 
