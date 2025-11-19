@@ -1,6 +1,6 @@
 .frame {
   position: fixed;
-  margin-top: 5px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
@@ -14,6 +14,7 @@
   z-index: 1000;
   width: 512px;
   height: 72px;
+  justify-content: space-between;
 }
 
 .message {

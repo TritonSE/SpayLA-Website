@@ -18,7 +18,9 @@ export default cleanEnv(
     NEXT_PUBLIC_FIREBASE_CONFIG: process.env.NEXT_PUBLIC_FIREBASE_CONFIG,
   },
   {
-    NEXT_PUBLIC_BACKEND_URL: str(), // URL of our backend
+    NEXT_PUBLIC_BACKEND_URL: str({
+      default: "",
+    }), // URL of our backend
     NEXT_PUBLIC_FIREBASE_CONFIG: json<FirebaseOptions>(), // Firebase settings for frontend, stored as a JSON string
   },
 );
