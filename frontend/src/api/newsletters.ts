@@ -1,4 +1,4 @@
-import { get, handleAPIError, post } from "./requests";
+import { get, handleAPIError, httpDelete, post } from "./requests";
 
 import type { APIResult } from "./requests";
 
@@ -11,6 +11,7 @@ export type Newsletter = {
   _id: string;
   date: string;
   fileLink: string;
+  preview?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -56,3 +57,12 @@ export async function createNewsletter(
   }
 }
 
+export async function deleteNewsletter(id: string): Promise<APIResult<null>> {
+  try {
+    await httpDelete(`/api/newsletters/${id}`, {}, {}, true);
+
+    return { success: true, data: null };
+  } catch (error) {
+    return handleAPIError(error);
+  }
+}

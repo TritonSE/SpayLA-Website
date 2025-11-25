@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 
 import styles from "./newsletterDisplay.module.css";
 
+import type { Newsletter } from "@/api/newsletters";
+
 import { getNewsletters } from "@/api/newsletters";
 import Modal from "@/components/newsletters/modal";
-
-import type { Newsletter } from "@/api/newsletters";
+import { generatePreviewFromUrl } from "@/util/utils";
 
 export default function NewsletterDisplay() {
   const [allNewsletters, setAllNewsletters] = useState<Newsletter[]>([]);
@@ -23,7 +24,14 @@ export default function NewsletterDisplay() {
       setLoading(true);
       const result = await getNewsletters();
       if (result.success) {
-        setAllNewsletters(result.data);
+        const newslettersWithPreviews = await Promise.all(
+          result.data.map(async (newsletter) => {
+            const preview = await generatePreviewFromUrl(newsletter.fileLink);
+            return { ...newsletter, preview };
+          }),
+        );
+
+        setAllNewsletters(newslettersWithPreviews);
       } else {
         console.error("Error loading newsletters:", result.error);
       }
@@ -111,10 +119,14 @@ export default function NewsletterDisplay() {
                 <button
                   className={styles.thumbnail}
                   onClick={() => {
-                    openModal(latestNewsletter.fileLink);
+                    openModal(latestNewsletter.preview || "/demo-newsletter.png");
                   }}
                 >
-                  <img src={latestNewsletter.fileLink} alt="Latest Newsletter" style={{ width: "100%" }} />
+                  <img
+                    src={latestNewsletter.preview || "/demo-newsletter.png"}
+                    alt="Latest Newsletter"
+                    style={{ width: "100%" }}
+                  />
                 </button>
               </div>
             ) : (
@@ -150,17 +162,19 @@ export default function NewsletterDisplay() {
                 </div>
                 <div className={styles.newsletterList}>
                   {currentNewsletters.length > 0 ? (
-                    currentNewsletters.map((newsletter) => (
-                      <Button
-                        key={newsletter._id}
-                        className={styles.newsletterView}
-                        onClick={() => {
-                          openModal(newsletter.fileLink);
-                        }}
-                      >
-                        {formatDate(newsletter.date)} Newsletter
-                      </Button>
-                    ))
+                    currentNewsletters.map((newsletter) => {
+                      return (
+                        <Button
+                          key={newsletter._id}
+                          className={styles.newsletterView}
+                          onClick={() => {
+                            openModal(newsletter.preview || "/demo-newsletter.png");
+                          }}
+                        >
+                          {formatDate(newsletter.date)} Newsletter
+                        </Button>
+                      );
+                    })
                   ) : (
                     <p className={styles.description}>No newsletters found for this time period.</p>
                   )}

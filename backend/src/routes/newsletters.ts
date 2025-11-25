@@ -1,10 +1,11 @@
 import express from "express";
-import { body, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import createHttpError from "http-errors";
 
 import { authenticated } from "../middleware/auth";
 import Newsletter from "../models/newsletter";
 import validationErrorParser from "../utils/validationErrorParser";
+import { createNewsletterValidator } from "../validators/newsletter";
 
 import type { RequestHandler } from "express";
 
@@ -19,20 +20,6 @@ const getNewsletters: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-
-// POST /api/newsletters - Create a new newsletter (protected route)
-const createNewsletterValidators = [
-  body("date")
-    .notEmpty()
-    .withMessage("Date is required")
-    .isISO8601()
-    .withMessage("Date must be a valid ISO 8601 date"),
-  body("fileLink")
-    .notEmpty()
-    .withMessage("File link is required")
-    .isURL()
-    .withMessage("File link must be a valid URL"),
-];
 
 type CreateNewsletterBody = {
   date: string;
@@ -59,8 +46,30 @@ const createNewsletter: RequestHandler = async (req, res, next) => {
   }
 };
 
+const deleteNewsletter: RequestHandler = async (req, res, next) => {
+  const errors = validationErrorParser(validationResult(req));
+  if (errors) {
+    return next(createHttpError(400, errors));
+  }
+
+  const { id } = req.params;
+
+  try {
+    const newsletter = await Newsletter.findByIdAndDelete(id);
+
+    if (!newsletter) {
+      return next(createHttpError(404, "Newsletter not found"));
+    }
+
+    return res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Routes
 router.get("/", getNewsletters);
-router.post("/", authenticated, createNewsletterValidators, createNewsletter);
+router.post("/", authenticated, createNewsletterValidator, createNewsletter);
+router.delete("/:id", deleteNewsletter);
 
 export default router;
