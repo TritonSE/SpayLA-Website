@@ -2,7 +2,7 @@
 "use client";
 import { Button } from "@tritonse/tse-constellation";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 
@@ -12,21 +12,17 @@ import { createNewsletter, deleteNewsletter, getNewsletters } from "@/api/newsle
 import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
 import ToastNotification from "@/components/newsletters/toastNotification";
+import UploadModal from "@/components/newsletters/uploadModal";
 import { storage } from "@/lib/firebase";
 import { generatePreviewFromUrl } from "@/util/utils";
 
-type NewsletterPreview = {
-  newsletter: Newsletter;
-  previewUrl: string;
-};
-
 export default function NewslettersPage() {
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
-  const [newsletters, setNewsletters] = useState<NewsletterPreview[]>([]);
+  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -50,8 +46,8 @@ export default function NewslettersPage() {
       if (result.success) {
         const previews = await Promise.all(
           result.data.map(async (newsletter) => {
-            const previewUrl = await generatePreviewFromUrl(newsletter.fileLink);
-            return { newsletter, previewUrl };
+            const preview = await generatePreviewFromUrl(newsletter.fileLink);
+            return { ...newsletter, preview };
           }),
         );
         setNewsletters(previews);
@@ -67,18 +63,17 @@ export default function NewslettersPage() {
 
   const handleButtonClick = () => {
     if (!isUploading) {
-      fileInputRef.current?.click();
+      setUploadModalOpen(true);
     }
   };
 
-  const processFiles = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files ?? []);
+  const processFiles = async (dateIso: string, files: File[]) => {
     if (files.length === 0) return;
 
     setIsUploading(true);
 
     try {
-      const uploadedNewsletters: NewsletterPreview[] = [];
+      const uploadedNewsletters: Newsletter[] = [];
 
       for (const file of files) {
         try {
@@ -89,9 +84,9 @@ export default function NewslettersPage() {
           await uploadBytes(storageRef, file);
           const downloadURL = await getDownloadURL(storageRef);
 
-          // Create newsletter record in backend
+          // Create newsletter record in backend using provided date
           const newsletterData = {
-            date: new Date().toISOString(),
+            date: dateIso,
             fileLink: downloadURL,
           };
 
@@ -103,12 +98,9 @@ export default function NewslettersPage() {
           }
 
           // Generate preview
-          const previewUrl = await generatePreviewFromUrl(downloadURL);
+          const preview = await generatePreviewFromUrl(downloadURL);
 
-          uploadedNewsletters.push({
-            newsletter: result.data,
-            previewUrl,
-          });
+          uploadedNewsletters.push({ ...result.data, preview });
         } catch (error) {
           if (error instanceof Error) {
             showToast(`Error uploading ${file.name}: ${error.message}`);
@@ -124,13 +116,6 @@ export default function NewslettersPage() {
       }
     } finally {
       setIsUploading(false);
-    }
-  };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    void processFiles(event);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
     }
   };
 
@@ -166,39 +151,38 @@ export default function NewslettersPage() {
           {isUploading ? "Uploading..." : "Upload PDF/Image"}
         </Button>
 
-        <input
-          type="file"
-          accept=".pdf,image/*"
-          multiple
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
+        {/* Upload modal handles file selection + date */}
+        <UploadModal
+          isOpen={uploadModalOpen}
+          onClose={() => setUploadModalOpen(false)}
+          onSubmit={async (dateIso, files) => {
+            await processFiles(dateIso, files);
+          }}
+          disabled={isUploading}
         />
 
         <div className={styles.grid}>
           {newsletters.map((item) => {
-            const date = new Date(item.newsletter.date);
+            const date = new Date(item.date);
             const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
             return (
               <PreviewCard
-                key={item.newsletter._id}
+                key={item._id}
                 date={formattedDate}
                 onPreview={() => {
-                  openModal(item.previewUrl);
+                  openModal(item.preview || "/demo-newsletter.png");
                 }}
                 onDelete={() => {
                   if (loading) return;
 
                   setLoading(true);
 
-                  deleteNewsletter(item.newsletter._id)
+                  deleteNewsletter(item._id)
                     .then(() => {
                       showToast("Newsletter deleted successfully.");
 
-                      setNewsletters((prev) =>
-                        prev.filter((n) => n.newsletter._id !== item.newsletter._id),
-                      );
+                      setNewsletters((prev) => prev.filter((n) => n._id !== item._id));
                     })
                     .catch((error) => {
                       console.error(error);
@@ -210,8 +194,8 @@ export default function NewslettersPage() {
                 }}
               >
                 <img
-                  src={item.previewUrl}
-                  alt={`newsletter-${item.newsletter._id}`}
+                  src={item.preview || "/demo-newsletter.png"}
+                  alt={`newsletter-${item._id}`}
                   style={{ width: "100%" }}
                 />
               </PreviewCard>
