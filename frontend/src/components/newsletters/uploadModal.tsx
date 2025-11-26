@@ -8,7 +8,7 @@ import styles from "./modal.module.css";
 type UploadModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (dateIso: string, files: File[]) => Promise<void>;
+  onSubmit: (dateIso: string, file: File | null) => Promise<void>;
   disabled?: boolean;
 };
 
@@ -20,12 +20,12 @@ export default function UploadModal({ isOpen, onClose, onSubmit, disabled }: Upl
   if (!isOpen) return null;
 
   const handleUpload = async () => {
-    const files = Array.from(fileInputRef.current?.files ?? []);
-    if (files.length === 0) return;
+    const file = fileInputRef.current?.files?.[0] ?? null;
+    if (!file) return;
 
     setLocalUploading(true);
     try {
-      await onSubmit(new Date(date).toISOString(), files);
+      await onSubmit(new Date(date).toISOString(), file);
       onClose();
     } finally {
       setLocalUploading(false);
@@ -51,8 +51,8 @@ export default function UploadModal({ isOpen, onClose, onSubmit, disabled }: Upl
 
           <div style={{ height: 16 }} />
 
-          <label style={{ display: "block", marginBottom: 8 }}>File(s)</label>
-          <input ref={fileInputRef} type="file" accept=".pdf,image/*" multiple />
+          <label style={{ display: "block", marginBottom: 8 }}>File</label>
+          <input ref={fileInputRef} type="file" accept=".pdf,image/*" />
 
           <div style={{ height: 20 }} />
 

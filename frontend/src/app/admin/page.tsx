@@ -1,7 +1,5 @@
-/* eslint-disable no-await-in-loop */
 "use client";
 import { Button } from "@tritonse/tse-constellation";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
@@ -13,7 +11,6 @@ import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
 import ToastNotification from "@/components/newsletters/toastNotification";
 import UploadModal from "@/components/newsletters/uploadModal";
-import { storage } from "@/lib/firebase";
 import { generatePreviewFromUrl } from "@/util/utils";
 
 export default function NewslettersPage() {
@@ -67,53 +64,24 @@ export default function NewslettersPage() {
     }
   };
 
-  const processFiles = async (dateIso: string, files: File[]) => {
-    if (files.length === 0) return;
+  const processFile = async (dateIso: string, file: File | null) => {
+    if (!file) return;
 
     setIsUploading(true);
 
     try {
-      const uploadedNewsletters: Newsletter[] = [];
+      const res = await createNewsletter({ date: dateIso, file });
 
-      for (const file of files) {
-        try {
-          // Upload file to Firebase Storage
-          const timestamp = Date.now();
-          const fileName = `newsletters/${timestamp}_${file.name}`;
-          const storageRef = ref(storage, fileName);
-          await uploadBytes(storageRef, file);
-          const downloadURL = await getDownloadURL(storageRef);
-
-          // Create newsletter record in backend using provided date
-          const newsletterData = {
-            date: dateIso,
-            fileLink: downloadURL,
-          };
-
-          const result = await createNewsletter(newsletterData);
-
-          if (!result.success) {
-            showToast(`Error uploading ${file.name}: ${result.error}`);
-            continue;
-          }
-
-          // Generate preview
-          const preview = await generatePreviewFromUrl(downloadURL);
-
-          uploadedNewsletters.push({ ...result.data, preview });
-        } catch (error) {
-          if (error instanceof Error) {
-            showToast(`Error uploading ${file.name}: ${error.message}`);
-          } else {
-            showToast(`Error uploading ${file.name}`);
-          }
-        }
+      if (!res.success) {
+        return showToast(`Error uploading file: ${res.error}`);
       }
 
-      if (uploadedNewsletters.length > 0) {
-        setNewsletters((prev) => [...uploadedNewsletters, ...prev]);
-        showToast(`${uploadedNewsletters.length} newsletter(s) uploaded successfully.`);
-      }
+      const created = res.data;
+      const preview = await generatePreviewFromUrl(created.fileLink);
+
+      setNewsletters((prev) => [{ ...created, preview }, ...prev]);
+
+      showToast(`Newsletter uploaded successfully.`);
     } finally {
       setIsUploading(false);
     }
@@ -155,8 +123,8 @@ export default function NewslettersPage() {
         <UploadModal
           isOpen={uploadModalOpen}
           onClose={() => setUploadModalOpen(false)}
-          onSubmit={async (dateIso, files) => {
-            await processFiles(dateIso, files);
+          onSubmit={async (dateIso, file) => {
+            await processFile(dateIso, file ?? null);
           }}
           disabled={isUploading}
         />

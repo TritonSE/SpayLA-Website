@@ -5,6 +5,8 @@ const { Schema } = mongoose;
 export type INewsletter = {
   date: Date;
   fileLink: string;
+  filePath?: string;
+  originalName?: string;
 };
 
 const newsletterSchema = new Schema<INewsletter>(
@@ -16,6 +18,14 @@ const newsletterSchema = new Schema<INewsletter>(
     fileLink: {
       type: String,
       required: true,
+    },
+    filePath: {
+      type: String,
+      required: false,
+    },
+    originalName: {
+      type: String,
+      required: false,
     },
   },
   {

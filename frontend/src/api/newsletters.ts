@@ -2,18 +2,17 @@ import { get, handleAPIError, httpDelete, post } from "./requests";
 
 import type { APIResult } from "./requests";
 
-export type CreateNewsletterData = {
-  date: string; // ISO 8601 format
-  fileLink: string; // Firebase storage URL
-};
-
 export type Newsletter = {
   _id: string;
   date: string;
   fileLink: string;
-  preview?: string;
+  filePath?: string;
+  originalName?: string;
   createdAt: string;
   updatedAt: string;
+
+  // not persistent
+  preview?: string;
 };
 
 /**
@@ -34,25 +33,23 @@ export async function getNewsletters(): Promise<APIResult<Newsletter[]>> {
  * @param newsletterData The newsletter data including date and Firebase file link
  * @returns The created newsletter
  */
+export type CreateNewsletterInput = {
+  date: string;
+  file: File;
+};
+
 export async function createNewsletter(
-  newsletterData: CreateNewsletterData,
+  input: CreateNewsletterInput,
 ): Promise<APIResult<Newsletter>> {
   try {
-    const response = await post("/api/newsletters", newsletterData, {}, true);
+    const fd = new FormData();
+    fd.append("date", input.date);
+    fd.append("file", input.file, input.file.name);
+
+    const response = await post("/api/newsletters", fd, {}, true);
     const data = (await response.json()) as Newsletter;
     return { success: true, data };
   } catch (error) {
-    if (error instanceof Error) {
-      const match = /\{.*\}/.exec(error.message);
-      if (match) {
-        try {
-          const errorJson = JSON.parse(match[0]) as { error?: string };
-          if (errorJson.error) {
-            return { success: false, error: errorJson.error };
-          }
-        } catch (_) {}
-      }
-    }
     return handleAPIError(error);
   }
 }

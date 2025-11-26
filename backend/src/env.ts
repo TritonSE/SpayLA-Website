@@ -10,4 +10,5 @@ export const env = cleanEnv(process.env, {
   }),
   PORT: num({ default: 8000 }),
   FIREBASE_SERVICE_ACCOUNT_KEY: json<AppOptions>(),
+  FIREBASE_STORAGE_BUCKET: str(),
 });
