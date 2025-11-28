@@ -26,8 +26,11 @@ async function fetchRequest(
 ): Promise<Response> {
   const hasBody = body !== undefined;
 
+  const isFormData = typeof FormData !== "undefined" && body instanceof FormData;
   const newHeaders = { ...headers };
-  if (hasBody) {
+  // Don't set Content-Type for FormData; the browser will set the correct
+  // multipart boundary header automatically. For JSON bodies set header.
+  if (hasBody && !isFormData) {
     newHeaders["Content-Type"] = "application/json";
   }
 
@@ -41,7 +44,7 @@ async function fetchRequest(
   const response = await fetch(url, {
     method,
     headers: newHeaders,
-    body: hasBody ? JSON.stringify(body) : undefined,
+    body: hasBody ? (isFormData ? body : JSON.stringify(body)) : undefined,
     cache: "no-store",
   });
 

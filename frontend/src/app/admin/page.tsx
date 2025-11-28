@@ -1,47 +1,31 @@
 "use client";
 import { Button } from "@tritonse/tse-constellation";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 
+import type { Newsletter } from "@/api/newsletters";
+
+import { createNewsletter, deleteNewsletter, getNewsletters } from "@/api/newsletters";
 import Modal from "@/components/newsletters/modal";
 import PreviewCard from "@/components/newsletters/previewCard";
 import ToastNotification from "@/components/newsletters/toastNotification";
-
-// Minimal types to use with pdfjs-dist dynamic import
-type PdfViewport = { width: number; height: number };
-type PdfPage = {
-  getViewport: (opts: { scale: number }) => PdfViewport;
-  render: (args: { canvasContext: CanvasRenderingContext2D; viewport: PdfViewport }) => {
-    promise: Promise<void>;
-  };
-};
-type PdfDocument = { getPage: (n: number) => Promise<PdfPage> };
-type PdfJsModule = {
-  getDocument: (src: Uint8Array | ArrayBuffer | string) => { promise: Promise<PdfDocument> };
-  GlobalWorkerOptions: { workerSrc: string };
-};
-
-// Cache for pdfjs module once dynamically loaded on the client
-let pdfjsLibRef: PdfJsModule | null = null;
+import UploadModal from "@/components/newsletters/uploadModal";
+import { generatePreviewFromUrl } from "@/util/utils";
 
 export default function NewslettersPage() {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewData, setPreviewData] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
-
-  const noop = () => {
-    // no operation
-  };
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  const [undoCallback, setUndoCallback] = useState<() => void>(() => noop);
 
-  const showToast = (message: string, undo?: () => void) => {
+  const showToast = (message: string) => {
     setToastMessage(message);
-    setUndoCallback(() => undo ?? noop);
     setToastVisible(true);
 
     // Optional auto-dismiss:
@@ -50,77 +34,56 @@ export default function NewslettersPage() {
     }, 3000);
   };
 
-  const handleButtonClick = () => {
-    fileInputRef.current?.click();
-  };
+  // Load existing newsletters on mount
+  useEffect(() => {
+    const loadNewsletters = async () => {
+      setLoading(true);
 
-  const readFileAsArrayBuffer = async (file: File): Promise<ArrayBuffer> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as ArrayBuffer);
-      };
-      reader.onerror = reject;
-      reader.readAsArrayBuffer(file);
-    });
-  };
-
-  const processFiles = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files ?? []);
-
-    const previewPromises = files.map(async (file) => {
-      if (file.type === "application/pdf") {
-        // Dynamically import pdfjs on the client only when needed
-        if (!pdfjsLibRef) {
-          const mod = (await import("pdfjs-dist")) as unknown as PdfJsModule;
-          pdfjsLibRef = mod;
-          // Point worker to a static file in /public
-          pdfjsLibRef.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
-        }
-
-        const arrayBuffer = await readFileAsArrayBuffer(file);
-        const typedarray = new Uint8Array(arrayBuffer);
-        const pdf = await pdfjsLibRef.getDocument(typedarray).promise;
-        const page = await pdf.getPage(1);
-
-        const viewport = page.getViewport({ scale: 2 });
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-
-        if (!context) {
-          console.error("Failed to get 2D context");
-          return null;
-        }
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        await page.render({ canvasContext: context, viewport }).promise;
-        return canvas.toDataURL("image/png");
-      } else if (file.type.startsWith("image/")) {
-        return URL.createObjectURL(file);
+      const result = await getNewsletters();
+      if (result.success) {
+        const previews = await Promise.all(
+          result.data.map(async (newsletter) => {
+            const preview = await generatePreviewFromUrl(newsletter.fileLink);
+            return { ...newsletter, preview };
+          }),
+        );
+        setNewsletters(previews);
+      } else {
+        showToast(`Error loading newsletters: ${result.error}`);
       }
 
-      return null; // skip unsupported file types
-    });
+      setLoading(false);
+    };
 
-    const results = await Promise.all(previewPromises);
-    const validResults = results.filter((url): url is string => !!url); // filter out nulls
+    void loadNewsletters();
+  }, []);
 
-    setPreviewData((prev) => [...prev, ...validResults]);
-
-    if (validResults.length > 0) {
-      showToast("Newsletter uploaded successfully.", () => {
-        // Undo logic: remove the just-added files
-        setPreviewData((prev) => prev.slice(0, prev.length - validResults.length));
-      });
+  const handleButtonClick = () => {
+    if (!isUploading) {
+      setUploadModalOpen(true);
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    void processFiles(event);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+  const processFile = async (dateIso: string, file: File | null) => {
+    if (!file) return;
+
+    setIsUploading(true);
+
+    try {
+      const res = await createNewsletter({ date: dateIso, file });
+
+      if (!res.success) {
+        return showToast(`Error uploading file: ${res.error}`);
+      }
+
+      const created = res.data;
+      const preview = await generatePreviewFromUrl(created.fileLink);
+
+      setNewsletters((prev) => [{ ...created, preview }, ...prev]);
+
+      showToast(`Newsletter uploaded successfully.`);
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -142,50 +105,70 @@ export default function NewslettersPage() {
         <ToastNotification
           show={toastVisible}
           message={toastMessage}
-          onUndo={undoCallback}
           onRequestClose={() => {
             setToastVisible(false);
           }}
         />
 
-        <Button className={styles.upload} leadingIcon="ic_upload" onClick={handleButtonClick}>
-          Upload PDF/Image
+        <Button
+          className={styles.upload}
+          leadingIcon="ic_upload"
+          onClick={handleButtonClick}
+          disabled={isUploading}
+        >
+          {isUploading ? "Uploading..." : "Upload PDF/Image"}
         </Button>
 
-        <input
-          type="file"
-          accept=".pdf,image/*"
-          multiple
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
+        {/* Upload modal handles file selection + date */}
+        <UploadModal
+          isOpen={uploadModalOpen}
+          onClose={() => setUploadModalOpen(false)}
+          onSubmit={async (dateIso, file) => {
+            await processFile(dateIso, file ?? null);
+          }}
+          disabled={isUploading}
         />
 
         <div className={styles.grid}>
-          {previewData.map((url, idx) => (
-            <PreviewCard
-              key={idx}
-              date={`${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}`}
-              onPreview={() => {
-                openModal(url);
-              }}
-              onDelete={() => {
-                const deleted = previewData[idx];
-                setPreviewData((prev) => prev.filter((_, i) => i !== idx));
+          {newsletters.map((item) => {
+            const date = new Date(item.date);
+            const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
-                showToast("Newsletter deleted successfully.", () => {
-                  // re-insert the deleted item at the same position
-                  setPreviewData((prev) => {
-                    const updated = [...prev];
-                    updated.splice(idx, 0, deleted);
-                    return updated;
-                  });
-                });
-              }}
-            >
-              <img src={url} alt={`preview-${idx}`} style={{ width: "100%" }} />
-            </PreviewCard>
-          ))}
+            return (
+              <PreviewCard
+                key={item._id}
+                date={formattedDate}
+                onPreview={() => {
+                  openModal(item.preview || "/demo-newsletter.png");
+                }}
+                onDelete={() => {
+                  if (loading) return;
+
+                  setLoading(true);
+
+                  deleteNewsletter(item._id)
+                    .then(() => {
+                      showToast("Newsletter deleted successfully.");
+
+                      setNewsletters((prev) => prev.filter((n) => n._id !== item._id));
+                    })
+                    .catch((error) => {
+                      console.error(error);
+                      showToast(`Error deleting newsletter`);
+                    })
+                    .finally(() => {
+                      setLoading(false);
+                    });
+                }}
+              >
+                <img
+                  src={item.preview || "/demo-newsletter.png"}
+                  alt={`newsletter-${item._id}`}
+                  style={{ width: "100%" }}
+                />
+              </PreviewCard>
+            );
+          })}
         </div>
       </div>
 
