@@ -38,10 +38,9 @@ export default function WhatIsSpayLA() {
           fontFamily: "Open Sans, sans-serif",
         }}
       >
-        Spay.LA aims to combat animal overpopulation by creating <b>available</b>, <br />
-        <b>accessible</b>, and <b>affordable</b> spay and neuter clinics for the millions of pets{" "}
-        <br />
-        and community cats in Los Angeles.
+        Spay.LA aims to combat animal overpopulation by creating
+        <b>affordable</b>, <b>available</b>, and <b>accessible</b> spay/neuter clinics for the
+        millions of street cats and stray dogs in Los Angeles.
       </p>
 
       {/* Flex container pinned to bottom-right for both silhouettes */}
