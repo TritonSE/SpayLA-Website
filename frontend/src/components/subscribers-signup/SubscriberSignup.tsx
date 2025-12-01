@@ -176,8 +176,8 @@ export default function SubscriberSignup() {
                   <span className={styles.contactLabel}>Phone:</span>
                 </div>
                 <div className={styles.contactRow}>
-                  <span className={styles.contactValue}>sample@gmail.com</span>
-                  <span className={styles.contactValue}>123-456-7890</span>
+                  <span className={styles.contactValue}>FIX@Spay.LA</span>
+                  <span className={styles.contactValue}>818-718-4800</span>
                 </div>
               </div>
             </div>
